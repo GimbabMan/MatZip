@@ -65,18 +65,39 @@ namespace ThirdProject
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
+            SignUpComplete();
+        }
+
+        private void SignUpComplete()
+        {
+            if(txeId.Text == "아이디" || string.IsNullOrEmpty(txeId.Text))
+            {
+                return;
+            } else if(txePassword.Text == "비밀번호" || string.IsNullOrEmpty(txePassword.Text))
+            {
+                return;
+            }
+            else if (txeName.Text == "이름" || string.IsNullOrEmpty(txeName.Text))
+            {
+                return;
+            }
+            else if (txeEmail.Text == "이메일" || string.IsNullOrEmpty(txeEmail.Text))
+            {
+                return;
+            }
+
             var members = DataRepository.Member.GetAll();
-            bool isAlreadyMember = true;
+            bool isNotAlreadyMember = true;
             foreach (Member member in members)
             {
                 if (txeId.Text.ToString() == member.Id)
                 {
-                    isAlreadyMember = false;
+                    isNotAlreadyMember = false;
                     break;
                 }
             }
 
-            if(isAlreadyMember)
+            if (isNotAlreadyMember)
             {
                 Member newMember = new Member();
                 newMember.Id = txeId.Text.ToString();
@@ -93,5 +114,20 @@ namespace ThirdProject
             }
 
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                SignUpComplete();
+                return true;
+            } else if(keyData == Keys.Escape)
+            {
+                Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        
     }
 }

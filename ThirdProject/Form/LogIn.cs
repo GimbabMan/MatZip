@@ -37,7 +37,7 @@ namespace ThirdProject
         private void txePassword_MouseLeave(object sender, EventArgs e)
         {
             if (txePassword.Text.Length == 0)
-                txePassword.Text = "비밀번호";
+                txePassword.Text = "비밀번호를 입력하세요";
         }
 
         private void btnLogIn_Click(object sender, EventArgs e)
@@ -49,6 +49,12 @@ namespace ThirdProject
         {
             string id = txeId.Text.ToString();
             string password = txePassword.Text.ToString();
+
+            if (id == "아이디" || string.IsNullOrEmpty(id))
+                return;
+
+            if (password == "비밀번호를 입력하세요" || string.IsNullOrEmpty(password))
+                return;
 
             var members = DataRepository.Member.GetAll();
             Member loggedInMember = null;
@@ -79,5 +85,20 @@ namespace ThirdProject
             signUp.Show();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                CheckLogIn();
+                return true;
+            } else if(keyData == Keys.Escape)
+            {
+                Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+       
     }
 }

@@ -146,9 +146,10 @@ namespace ThirdProject
             InputRestaurantInformation inputRestaurantName = new InputRestaurantInformation(this);
             inputRestaurantName.ShowDialog();
 
+          
             if (string.IsNullOrEmpty(restaurantName))
             {
-                MessageBox.Show("가게명을 입력받지 못했습니다.");
+                //MessageBox.Show("가게명을 입력받지 못했습니다.");
                 return;
             }
 
@@ -343,6 +344,15 @@ namespace ThirdProject
             mapPushpin = null;
         }
 
-       
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
     }
 }

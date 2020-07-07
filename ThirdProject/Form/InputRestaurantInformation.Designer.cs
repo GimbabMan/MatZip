@@ -69,6 +69,7 @@
             this.txeName.Name = "txeName";
             this.txeName.Size = new System.Drawing.Size(228, 24);
             this.txeName.TabIndex = 14;
+            this.txeName.Click += new System.EventHandler(this.txeName_Click);
             this.txeName.MouseEnter += new System.EventHandler(this.txeName_MouseEnter);
             this.txeName.MouseLeave += new System.EventHandler(this.txeName_MouseLeave);
             // 
@@ -89,14 +90,14 @@
             this.btnComplete.Text = "완료";
             this.btnComplete.Click += new System.EventHandler(this.btnComplete_Click);
             // 
-            // InputRestaurantName
+            // InputRestaurantInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(228, 85);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "InputRestaurantName";
+            this.Name = "InputRestaurantInformation";
             this.Text = "RestaurantInsertForm";
             this.Load += new System.EventHandler(this.RestaurantInsertForm_Load);
             this.panel1.ResumeLayout(false);

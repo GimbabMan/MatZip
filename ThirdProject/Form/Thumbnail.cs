@@ -25,8 +25,7 @@ namespace ThirdProject
 
         private void Thumbnail_Load(object sender, EventArgs e)
         {
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-
+            //FormBorderStyle = FormBorderStyle.FixedSingle;
             var informations = DataRepository.Information.Get(ThumbnailRestaurant.RestaurantId);
             int codeId = 0;
             foreach(Information information in informations)
@@ -40,25 +39,31 @@ namespace ThirdProject
 
             Code code = DataRepository.Code.Get(codeId);
             Text = code.Text;
-            lblName.Text = $"{ThumbnailRestaurant.Name}";
+            lblName.Text = $"{ThumbnailRestaurant.Name}({code.Text})";
 
-            if (code.Text == "KoreanFood")
+            if (code.Text == "한식")
                 pictureBox.Image = Resources.한식;
-            else if (code.Text == "ChineseFood")
+            else if (code.Text == "중식")
                 pictureBox.Image = Resources.중식;
-            else if (code.Text == "JapaneseFood")
+            else if (code.Text == "일식")
                 pictureBox.Image = Resources.일식;
-            else if (code.Text == "WesternFood")
+            else if (code.Text == "양식")
                 pictureBox.Image = Resources.양식;
            
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
         }
 
-        private void lblMoreData_Click(object sender, EventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            Close();
+            if (keyData == Keys.Escape)
+            {
+                Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
+      
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.DataAccess.Wizard.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -42,7 +43,7 @@ namespace ThirdProject
 
             
 
-            if (MessageBox.Show("입력을 완료하셨나요?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 dataTransfer.SetName(txeName.Text, cbbFoodType.Text);
             }
@@ -67,6 +68,19 @@ namespace ThirdProject
             txeName.Text = "가게명을 입력해주세요";
         }
 
-        
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void txeName_Click(object sender, EventArgs e)
+        {
+            txeName.Text = "";
+        }
     }
 }
