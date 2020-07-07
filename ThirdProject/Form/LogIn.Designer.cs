@@ -366,7 +366,7 @@
             this.Controls.Add(this.layout);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LogIn";
-            this.Text = "Form2";
+            this.Text = "로그인";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layout)).EndInit();
             this.layout.ResumeLayout(false);
