@@ -10,24 +10,24 @@ namespace ThirdProject
     {
        
         private Data.Member LoggedInMember { get; set; }
+        private Data.Restaurant ThumbnailRestaurant { get; set; }
         private Thumbnail()
         {
             InitializeComponent();
             
         }
 
-        public Thumbnail(Data.Member loggedinMember) : this()
+        public Thumbnail(Data.Member loggedinMember, Data.Restaurant thumbnailRestaurant) : this()
         {
             LoggedInMember = loggedinMember;
+            ThumbnailRestaurant = thumbnailRestaurant;
         }
 
         private void Thumbnail_Load(object sender, EventArgs e)
         {
             FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            Registration registration = DataRepository.Registration.Get(LoggedInMember.MemberId);
-            Restaurant restaurant = DataRepository.Restaurant.Get(registration.RestaurantId);
-            var informations = DataRepository.Information.Get(restaurant.RestaurantId);
+            var informations = DataRepository.Information.Get(ThumbnailRestaurant.RestaurantId);
             int codeId = 0;
             foreach(Information information in informations)
             {
@@ -40,7 +40,7 @@ namespace ThirdProject
 
             Code code = DataRepository.Code.Get(codeId);
             Text = code.Text;
-            lblName.Text = $"{restaurant.Name}";
+            lblName.Text = $"{ThumbnailRestaurant.Name}";
 
             if (code.Text == "KoreanFood")
                 pictureBox.Image = Resources.한식;
@@ -50,7 +50,6 @@ namespace ThirdProject
                 pictureBox.Image = Resources.일식;
             else if (code.Text == "WesternFood")
                 pictureBox.Image = Resources.양식;
-
            
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
@@ -59,7 +58,6 @@ namespace ThirdProject
         private void lblMoreData_Click(object sender, EventArgs e)
         {
             Close();
-            
         }
 
     }

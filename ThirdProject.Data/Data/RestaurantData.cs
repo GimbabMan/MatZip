@@ -15,5 +15,16 @@ namespace ThirdProject.Data
           
             return context.Restaurants.FirstOrDefault(x => x.RestaurantId == restaurantId);
         }
+
+        public List<Restaurant> Get(decimal latitude, decimal longitude)
+        {
+            MatZipEntities context = CreateContext();
+
+            var query = from x in context.Restaurants
+                        where x.Latitude == latitude && x.Longitude == longitude
+                        select x;
+
+            return query.ToList();
+        }
     }
 }

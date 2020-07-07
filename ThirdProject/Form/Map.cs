@@ -2,6 +2,7 @@
 using DevExpress.XtraMap;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
@@ -14,6 +15,8 @@ namespace ThirdProject
         private MapItemStorage storage = new MapItemStorage();
         private MapPushpin mapPushpin = null;
         private Member LoggedInMember { get; set; }
+        public Color Red { get; private set; }
+
         private string restaurantName = null;
         private string restaurantFoodType = null;
 
@@ -34,11 +37,15 @@ namespace ThirdProject
 
             var registers = DataRepository.Registration.GetAll();
             var myRestaurantIds = new List<int>();
+            var othersRestaurantIds = new List<int>();
 
-            foreach(Registration register in registers)
+            foreach (Registration register in registers)
             {
                 if (LoggedInMember.MemberId == register.MemberId)
                     myRestaurantIds.Add(register.RestaurantId);
+                else
+                    othersRestaurantIds.Add(register.RestaurantId);
+
             }
 
             var restaurants = DataRepository.Restaurant.GetAll();
@@ -51,7 +58,7 @@ namespace ThirdProject
                         double laptitude = (double)restaurant.Latitude;
                         double longitude = (double)restaurant.Longitude;
                         GeoPoint p = new GeoPoint(laptitude, longitude);
-                        MapItem insertPushPin = new MapPushpin() { Location = (CoordPoint)p, Text = "나" };
+                        MapItem insertPushPin = new MapPushpin() { Location = p, Text = "나", TextGlowColor = Red };
                        
                         storage.Items.Add(insertPushPin);
                         mapControl.Refresh();
@@ -59,7 +66,39 @@ namespace ThirdProject
                     }
                 }
             }
-            
+
+            // 다른 사람 pin
+            foreach (int restaurantId in othersRestaurantIds)
+            {
+                foreach (Restaurant restaurant in restaurants)
+                {
+                    if (restaurant.RestaurantId == restaurantId)
+                    {
+                        double latitude = (double)restaurant.Latitude;
+                        double longitude = (double)restaurant.Longitude;
+                        GeoPoint p = new GeoPoint(latitude, longitude);
+                        MapItem insertPushPin = new MapPushpin() { Location = p, Text = "타인" };
+
+                        bool isAlreadyMapPushPin = false;
+                        foreach(MapPushpin mapPushpin in storage.Items)
+                        {
+                            if(mapPushpin.Location.GetY() == latitude && mapPushpin.Location.GetX() == longitude)
+                            {
+                                isAlreadyMapPushPin = true;
+                                break;
+                            }
+                        }
+
+                        if (isAlreadyMapPushPin)
+                            break;
+
+                        storage.Items.Add(insertPushPin);
+                        mapControl.Refresh();
+
+                    }
+                }
+            }
+
         }
 
         private void mapControl_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -83,14 +122,25 @@ namespace ThirdProject
             
             //Text = $"{p.GetY()} / {p.GetX()}";
 
+            /*
             foreach (MapPushpin mapPushPin in storage.Items)
             {
                 if (p.GetY() == mapPushPin.Location.GetY() && p.GetX() == mapPushPin.Location.GetX())
                 {
-                    MessageBox.Show("이미 핀이 존재합니다.");
-                    return;
+                    var restaurants = DataRepository.Restaurant.Get((decimal)mapPushPin.Location.GetY(), (decimal)mapPushPin.Location.GetX());
+                    Registration searchRegistration = DataRepository.Registration.Get(LoggedInMember.MemberId);
+
+                    foreach(Restaurant searchRestaurant in restaurants)
+                    {
+                        if(searchRegistration.RestaurantId == searchRestaurant.RestaurantId)
+                        {
+                            MessageBox.Show("이미 핀이 존재합니다.");
+                            return;
+                        }
+                    }
                 }
             }
+            */
 
             // 가게명을 입력받는다.
             InputRestaurantInformation inputRestaurantName = new InputRestaurantInformation(this);
@@ -130,8 +180,6 @@ namespace ThirdProject
             storage.Items.Add(insertPushPin);
             mapControl.Refresh();
 
-            restaurantName = null;
-
         }
 
         private void mapControl_MapItemDoubleClick(object sender, MapItemClickEventArgs e)
@@ -139,7 +187,50 @@ namespace ThirdProject
             if (IsMapPushPinClicked(sender, e))
             {
                 mapPushpin = (MapPushpin)e.Item;
-                Thumbnail thumbnail = new Thumbnail(LoggedInMember);
+                decimal latitude = (decimal)mapPushpin.Location.GetY();
+                decimal longitude = (decimal)mapPushpin.Location.GetX();
+
+                var restaurants = DataRepository.Restaurant.GetAll();
+                var registrations = DataRepository.Registration.GetAll();
+                
+                var thumbnailRestaurantIds = new List<int>();
+
+                foreach (Restaurant restaurant in restaurants)
+                {
+                    if (restaurant.Latitude == latitude && restaurant.Longitude == longitude)
+                    {
+                        thumbnailRestaurantIds.Add(restaurant.RestaurantId);
+                    }
+                }
+
+                Registration myThumbnailRegistration = null;
+                List<Registration> othersThumbnailRegistrations = new List<Registration>();
+                bool isFindMyRegistration = false;
+                foreach (int thumbnailRestaurantId in thumbnailRestaurantIds)
+                {
+                    foreach (Registration registration in registrations)
+                    {
+                        if (registration.RestaurantId == thumbnailRestaurantId && registration.MemberId == LoggedInMember.MemberId)
+                        {
+                            myThumbnailRegistration = registration;
+                            isFindMyRegistration = true;
+                            break;
+                        } else if(registration.RestaurantId == thumbnailRestaurantId)
+                        {
+                            othersThumbnailRegistrations.Add(registration);
+                        }
+                    }
+                    if (isFindMyRegistration)
+                        break;
+                }
+
+                Restaurant thumbnailRestaurant = null;
+                if (myThumbnailRegistration == null)
+                    thumbnailRestaurant = DataRepository.Restaurant.Get(othersThumbnailRegistrations[0].RestaurantId);
+                else
+                    thumbnailRestaurant = DataRepository.Restaurant.Get(myThumbnailRegistration.RestaurantId);
+
+                Thumbnail thumbnail = new Thumbnail(LoggedInMember ,thumbnailRestaurant);
                 thumbnail.Show();
             }
         }
@@ -209,6 +300,12 @@ namespace ThirdProject
                 }
                 if (isFindDeleteRegistration)
                     break;
+            }
+
+            if (deleteRegistration == null)
+            {
+                MessageBox.Show("타인의 관심 음식점은 지울 수 없습니다.");
+                return;
             }
 
             Restaurant deleteRestaurant = new Restaurant();
