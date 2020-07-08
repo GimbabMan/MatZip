@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
 
-namespace ThirdProject.Form
+namespace ThirdProject
 {
     public partial class Review : RootForm
     {
@@ -32,6 +32,10 @@ namespace ThirdProject.Form
         {
             pictureBox1.Image = Properties.Resources.chobab;
             pictureBox2.Image = Properties.Resources.star;
+
+            //리뷰보여주기 (지금은 모두 다 불러오는것)
+            List<Data.Review> reviews = DataRepository.Review.GetAll();
+            bdsReview.DataSource = reviews;
 
             //this.StartPosition = FormStartPosition.CenterScreen;
 

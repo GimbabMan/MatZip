@@ -1,4 +1,4 @@
-﻿namespace ThirdProject.Form
+﻿namespace ThirdProject
 {
     partial class Review
     {
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Review));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -41,7 +42,11 @@
             this.txbGrade5 = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.grdReview = new DevExpress.XtraGrid.GridControl();
+            this.bdsReview = new System.Windows.Forms.BindingSource(this.components);
             this.grvReview = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colMember = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGrade = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colComment = new DevExpress.XtraGrid.Columns.GridColumn();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.txbMenus = new System.Windows.Forms.TextBox();
             this.txbDays = new System.Windows.Forms.TextBox();
@@ -56,6 +61,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdReview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsReview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvReview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,6 +174,7 @@
             // 
             // grdReview
             // 
+            this.grdReview.DataSource = this.bdsReview;
             this.grdReview.Location = new System.Drawing.Point(113, 583);
             this.grdReview.MainView = this.grvReview;
             this.grdReview.Name = "grdReview";
@@ -176,10 +183,45 @@
             this.grdReview.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvReview});
             // 
+            // bdsReview
+            // 
+            this.bdsReview.DataSource = typeof(ThirdProject.Data.Review);
+            // 
             // grvReview
             // 
+            this.grvReview.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colMember,
+            this.colGrade,
+            this.colComment});
             this.grvReview.GridControl = this.grdReview;
             this.grvReview.Name = "grvReview";
+            // 
+            // colMember
+            // 
+            this.colMember.FieldName = "Member";
+            this.colMember.MinWidth = 25;
+            this.colMember.Name = "colMember";
+            this.colMember.Visible = true;
+            this.colMember.VisibleIndex = 0;
+            this.colMember.Width = 94;
+            // 
+            // colGrade
+            // 
+            this.colGrade.FieldName = "Grade";
+            this.colGrade.MinWidth = 25;
+            this.colGrade.Name = "colGrade";
+            this.colGrade.Visible = true;
+            this.colGrade.VisibleIndex = 1;
+            this.colGrade.Width = 94;
+            // 
+            // colComment
+            // 
+            this.colComment.FieldName = "Comment";
+            this.colComment.MinWidth = 25;
+            this.colComment.Name = "colComment";
+            this.colComment.Visible = true;
+            this.colComment.VisibleIndex = 2;
+            this.colComment.Width = 94;
             // 
             // simpleButton1
             // 
@@ -275,6 +317,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdReview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsReview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvReview)).EndInit();
             this.ResumeLayout(false);
 
@@ -302,5 +345,9 @@
         private System.Windows.Forms.TextBox txbGrade4;
         private System.Windows.Forms.TextBox txbGrade5;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.BindingSource bdsReview;
+        private DevExpress.XtraGrid.Columns.GridColumn colMember;
+        private DevExpress.XtraGrid.Columns.GridColumn colGrade;
+        private DevExpress.XtraGrid.Columns.GridColumn colComment;
     }
 }

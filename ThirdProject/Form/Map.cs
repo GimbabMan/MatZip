@@ -287,8 +287,7 @@ namespace ThirdProject
         
         private void mapControl_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mapPushpin != null)
-                return;
+            
 
             MapHitInfo information = mapControl.CalcHitInfo(e.Location);
             MapPushpin pin = null;
@@ -298,7 +297,14 @@ namespace ThirdProject
             }
 
             if (pin == null)
+            {
+                mapPushpin = null;
                 return;
+            }
+
+            if (mapPushpin == pin)
+                return;
+
 
             mapPushpin = pin;
 
