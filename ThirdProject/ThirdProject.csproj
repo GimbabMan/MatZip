@@ -107,12 +107,6 @@
     <Compile Include="Form\RestaurantInformation.Designer.cs">
       <DependentUpon>RestaurantInformation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\InputReviewInformation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\InputReviewInformation.Designer.cs">
-      <DependentUpon>InputReviewInformation.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
