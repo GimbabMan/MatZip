@@ -349,7 +349,6 @@ namespace ThirdProject
             thumbnail.ShowDialog();
 
         }
-
        
     }
 }
