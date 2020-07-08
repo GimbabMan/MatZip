@@ -61,10 +61,7 @@ namespace ThirdProject
 
         private void txeName_MouseLeave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txeName.Text))
-                return;
-
-            txeName.Text = "가게명을 입력해주세요";
+          
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

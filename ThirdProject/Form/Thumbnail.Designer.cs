@@ -95,7 +95,6 @@
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
-            this.pictureBox.MouseLeave += new System.EventHandler(this.pictureBox_MouseLeave);
             // 
             // Thumbnail
             // 
@@ -109,7 +108,6 @@
             this.Name = "Thumbnail";
             this.Text = "Thumbnail";
             this.Load += new System.EventHandler(this.Thumbnail_Load);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Thumbnail_MouseClick);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);

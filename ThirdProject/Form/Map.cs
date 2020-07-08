@@ -164,57 +164,7 @@ namespace ThirdProject
 
         }
 
-        private void mapControl_MapItemDoubleClick(object sender, MapItemClickEventArgs e)
-        {
-            if (IsMapPushPinClicked(sender, e))
-            {
-                mapPushpin = (MapPushpin)e.Item;
-                decimal latitude = (decimal)mapPushpin.Location.GetY();
-                decimal longitude = (decimal)mapPushpin.Location.GetX();
-
-                var restaurants = DataRepository.Restaurant.GetAll();
-                var registrations = DataRepository.Registration.GetAll();
-                
-                var thumbnailRestaurantIds = new List<int>();
-                foreach (Restaurant restaurant in restaurants)
-                {
-                    if (restaurant.Latitude == latitude && restaurant.Longitude == longitude)
-                    {
-                        thumbnailRestaurantIds.Add(restaurant.RestaurantId);
-                    }
-                }
-
-                Registration myThumbnailRegistration = null;
-                List<Registration> othersThumbnailRegistrations = new List<Registration>();
-                bool isFindMyRegistration = false;
-                foreach (int thumbnailRestaurantId in thumbnailRestaurantIds)
-                {
-                    foreach (Registration registration in registrations)
-                    {
-                        if (registration.RestaurantId == thumbnailRestaurantId && registration.MemberId == LoggedInMember.MemberId)
-                        {
-                            myThumbnailRegistration = registration;
-                            isFindMyRegistration = true;
-                            break;
-                        } else if(registration.RestaurantId == thumbnailRestaurantId)
-                        {
-                            othersThumbnailRegistrations.Add(registration);
-                        }
-                    }
-                    if (isFindMyRegistration)
-                        break;
-                }
-
-                Restaurant thumbnailRestaurant = null;
-                if (myThumbnailRegistration == null)
-                    thumbnailRestaurant = DataRepository.Restaurant.Get(othersThumbnailRegistrations[0].RestaurantId);
-                else
-                    thumbnailRestaurant = DataRepository.Restaurant.Get(myThumbnailRegistration.RestaurantId);
-
-                Thumbnail thumbnail = new Thumbnail(LoggedInMember ,thumbnailRestaurant);
-                thumbnail.Show();
-            }
-        }
+        
 
         private void mapControl_MapItemClick(object sender, MapItemClickEventArgs e)
         {
@@ -334,5 +284,124 @@ namespace ThirdProject
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        
+        private void mapControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mapPushpin != null)
+                return;
+
+            MapHitInfo information = mapControl.CalcHitInfo(e.Location);
+            MapPushpin pin = null;
+            if (information.InMapPushpin)
+            {
+                pin = information.MapPushpin;
+            }
+
+            if (pin == null)
+                return;
+
+            mapPushpin = pin;
+
+            decimal latitude = (decimal)pin.Location.GetY();
+            decimal longitude = (decimal)pin.Location.GetX();
+
+            var restaurants = DataRepository.Restaurant.Get(latitude, longitude);
+            var registrations = DataRepository.Registration.GetAll();
+
+            List<Registration> selectedRegistrations = new List<Registration>();
+            foreach (Restaurant restaurant in restaurants)
+            {
+                foreach (Registration registration in registrations)
+                {
+                    if (restaurant.RestaurantId == registration.RestaurantId)
+                    {
+                        selectedRegistrations.Add(registration);
+                        break;
+                    }
+                }
+            }
+
+            Registration selectedRegistration = null;
+            foreach (Registration registration in selectedRegistrations)
+            {
+                if (registration.MemberId == LoggedInMember.MemberId)
+                {
+                    selectedRegistration = registration;
+                    break;
+                }
+            }
+
+            if (selectedRegistration == null)
+                selectedRegistration = selectedRegistrations[0];
+
+            Restaurant thumbnailRestaurant = null;
+            foreach (Restaurant restaurant in restaurants)
+            {
+                if (restaurant.RestaurantId == selectedRegistration.RestaurantId)
+                {
+                    thumbnailRestaurant = restaurant;
+                }
+            }
+            Thumbnail thumbnail = new Thumbnail(LoggedInMember, thumbnailRestaurant);
+            thumbnail.ShowDialog();
+
+        }
+
+       
     }
 }
+
+
+/*
+ * private void mapControl_MapItemDoubleClick(object sender, MapItemClickEventArgs e)
+        {
+            if (IsMapPushPinClicked(sender, e))
+            {
+                mapPushpin = (MapPushpin)e.Item;
+                decimal latitude = (decimal)mapPushpin.Location.GetY();
+                decimal longitude = (decimal)mapPushpin.Location.GetX();
+
+                var restaurants = DataRepository.Restaurant.GetAll();
+                var registrations = DataRepository.Registration.GetAll();
+                
+                var thumbnailRestaurantIds = new List<int>();
+                foreach (Restaurant restaurant in restaurants)
+                {
+                    if (restaurant.Latitude == latitude && restaurant.Longitude == longitude)
+                    {
+                        thumbnailRestaurantIds.Add(restaurant.RestaurantId);
+                    }
+                }
+
+                Registration myThumbnailRegistration = null;
+                List<Registration> othersThumbnailRegistrations = new List<Registration>();
+                bool isFindMyRegistration = false;
+                foreach (int thumbnailRestaurantId in thumbnailRestaurantIds)
+                {
+                    foreach (Registration registration in registrations)
+                    {
+                        if (registration.RestaurantId == thumbnailRestaurantId && registration.MemberId == LoggedInMember.MemberId)
+                        {
+                            myThumbnailRegistration = registration;
+                            isFindMyRegistration = true;
+                            break;
+                        } else if(registration.RestaurantId == thumbnailRestaurantId)
+                        {
+                            othersThumbnailRegistrations.Add(registration);
+                        }
+                    }
+                    if (isFindMyRegistration)
+                        break;
+                }
+
+                Restaurant thumbnailRestaurant = null;
+                if (myThumbnailRegistration == null)
+                    thumbnailRestaurant = DataRepository.Restaurant.Get(othersThumbnailRegistrations[0].RestaurantId);
+                else
+                    thumbnailRestaurant = DataRepository.Restaurant.Get(myThumbnailRegistration.RestaurantId);
+
+                Thumbnail thumbnail = new Thumbnail(LoggedInMember ,thumbnailRestaurant);
+                thumbnail.ShowDialog();
+            }
+        }
+ */

@@ -74,15 +74,6 @@ namespace ThirdProject
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
-        private void pictureBox_MouseLeave(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void Thumbnail_MouseClick(object sender, MouseEventArgs e)
-        {
-            Close();
-        }
+       
     }
 }

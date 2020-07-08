@@ -64,10 +64,10 @@
             this.mapControl.TabIndex = 4;
             this.mapControl.ZoomLevel = 15D;
             this.mapControl.MapItemClick += new DevExpress.XtraMap.MapItemClickEventHandler(this.mapControl_MapItemClick);
-            this.mapControl.MapItemDoubleClick += new DevExpress.XtraMap.MapItemClickEventHandler(this.mapControl_MapItemDoubleClick);
             this.mapControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mapControl_KeyDown);
             this.mapControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapControl_MouseClick);
             this.mapControl.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.mapControl_MouseDoubleClick);
+            this.mapControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapControl_MouseMove);
             // 
             // Map
             // 
