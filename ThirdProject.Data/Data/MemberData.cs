@@ -18,5 +18,13 @@ namespace ThirdProject.Data
 
             return query.ToList();
         }
+
+        public Member GetOneMember(int memberId)
+        {
+            MatZipEntities context = CreateContext();
+
+            return context.Members.FirstOrDefault(x => x.MemberId == memberId);
+        }
+
     }
 }

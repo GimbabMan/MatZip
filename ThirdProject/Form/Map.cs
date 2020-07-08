@@ -19,6 +19,7 @@ namespace ThirdProject
 
         private string restaurantName = null;
         private string restaurantFoodType = null;
+        private string restaurantFilePath = null;
 
         public Map()
         {
@@ -110,8 +111,9 @@ namespace ThirdProject
                 InsertMapPushPin(sender, e);
         }
 
-        void IDataTransferInterface.SetName(string name, string foodType)
+        void IDataTransferInterface.SetName(string name, string foodType, string filePath)
         {
+            restaurantFilePath = filePath;
             restaurantName = name;
             restaurantFoodType = foodType;
         }
@@ -119,32 +121,10 @@ namespace ThirdProject
         private void InsertMapPushPin(object sender, MouseEventArgs e)
         {
             CoordPoint p = mapControl.ScreenPointToCoordPoint(new MapPoint(e.X, e.Y));
-            
-            //Text = $"{p.GetY()} / {p.GetX()}";
-
-            /*
-            foreach (MapPushpin mapPushPin in storage.Items)
-            {
-                if (p.GetY() == mapPushPin.Location.GetY() && p.GetX() == mapPushPin.Location.GetX())
-                {
-                    var restaurants = DataRepository.Restaurant.Get((decimal)mapPushPin.Location.GetY(), (decimal)mapPushPin.Location.GetX());
-                    Registration searchRegistration = DataRepository.Registration.Get(LoggedInMember.MemberId);
-
-                    foreach(Restaurant searchRestaurant in restaurants)
-                    {
-                        if(searchRegistration.RestaurantId == searchRestaurant.RestaurantId)
-                        {
-                            MessageBox.Show("이미 핀이 존재합니다.");
-                            return;
-                        }
-                    }
-                }
-            }
-            */
 
             // 가게명을 입력받는다.
-            InputRestaurantInformation inputRestaurantName = new InputRestaurantInformation(this);
-            inputRestaurantName.ShowDialog();
+            InputRestaurantInformation inputRestaurantInformation = new InputRestaurantInformation(this);
+            inputRestaurantInformation.ShowDialog();
 
           
             if (string.IsNullOrEmpty(restaurantName))
@@ -157,6 +137,7 @@ namespace ThirdProject
             restaurant.Name = restaurantName;
             restaurant.Latitude = (decimal)p.GetY();
             restaurant.Longitude = (decimal)p.GetX();
+            restaurant.ImageLocation = restaurantFilePath;
             DataRepository.Restaurant.Insert(restaurant);
 
             Registration registration = new Registration();
@@ -195,7 +176,6 @@ namespace ThirdProject
                 var registrations = DataRepository.Registration.GetAll();
                 
                 var thumbnailRestaurantIds = new List<int>();
-
                 foreach (Restaurant restaurant in restaurants)
                 {
                     if (restaurant.Latitude == latitude && restaurant.Longitude == longitude)

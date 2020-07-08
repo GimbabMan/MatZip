@@ -8,6 +8,6 @@ namespace ThirdProject.Data
 {
     public interface IDataTransferInterface
     {
-        void SetName(string name, string foodType);
+        void SetName(string name, string foodType, string filePath);
     }
 }

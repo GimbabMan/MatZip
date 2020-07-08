@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5b420a11ecbc4f9aa2d739112f48d2cb" Name="Diagram1" ZoomLevel="85">
-        <EntityTypeShape EntityType="MatZipModel.Code" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MatZipModel.CodeCategory" Width="1.5" PointX="1.5" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MatZipModel.Information" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+      <Diagram DiagramId="0031504af67a42f38e93c22c1c91a1e4" Name="Diagram1">
+        <EntityTypeShape EntityType="MatZipModel.Code" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MatZipModel.CodeCategory" Width="1.5" PointX="1.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="MatZipModel.Information" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MatZipModel.Member" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MatZipModel.Menu" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MatZipModel.Registration" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MatZipModel.Menu" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MatZipModel.Registration" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MatZipModel.Restaurant" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MatZipModel.Review" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="MatZipModel.FK_Code_CodeCategory" ManuallyRouted="false" />

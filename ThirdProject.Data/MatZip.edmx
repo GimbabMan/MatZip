@@ -67,6 +67,7 @@
           <Property Name="Longitude" Type="decimal" Precision="18" Scale="15" Nullable="false" />
           <Property Name="StartTime" Type="nvarchar" MaxLength="50" />
           <Property Name="FinishTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageLocation" Type="nchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -77,6 +78,7 @@
           <Property Name="RestaurantId" Type="int" Nullable="false" />
           <Property Name="Grade" Type="int" Nullable="false" />
           <Property Name="Comment" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ImageLocation" Type="nchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_Code_CodeCategory">
           <End Role="CodeCategory" Type="Self.CodeCategory" Multiplicity="1" />
@@ -293,6 +295,7 @@
           <Property Name="Longitude" Type="Decimal" Precision="18" Scale="15" Nullable="false" />
           <Property Name="StartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FinishTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageLocation" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Information" Relationship="Self.FK_Information_Restaurant" FromRole="Restaurant" ToRole="Information" />
           <NavigationProperty Name="Menus" Relationship="Self.FK_Menu_Restaurant" FromRole="Restaurant" ToRole="Menu" />
           <NavigationProperty Name="Registrations" Relationship="Self.FK_Registeration_Restaurant" FromRole="Restaurant" ToRole="Registration" />
@@ -307,6 +310,7 @@
           <Property Name="RestaurantId" Type="Int32" Nullable="false" />
           <Property Name="Grade" Type="Int32" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImageLocation" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Member" Relationship="Self.FK_Evaluation_Member" FromRole="Review" ToRole="Member" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_Review_Restaurant" FromRole="Review" ToRole="Restaurant" />
         </EntityType>
@@ -519,6 +523,7 @@
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+                <ScalarProperty Name="ImageLocation" ColumnName="ImageLocation" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -530,6 +535,7 @@
                 <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
                 <ScalarProperty Name="Grade" ColumnName="Grade" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ImageLocation" ColumnName="ImageLocation" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

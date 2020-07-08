@@ -12,5 +12,12 @@ namespace ThirdProject.Data
             return context.Registrations.FirstOrDefault(x => x.MemberId == memberId); 
         }
 
+        public int GetMemberId(int restaurantId)
+        {
+            MatZipEntities context = CreateContext();
+
+            return context.Registrations.FirstOrDefault(x => x.RestaurantId == restaurantId).MemberId;
+        }
+
     }
 }

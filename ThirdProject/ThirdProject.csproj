@@ -113,6 +113,12 @@
     <Compile Include="Form\InputReviewInformation.Designer.cs">
       <DependentUpon>InputReviewInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Form\SignUp.cs">
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\InputRestaurantInformation.resx">
       <DependentUpon>InputRestaurantInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -200,6 +209,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\양식.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\이미지 등록.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

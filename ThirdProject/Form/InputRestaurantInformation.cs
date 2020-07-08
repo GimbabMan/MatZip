@@ -29,7 +29,8 @@ namespace ThirdProject
 
         private void RestaurantInsertForm_Load(object sender, EventArgs e)
         {
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            
 
         }
 
@@ -41,11 +42,9 @@ namespace ThirdProject
             if (string.IsNullOrEmpty(cbbFoodType.Text) || cbbFoodType.Text == "음식 종류를 선택해주세요")
                 return;
 
-            
-
             if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                dataTransfer.SetName(txeName.Text, cbbFoodType.Text);
+                dataTransfer.SetName(txeName.Text, cbbFoodType.Text, pcbRestaurantImage.ImageLocation.ToString());
             }
             
             Close();
@@ -81,6 +80,21 @@ namespace ThirdProject
         private void txeName_Click(object sender, EventArgs e)
         {
             txeName.Text = "";
+        }
+
+        private void pcbRestaurantImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.InitialDirectory = "C:\\Users\\plant12\\Desktop\\Image";
+            open.Filter = "All Files(*.*)|*.*|Image file(*.jpg)|*.jpg|(*.png)|*png";
+            open.FilterIndex = 1;
+            string picpath = null;
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                picpath = open.FileName.ToString();
+                pcbRestaurantImage.ImageLocation = picpath;
+                pcbRestaurantImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
         }
     }
 }
