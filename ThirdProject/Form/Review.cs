@@ -131,15 +131,17 @@ namespace ThirdProject
             // 리뷰 보여주기
             // 멤버 이름 / 평점 / 코멘트
             dgvReviews.ColumnCount = 4;
-            dgvReviews.Columns[0].Name = "";
+            dgvReviews.Columns[0].Name = "사진";
             dgvReviews.Columns[1].Name = "멤버 이름";
             dgvReviews.Columns[2].Name = "평점";
             dgvReviews.Columns[3].Name = "코멘트";
 
+           
+
             foreach (Data.Review review in selectedRetarantReviews)
             {
                 ArrayList row = new ArrayList();
-                
+
                 // 사진 추가
                 PictureBox pictureBox = new PictureBox();
                 pictureBox.Width = 30;
@@ -210,6 +212,19 @@ namespace ThirdProject
         private void btnLoadMap_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+
+        Image jungsikImage = Image.FromFile("c:\\중식.png");
+
+        private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            if (e.Column.FieldName == "사진")
+            {
+                e.DefaultDraw();
+                if (Convert.ToInt32(e.CellValue) == 0)
+                    e.Cache.DrawImage(jungsikImage, e.Bounds.Location);
+            }
         }
     }
 }
