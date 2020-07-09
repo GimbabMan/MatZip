@@ -17,7 +17,7 @@ namespace ThirdProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Review());
+            Application.Run(new LogIn());
         }
     }
 }

@@ -16,6 +16,7 @@ namespace ThirdProject
         private MapPushpin mapPushpin = null;
         private Member LoggedInMember { get; set; }
         public Color Red { get; private set; }
+        public System.Drawing.ColorConverter ColorConverter { get; set; }
 
         private string restaurantName = null;
         private string restaurantFoodType = null;
@@ -59,7 +60,9 @@ namespace ThirdProject
                         double laptitude = (double)restaurant.Latitude;
                         double longitude = (double)restaurant.Longitude;
                         GeoPoint p = new GeoPoint(laptitude, longitude);
-                        MapItem insertPushPin = new MapPushpin() { Location = p, Text = "나", TextGlowColor = Red };
+                        MapItem insertPushPin = new MapPushpin() { Location = p, Text = "나", TextGlowColor = Red, TextColor =  Color.Red};
+                        
+                        
                        
                         storage.Items.Add(insertPushPin);
                         mapControl.Refresh();
