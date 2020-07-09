@@ -36,7 +36,7 @@ namespace ThirdProject
         {
             pcbRestaurantImage.Image = Resources.chobab;
             pcbGrade.Image = Resources.star;
-            txbRestaurantName.Text = SelectedRestaurant.Name;
+            lblRestaurantName.Text = SelectedRestaurant.Name;
             
             // 선택된 가게의 메인 사진을 가져온다.
             // Restaurant-imageLocation
@@ -168,11 +168,11 @@ namespace ThirdProject
 
         private void SetGrade()
         {
-            int grade5 = DataRepository.Review.GetGrade(5).Count();
-            int grade4 = DataRepository.Review.GetGrade(4).Count();
-            int grade3 = DataRepository.Review.GetGrade(3).Count();
-            int grade2 = DataRepository.Review.GetGrade(2).Count();
-            int grade1 = DataRepository.Review.GetGrade(1).Count();
+            int grade5 = DataRepository.Review.GetGrade(5, SelectedRestaurant.RestaurantId).Count();
+            int grade4 = DataRepository.Review.GetGrade(4, SelectedRestaurant.RestaurantId).Count();
+            int grade3 = DataRepository.Review.GetGrade(3, SelectedRestaurant.RestaurantId).Count();
+            int grade2 = DataRepository.Review.GetGrade(2, SelectedRestaurant.RestaurantId).Count();
+            int grade1 = DataRepository.Review.GetGrade(1, SelectedRestaurant.RestaurantId).Count();
 
             txbGrade5.Text = grade5.ToString();
             txbGrade4.Text = grade4.ToString();
