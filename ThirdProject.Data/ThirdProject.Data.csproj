@@ -63,7 +63,8 @@
     <Compile Include="Data\CodeCategoryData.cs" />
     <Compile Include="Data\CodeData.cs" />
     <Compile Include="Data\EntityData.cs" />
-    <Compile Include="Data\IDataTransferInterface.cs" />
+    <Compile Include="Data\IInputRestaurantInformationToMap.cs" />
+    <Compile Include="Data\IInputReviewToReview.cs" />
     <Compile Include="Data\InformationData.cs" />
     <Compile Include="Data\MemberData.cs" />
     <Compile Include="Data\MenuData.cs" />

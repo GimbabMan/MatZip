@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ThirdProject.Data
 {
-    public interface IDataTransferInterface
+    public interface IInputRestaurantInformationToMap
     {
         void SetName(string name, string foodType, string filePath);
     }

@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ThirdProject.Data
 {
-    class Program
+    public interface IInputReviewToReview
     {
-        static void Main(string[] args)
-        {
-
-        }
+        void SetData(string comment, string filePath, int grade);
     }
 }

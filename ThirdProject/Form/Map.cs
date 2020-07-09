@@ -11,7 +11,7 @@ using ThirdProject.Properties;
 
 namespace ThirdProject
 {
-    public partial class Map : RootForm, IDataTransferInterface
+    public partial class Map : RootForm, IInputRestaurantInformationToMap
     {
         private VectorItemsLayer vectorItemLayer = new VectorItemsLayer();
         private MapItemStorage storage = new MapItemStorage();
@@ -117,7 +117,7 @@ namespace ThirdProject
                 InsertMapPushPin(sender, e);
         }
 
-        void IDataTransferInterface.SetName(string name, string foodType, string filePath)
+        void IInputRestaurantInformationToMap.SetName(string name, string foodType, string filePath)
         {
             restaurantFilePath = filePath;
             restaurantName = name;
@@ -172,8 +172,6 @@ namespace ThirdProject
             mapControl.Refresh();
 
         }
-
-        
 
         private void mapControl_MapItemClick(object sender, MapItemClickEventArgs e)
         {
@@ -263,6 +261,13 @@ namespace ThirdProject
             {
                 if (information.RestaurantId == deleteRestaurant.RestaurantId)
                     deleteInformations.Add(information);
+            }
+
+            var reviews = DataRepository.Review.Get(deleteRestaurant.RestaurantId);
+            
+            foreach(Data.Review review in reviews)
+            {
+                DataRepository.Review.Delete(review);
             }
 
             foreach (Information deleteInformation in deleteInformations)
@@ -362,57 +367,3 @@ namespace ThirdProject
     }
 }
 
-
-/*
- * private void mapControl_MapItemDoubleClick(object sender, MapItemClickEventArgs e)
-        {
-            if (IsMapPushPinClicked(sender, e))
-            {
-                mapPushpin = (MapPushpin)e.Item;
-                decimal latitude = (decimal)mapPushpin.Location.GetY();
-                decimal longitude = (decimal)mapPushpin.Location.GetX();
-
-                var restaurants = DataRepository.Restaurant.GetAll();
-                var registrations = DataRepository.Registration.GetAll();
-                
-                var thumbnailRestaurantIds = new List<int>();
-                foreach (Restaurant restaurant in restaurants)
-                {
-                    if (restaurant.Latitude == latitude && restaurant.Longitude == longitude)
-                    {
-                        thumbnailRestaurantIds.Add(restaurant.RestaurantId);
-                    }
-                }
-
-                Registration myThumbnailRegistration = null;
-                List<Registration> othersThumbnailRegistrations = new List<Registration>();
-                bool isFindMyRegistration = false;
-                foreach (int thumbnailRestaurantId in thumbnailRestaurantIds)
-                {
-                    foreach (Registration registration in registrations)
-                    {
-                        if (registration.RestaurantId == thumbnailRestaurantId && registration.MemberId == LoggedInMember.MemberId)
-                        {
-                            myThumbnailRegistration = registration;
-                            isFindMyRegistration = true;
-                            break;
-                        } else if(registration.RestaurantId == thumbnailRestaurantId)
-                        {
-                            othersThumbnailRegistrations.Add(registration);
-                        }
-                    }
-                    if (isFindMyRegistration)
-                        break;
-                }
-
-                Restaurant thumbnailRestaurant = null;
-                if (myThumbnailRegistration == null)
-                    thumbnailRestaurant = DataRepository.Restaurant.Get(othersThumbnailRegistrations[0].RestaurantId);
-                else
-                    thumbnailRestaurant = DataRepository.Restaurant.Get(myThumbnailRegistration.RestaurantId);
-
-                Thumbnail thumbnail = new Thumbnail(LoggedInMember ,thumbnailRestaurant);
-                thumbnail.ShowDialog();
-            }
-        }
- */
