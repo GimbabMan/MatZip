@@ -89,6 +89,12 @@
     <Compile Include="BaseForm\RootForm.Designer.cs">
       <DependentUpon>RootForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\InputMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\InputMenu.Designer.cs">
+      <DependentUpon>InputMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </Compile>
     <EmbeddedResource Include="BaseForm\RootForm.resx">
       <DependentUpon>RootForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\InputMenu.resx">
+      <DependentUpon>InputMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>

@@ -1,23 +1,28 @@
-﻿using DevExpress.XtraEditors.Filtering;
+﻿using DevExpress.CodeParser;
+using DevExpress.XtraEditors.Filtering;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
+using ThirdProject.Form;
 using ThirdProject.Properties;
 
 namespace ThirdProject
 {
-    public partial class Review : RootForm, IInputReviewToReview
+    public partial class Review : RootForm, IInputReviewToReview, IInputMenuToReview
     {
-        private Member LoggedInMember { get; set; }
+        private Data.Member LoggedInMember { get; set; }
         private Restaurant SelectedRestaurant { get; set; }
 
         private string Comment { get; set; }
         private string FilePath { get; set; }
+        private string MenuName { get; set; }
+        private double Price { get; set; }
         private int Grade { get; set; }
         private int RowCount { get; set; }
         
@@ -26,7 +31,7 @@ namespace ThirdProject
             InitializeComponent();
         }
 
-        public Review(Member loggedInMember, Restaurant selectedRestaurant) : this()
+        public Review(Data.Member loggedInMember, Restaurant selectedRestaurant) : this()
         {
             LoggedInMember = loggedInMember;
             SelectedRestaurant = selectedRestaurant;
@@ -129,7 +134,7 @@ namespace ThirdProject
             foreach (Data.Review review in selectedRetarantReviews)
             {
                 // 멤버 Id
-                Member reviewedMember = DataRepository.Member.GetOneMember(review.MemberId);
+                Data.Member reviewedMember = DataRepository.Member.GetOneMember(review.MemberId);
                 string memberId = reviewedMember.Id;
 
                 // 평가 점수
@@ -163,6 +168,29 @@ namespace ThirdProject
             dgvReviews.Columns[1].Width = 20;
             dgvReviews.Columns[2].Width = 200;
             dgvReviews.Columns[3].Width = 200;
+
+
+            var seletedMenus = DataRepository.Menu.Get(SelectedRestaurant.RestaurantId).ToList();
+
+            txbMenus.Text = "";
+            //메뉴불러오기
+            if(seletedMenus.Count > 0)
+            {
+                foreach(Data.Menu menu in seletedMenus)
+                {
+                    txbMenus.Text += menu.Name + ' ' +  menu.Price + "\r\n";
+                }
+            }
+            //영업일 불러오기
+             
+
+
+            //휴무일 불러오기
+
+
+
+
+
 
         }
 
@@ -218,9 +246,15 @@ namespace ThirdProject
             Grade = grade;
         }
 
+        public void SetMenuPrice(string menuName, double price)
+        {
+            MenuName = menuName;
+            Price = price;
+        }
+
         private void btnReview_Click(object sender, EventArgs e)
         {
-            InputReview inputReview = new InputReview(this, LoggedInMember);
+            inputReview inputReview = new inputReview(this, LoggedInMember);
             inputReview.ShowDialog();
 
             if (string.IsNullOrEmpty(Comment))
@@ -279,7 +313,51 @@ namespace ThirdProject
             DataRepository.Review.Insert(insertReview);
         }
 
-        
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            InputMenu inputMenu = new InputMenu(this);
+            inputMenu.ShowDialog();
+
+            if (MenuName == null)
+                return;
+
+            Data.Menu insertMenu = new Data.Menu();
+            insertMenu.RestaurantId = SelectedRestaurant.RestaurantId;
+            insertMenu.Name = MenuName;
+            insertMenu.Price = (decimal)Price;
+            DataRepository.Menu.Insert(insertMenu);
+
+            MenuName = null;
+
+            // 메뉴 최신화
+            var seletedMenus = DataRepository.Menu.Get(SelectedRestaurant.RestaurantId).ToList();
+            txbMenus.Text = "";
+            //메뉴 불러오기
+            if (seletedMenus.Count > 0)
+            {
+                foreach (Data.Menu menu in seletedMenus)
+                {
+                    txbMenus.Text += menu.Name + ' ' + menu.Price + "\r\n";
+                }
+            }
+
+        }
+
+
+
+        //public List<Data.Menu> GetMenus(Restaurant SelectedRestaurant)
+        //{
+        //    //레스토랑가져오고, 레스토랑Id로 메뉴들 가져오는 쿼리문 짜기
+        //    MatZipEntities context = new MatZipEntities();
+        //    context.Configuration.ProxyCreationEnabled = false;
+
+        //    List<Restaurant> restaurants = DataRepository.Restaurant.GetAll();
+
+        //    var query = from x int context.Restaurants
+        //                where x => x.
+        //}
+
+
     }
 }
 

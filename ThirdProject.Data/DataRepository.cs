@@ -9,6 +9,7 @@
         public static ReviewData Review { get; set; } = new ReviewData();
         public static RegistrationData Registration { get; set; } = new RegistrationData();
         public static InformationData Information { get; set; } = new InformationData();
+        public static MenuData Menu { get; set; } = new MenuData();
 
     }
 }
