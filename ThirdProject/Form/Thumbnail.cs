@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevExpress.XtraRichEdit.Internal.PrintLayout;
+using System;
+using System.Linq;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
@@ -63,6 +65,18 @@ namespace ThirdProject
 
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            //lblGrade.Text;
+            var reviews = DataRepository.Review.Get(ThumbnailRestaurant.RestaurantId);
+            if (reviews.Count() > 0)
+            {
+                double reviewsSum = reviews.Sum(x => x.Grade);
+                int reviewsCount = reviews.Count();
+                lblGrade.Text = $"{reviewsSum/reviewsCount:N1} 점";
+            }
+            else
+            {
+                lblGrade.Text = "0.0 점";
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

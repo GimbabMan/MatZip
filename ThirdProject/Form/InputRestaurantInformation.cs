@@ -15,22 +15,20 @@ namespace ThirdProject
 { 
     public partial class InputRestaurantInformation : RootForm
     {
-        private IDataTransferInterface dataTransfer = null;
+        private IInputRestaurantInformationToMap dataTransfer = null;
 
         public InputRestaurantInformation()
         {
             InitializeComponent();
         }
 
-        public InputRestaurantInformation(IDataTransferInterface _dataTransfer) : this()
+        public InputRestaurantInformation(IInputRestaurantInformationToMap _dataTransfer) : this()
         {
             dataTransfer = _dataTransfer;
         }
 
         private void RestaurantInsertForm_Load(object sender, EventArgs e)
         {
-
-            
 
         }
 

@@ -1,17 +1,9 @@
-﻿using DevExpress.Utils.Behaviors.Common;
-using DevExpress.Utils.Extensions;
-using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraRichEdit.Layout;
+﻿using DevExpress.XtraEditors.Filtering;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
@@ -19,10 +11,16 @@ using ThirdProject.Properties;
 
 namespace ThirdProject
 {
-    public partial class Review : RootForm
+    public partial class Review : RootForm, IInputReviewToReview
     {
-        Member LoggedInMember { get; set; }
-        Restaurant SelectedRestaurant { get; set; }
+        private Member LoggedInMember { get; set; }
+        private Restaurant SelectedRestaurant { get; set; }
+
+        private string Comment { get; set; }
+        private string FilePath { get; set; }
+        private int Grade { get; set; }
+        private int RowCount { get; set; }
+        
         private Review()
         {
             InitializeComponent();
@@ -36,15 +34,16 @@ namespace ThirdProject
 
         private void Review_Load(object sender, EventArgs e)
         {
-            pcbRestaurantImage.Image = Properties.Resources.chobab;
-            pcbGrade.Image = Properties.Resources.star;
-
+            pcbRestaurantImage.Image = Resources.chobab;
+            pcbGrade.Image = Resources.star;
+            txbRestaurantName.Text = SelectedRestaurant.Name;
+            
             // 선택된 가게의 메인 사진을 가져온다.
             // Restaurant-imageLocation
             string imagePath = DataRepository.Restaurant.Get(SelectedRestaurant.RestaurantId).ImageLocation;
 
             if (imagePath == null)
-                pcbRestaurantImage.Image = Resources.defaultImage;
+                pcbRestaurantImage.Image = Resources.black;
             else
             {
                 pcbRestaurantImage.ImageLocation = imagePath;
@@ -91,8 +90,10 @@ namespace ThirdProject
                     offDays += (days.Dequeue() + " ");
                 }
 
-                txbDays.Text = $"휴무일: {offDays}";
-
+                if(days.Count > 0)
+                    txbDays.Text = $"휴무일: {offDays}";
+                else
+                    txbDays.Text = "휴무일 미등록";
             }
             else
             {
@@ -100,6 +101,73 @@ namespace ThirdProject
             }
 
             // 5점, 4점, 3점, 2점, 1점 인원 구하기
+            SetGrade();
+            
+            // 선택된 가게의 모든 리뷰들을 불러온다.
+            var selectedRetarantReviews = DataRepository.Review.Get(SelectedRestaurant.RestaurantId);
+
+            // 총 평점의 평균
+            SetGradeAvg(selectedRetarantReviews);
+
+            // 리뷰 보여주기
+            // 멤버 이름 / 평점 / 코멘트
+
+            dgvReviews.RowTemplate.Height = 100;
+            dgvReviews.AllowUserToAddRows = false;
+
+            dgvReviews.ColumnCount = 3;
+            dgvReviews.Columns[0].Name = "멤버 이름";
+            dgvReviews.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvReviews.Columns[1].Name = "평점";
+            dgvReviews.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvReviews.Columns[2].Name = "코멘트";
+
+            DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
+            imageColumn.Name = "사진";
+            dgvReviews.Columns.Insert(3, imageColumn);
+
+            foreach (Data.Review review in selectedRetarantReviews)
+            {
+                // 멤버 Id
+                Member reviewedMember = DataRepository.Member.GetOneMember(review.MemberId);
+                string memberId = reviewedMember.Id;
+
+                // 평가 점수
+                int? grade = review.Grade;
+
+                // 코멘트
+                string comment = review.Comment;
+                if (string.IsNullOrEmpty(comment))
+                {
+                    comment = "";
+                }
+
+                object[] row = new object[] { memberId, grade, comment };
+                dgvReviews.Rows.Add(row);
+
+                // 사진 추가
+
+                Bitmap bitmap = null;
+                if (review.ImageLocation == null)
+                    bitmap = new Bitmap(Resources.black); 
+                else
+                    bitmap = new Bitmap(review.ImageLocation); 
+                
+                ((DataGridViewImageCell)dgvReviews.Rows[RowCount].Cells[3]).Value = bitmap;
+                ((DataGridViewImageCell)dgvReviews.Rows[RowCount].Cells[3]).ImageLayout = DataGridViewImageCellLayout.Stretch;
+                RowCount++;
+
+            }
+
+            dgvReviews.Columns[0].Width = 50;
+            dgvReviews.Columns[1].Width = 20;
+            dgvReviews.Columns[2].Width = 200;
+            dgvReviews.Columns[3].Width = 200;
+
+        }
+
+        private void SetGrade()
+        {
             int grade5 = DataRepository.Review.GetGrade(5).Count();
             int grade4 = DataRepository.Review.GetGrade(4).Count();
             int grade3 = DataRepository.Review.GetGrade(3).Count();
@@ -111,92 +179,21 @@ namespace ThirdProject
             txbGrade3.Text = grade3.ToString();
             txbGrade2.Text = grade2.ToString();
             txbGrade1.Text = grade1.ToString();
+        }
 
-            // 선택된 가게의 모든 리뷰들을 불러온다.
-            var selectedRetarantReviews = DataRepository.Review.Get(SelectedRestaurant.RestaurantId);
-
-            // 총 평점의 평균
+        private void SetGradeAvg(List<Data.Review> selectedRetarantReviews)
+        {
             if (selectedRetarantReviews.Count() > 0)
             {
                 double sumGrades = selectedRetarantReviews.Sum(x => x.Grade);
                 int gradesCount = selectedRetarantReviews.Count();
                 double gradesAvg = sumGrades / gradesCount;
-                lblGrade.Text = $"{gradesAvg}";
+                lblGrade.Text = $"{gradesAvg:N1} 점";
             }
             else
             {
-                lblGrade.Text = "0.0";
+                lblGrade.Text = "0.0 점";
             }
-
-            // 리뷰 보여주기
-            // 멤버 이름 / 평점 / 코멘트
-            dgvReviews.ColumnCount = 4;
-            dgvReviews.Columns[0].Name = "사진";
-            dgvReviews.Columns[1].Name = "멤버 이름";
-            dgvReviews.Columns[2].Name = "평점";
-            dgvReviews.Columns[3].Name = "코멘트";
-
-           
-
-            foreach (Data.Review review in selectedRetarantReviews)
-            {
-                ArrayList row = new ArrayList();
-
-                // 사진 추가
-                PictureBox pictureBox = new PictureBox();
-                pictureBox.Width = 30;
-                pictureBox.Height = 30;
-                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                if (review.ImageLocation == null)
-                {
-                    pictureBox.Image = Resources.defaultImage;
-                }
-                else
-                {
-                    pictureBox.Load(review.ImageLocation);
-                }
-                row.Add(pictureBox);
-
-                // 멤버
-                Member reviewedMember = DataRepository.Member.GetOneMember(review.MemberId);
-
-                // 평가 점수
-                int? grade = review.Grade;
-                if(grade == null)
-                {
-                    row.Add("X");
-                } else
-                {
-                    row.Add(grade);
-                }
-
-                // 코멘트
-                string comment = review.Comment;
-                if (string.IsNullOrEmpty(comment))
-                {
-                    row.Add("");
-                }
-                else
-                {
-                    row.Add(comment);
-                }
-
-                dgvReviews.Rows.Add(row.ToArray());
-
-            }
-
-            // add row
-            /*
-            ArrayList row = new ArrayList();
-            row.Add("0");
-            row.Add("1");
-            row.Add("2");
-            row.Add("3");
-            row.Add("4");
-            dgvReviews.Rows.Add(row.ToArray());
-            */
-
-
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -214,17 +211,95 @@ namespace ThirdProject
             Close();
         }
 
-
-        Image jungsikImage = Image.FromFile("c:\\중식.png");
-
-        private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        public void SetData(string comment, string filePath, int grade)
         {
-            if (e.Column.FieldName == "사진")
-            {
-                e.DefaultDraw();
-                if (Convert.ToInt32(e.CellValue) == 0)
-                    e.Cache.DrawImage(jungsikImage, e.Bounds.Location);
-            }
+            Comment = comment;
+            FilePath = filePath;
+            Grade = grade;
         }
+
+        private void btnReview_Click(object sender, EventArgs e)
+        {
+            InputReview inputReview = new InputReview(this, LoggedInMember);
+            inputReview.ShowDialog();
+
+            if (string.IsNullOrEmpty(Comment))
+                return;
+
+            InsertReview();
+
+            // 멤버
+            string memberId = LoggedInMember.Id;
+
+            // 평가 점수
+            int? grade = Grade;
+
+            // 코멘트
+            string comment = Comment;
+            if (string.IsNullOrEmpty(comment))
+            {
+                comment = "";
+            }
+
+            // 사진 추가
+            object[] row = new object[] { memberId, grade, comment };
+            dgvReviews.Rows.Add(row);
+
+            // 사진 추가
+
+            Bitmap bitmap = null;
+            if (FilePath == null)
+                bitmap = new Bitmap(Resources.black);
+            else
+                bitmap = new Bitmap(FilePath);
+
+            ((DataGridViewImageCell)dgvReviews.Rows[RowCount].Cells[3]).Value = bitmap;
+            ((DataGridViewImageCell)dgvReviews.Rows[RowCount].Cells[3]).ImageLayout = DataGridViewImageCellLayout.Stretch;
+            RowCount++;
+            
+            dgvReviews.Columns[0].Width = 50;
+            dgvReviews.Columns[1].Width = 20;
+            dgvReviews.Columns[2].Width = 200;
+            dgvReviews.Columns[3].Width = 200;
+
+            SetGrade();
+            var selectedRetarantReviews = DataRepository.Review.Get(SelectedRestaurant.RestaurantId);
+            SetGradeAvg(selectedRetarantReviews);
+
+        }
+
+        private void InsertReview()
+        {
+            Data.Review insertReview = new Data.Review();
+            insertReview.MemberId = LoggedInMember.MemberId;
+            insertReview.RestaurantId = SelectedRestaurant.RestaurantId;
+            insertReview.Grade = Grade;
+            insertReview.Comment = Comment;
+            insertReview.ImageLocation = !string.IsNullOrEmpty(FilePath) ? FilePath : null;
+            DataRepository.Review.Insert(insertReview);
+        }
+
+        
     }
 }
+
+
+/*
+               * 
+               //DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
+              //imageColumn.Name = "ImageColumn";
+
+              string filePath = null;
+              if (review.ImageLocation == null)
+                  filePath = System.Reflection.Assembly.GetExecutingAssembly()
+                 .Location + @"\..\..\Resources\defaultImage.PNG";
+              else
+                  filePath = review.ImageLocation;
+
+              Image image = Image.FromFile(filePath);
+
+              imageColumn.Image = image;
+              imageColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+              dgvReviews.Columns.Add(imageColumn);
+
+               */

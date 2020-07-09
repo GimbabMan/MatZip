@@ -54,7 +54,7 @@
             this.lblUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUserId.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblUserId.ForeColor = System.Drawing.Color.Black;
-            this.lblUserId.Location = new System.Drawing.Point(156, 244);
+            this.lblUserId.Location = new System.Drawing.Point(167, 261);
             this.lblUserId.Name = "lblUserId";
             this.lblUserId.Size = new System.Drawing.Size(148, 73);
             this.lblUserId.TabIndex = 1;
@@ -78,9 +78,9 @@
             this.lblGrade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGrade.Font = new System.Drawing.Font("Malgun Gothic", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGrade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblGrade.Location = new System.Drawing.Point(6, 237);
+            this.lblGrade.Location = new System.Drawing.Point(8, 250);
             this.lblGrade.Name = "lblGrade";
-            this.lblGrade.Size = new System.Drawing.Size(139, 84);
+            this.lblGrade.Size = new System.Drawing.Size(161, 84);
             this.lblGrade.TabIndex = 0;
             this.lblGrade.Text = "4.3";
             this.lblGrade.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
