@@ -9,8 +9,6 @@
 
 namespace ThirdProject.Data
 {
-    using System;
-    using System.Collections.Generic;
     
     public partial class Review
     {
@@ -23,5 +21,8 @@ namespace ThirdProject.Data
     
         public virtual Member Member { get; set; }
         public virtual Restaurant Restaurant { get; set; }
+
+       
+
     }
 }

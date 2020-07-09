@@ -10,11 +10,20 @@ namespace ThirdProject.Data
 {
     public class ReviewData:EntityData<Review>
     {
-        public List<Review> Get(int reviewId)
+        public List<Review> Get(int restuarantId)
         {
             MatZipEntities context = CreateContext();
             var query = from x in context.Reviews
-                        where x.ReviewId == reviewId
+                        where x.RestaurantId == restuarantId
+                        select x;
+
+            return query.ToList();
+        }
+        public List<Review> GetGrade(int grade)
+        {
+            MatZipEntities context = CreateContext();
+            var query = from x in context.Reviews
+                        where x.Grade == grade
                         select x;
 
             return query.ToList();

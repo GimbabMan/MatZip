@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pcbRestaurantImage = new System.Windows.Forms.PictureBox();
             this.cbbFoodType = new System.Windows.Forms.ComboBox();
             this.txeName = new DevExpress.XtraEditors.TextEdit();
             this.btnComplete = new DevExpress.XtraEditors.SimpleButton();
-            this.pcbRestaurantImage = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txeName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbRestaurantImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txeName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -49,8 +49,22 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(270, 302);
+            this.panel1.Size = new System.Drawing.Size(262, 304);
             this.panel1.TabIndex = 0;
+            // 
+            // pcbRestaurantImage
+            // 
+            this.pcbRestaurantImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pcbRestaurantImage.BackColor = System.Drawing.Color.White;
+            this.pcbRestaurantImage.Image = global::ThirdProject.Properties.Resources.이미지_등록;
+            this.pcbRestaurantImage.Location = new System.Drawing.Point(0, 0);
+            this.pcbRestaurantImage.Name = "pcbRestaurantImage";
+            this.pcbRestaurantImage.Size = new System.Drawing.Size(262, 181);
+            this.pcbRestaurantImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pcbRestaurantImage.TabIndex = 16;
+            this.pcbRestaurantImage.TabStop = false;
+            this.pcbRestaurantImage.Click += new System.EventHandler(this.pcbRestaurantImage_Click);
             // 
             // cbbFoodType
             // 
@@ -65,7 +79,7 @@
             "양식"});
             this.cbbFoodType.Location = new System.Drawing.Point(0, 210);
             this.cbbFoodType.Name = "cbbFoodType";
-            this.cbbFoodType.Size = new System.Drawing.Size(269, 26);
+            this.cbbFoodType.Size = new System.Drawing.Size(261, 26);
             this.cbbFoodType.TabIndex = 15;
             this.cbbFoodType.Text = "음식 종류를 선택해주세요";
             // 
@@ -77,7 +91,7 @@
             this.txeName.EditValue = "가게명을 입력해주세요";
             this.txeName.Location = new System.Drawing.Point(0, 187);
             this.txeName.Name = "txeName";
-            this.txeName.Size = new System.Drawing.Size(269, 24);
+            this.txeName.Size = new System.Drawing.Size(261, 24);
             this.txeName.TabIndex = 14;
             this.txeName.Click += new System.EventHandler(this.txeName_Click);
             this.txeName.MouseEnter += new System.EventHandler(this.txeName_MouseEnter);
@@ -93,41 +107,27 @@
             this.btnComplete.Appearance.Options.UseBackColor = true;
             this.btnComplete.Appearance.Options.UseFont = true;
             this.btnComplete.Appearance.Options.UseForeColor = true;
-            this.btnComplete.Location = new System.Drawing.Point(0, 235);
+            this.btnComplete.Location = new System.Drawing.Point(0, 237);
             this.btnComplete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnComplete.Name = "btnComplete";
-            this.btnComplete.Size = new System.Drawing.Size(270, 68);
+            this.btnComplete.Size = new System.Drawing.Size(262, 68);
             this.btnComplete.TabIndex = 13;
             this.btnComplete.Text = "완료";
             this.btnComplete.Click += new System.EventHandler(this.btnComplete_Click);
-            // 
-            // pcbRestaurantImage
-            // 
-            this.pcbRestaurantImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pcbRestaurantImage.BackColor = System.Drawing.Color.White;
-            this.pcbRestaurantImage.Image = global::ThirdProject.Properties.Resources.이미지_등록;
-            this.pcbRestaurantImage.Location = new System.Drawing.Point(0, 0);
-            this.pcbRestaurantImage.Name = "pcbRestaurantImage";
-            this.pcbRestaurantImage.Size = new System.Drawing.Size(270, 181);
-            this.pcbRestaurantImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pcbRestaurantImage.TabIndex = 16;
-            this.pcbRestaurantImage.TabStop = false;
-            this.pcbRestaurantImage.Click += new System.EventHandler(this.pcbRestaurantImage_Click);
             // 
             // InputRestaurantInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(270, 302);
+            this.ClientSize = new System.Drawing.Size(262, 304);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "InputRestaurantInformation";
             this.Text = "RestaurantInsertForm";
             this.Load += new System.EventHandler(this.RestaurantInsertForm_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txeName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbRestaurantImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txeName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

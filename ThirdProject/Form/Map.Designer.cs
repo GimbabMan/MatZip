@@ -57,12 +57,12 @@
             this.mapControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mapControl.Layers.Add(this.imageLayer1);
             this.mapControl.Location = new System.Drawing.Point(0, 0);
-            this.mapControl.MinZoomLevel = 14D;
+            this.mapControl.MinZoomLevel = 16D;
             this.mapControl.Name = "mapControl";
             this.mapControl.NavigationPanelOptions.Visible = false;
             this.mapControl.Size = new System.Drawing.Size(1151, 532);
             this.mapControl.TabIndex = 4;
-            this.mapControl.ZoomLevel = 15D;
+            this.mapControl.ZoomLevel = 16D;
             this.mapControl.MapItemClick += new DevExpress.XtraMap.MapItemClickEventHandler(this.mapControl_MapItemClick);
             this.mapControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mapControl_KeyDown);
             this.mapControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapControl_MouseClick);

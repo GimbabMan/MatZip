@@ -71,6 +71,7 @@ namespace ThirdProject
             {
                 MessageBox.Show("로그인에 성공했습니다.");
                 Map map = new Map(loggedInMember);
+                Close();
                 map.Show();
             }
             else

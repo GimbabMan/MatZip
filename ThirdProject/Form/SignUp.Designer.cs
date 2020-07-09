@@ -61,7 +61,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(366, 449);
+            this.panel1.Size = new System.Drawing.Size(358, 451);
             this.panel1.TabIndex = 13;
             // 
             // panel5
@@ -141,7 +141,7 @@
             this.lblSignUp.Font = new System.Drawing.Font("Malgun Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSignUp.Location = new System.Drawing.Point(0, 0);
             this.lblSignUp.Name = "lblSignUp";
-            this.lblSignUp.Size = new System.Drawing.Size(366, 84);
+            this.lblSignUp.Size = new System.Drawing.Size(358, 84);
             this.lblSignUp.TabIndex = 4;
             this.lblSignUp.Text = "회원가입";
             this.lblSignUp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -180,7 +180,7 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 449);
+            this.ClientSize = new System.Drawing.Size(358, 451);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SignUp";

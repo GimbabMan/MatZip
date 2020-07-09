@@ -54,7 +54,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(369, 409);
+            this.panel1.Size = new System.Drawing.Size(361, 411);
             this.panel1.TabIndex = 11;
             // 
             // btnLogIn
@@ -105,9 +105,9 @@
             // 
             this.lblSignUp.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblSignUp.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSignUp.Location = new System.Drawing.Point(0, 347);
+            this.lblSignUp.Location = new System.Drawing.Point(0, 349);
             this.lblSignUp.Name = "lblSignUp";
-            this.lblSignUp.Size = new System.Drawing.Size(369, 62);
+            this.lblSignUp.Size = new System.Drawing.Size(361, 62);
             this.lblSignUp.TabIndex = 8;
             this.lblSignUp.Text = "회원가입";
             this.lblSignUp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -135,7 +135,7 @@
             this.lblLogIn.Font = new System.Drawing.Font("Malgun Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLogIn.Location = new System.Drawing.Point(3, 0);
             this.lblLogIn.Name = "lblLogIn";
-            this.lblLogIn.Size = new System.Drawing.Size(363, 83);
+            this.lblLogIn.Size = new System.Drawing.Size(355, 83);
             this.lblLogIn.TabIndex = 4;
             this.lblLogIn.Text = "LOGIN";
             this.lblLogIn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -146,7 +146,7 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 409);
+            this.ClientSize = new System.Drawing.Size(361, 411);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LogIn";
