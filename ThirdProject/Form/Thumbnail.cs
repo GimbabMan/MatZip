@@ -74,6 +74,12 @@ namespace ThirdProject
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-       
+
+        private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Review review = new Review(LoggedInMember, ThumbnailRestaurant);
+            review.ShowDialog();
+            Close();
+        }
     }
 }

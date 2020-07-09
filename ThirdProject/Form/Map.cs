@@ -1,11 +1,13 @@
 ﻿using DevExpress.Map;
 using DevExpress.XtraMap;
+using DevExpress.XtraMap.Native;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
+using ThirdProject.Properties;
 
 namespace ThirdProject
 {
@@ -16,7 +18,6 @@ namespace ThirdProject
         private MapPushpin mapPushpin = null;
         private Member LoggedInMember { get; set; }
         public Color Red { get; private set; }
-        public System.Drawing.ColorConverter ColorConverter { get; set; }
 
         private string restaurantName = null;
         private string restaurantFoodType = null;
@@ -59,11 +60,13 @@ namespace ThirdProject
                     {
                         double laptitude = (double)restaurant.Latitude;
                         double longitude = (double)restaurant.Longitude;
+                        
                         GeoPoint p = new GeoPoint(laptitude, longitude);
-                        MapItem insertPushPin = new MapPushpin() { Location = p, Text = "나", TextGlowColor = Red, TextColor =  Color.Red};
                         
+                        Bitmap bmpMarker = (Bitmap)Image.FromFile("C:\\Users\\plant12\\Desktop\\Image\\test.PNG");
+                        MapPushpin insertPushPin = new MapPushpin() { Location = p, Text = "나", TextColor = Color.Red };
+                        //insertPushPin.Image = bmpMarker;
                         
-                       
                         storage.Items.Add(insertPushPin);
                         mapControl.Refresh();
                         
@@ -161,7 +164,10 @@ namespace ThirdProject
 
             DataRepository.Information.Insert(information);
 
-            MapItem insertPushPin = new MapPushpin() { Location = p, Text = "나" };
+            Bitmap bmpMarker = (Bitmap)Image.FromFile("C:\\Users\\plant12\\Desktop\\Image\\test.PNG");
+            MapPushpin insertPushPin = new MapPushpin() { Location = p, Text = "나", TextColor = Color.Red };
+
+            //insertPushPin.Image = bmpMarker;
             storage.Items.Add(insertPushPin);
             mapControl.Refresh();
 

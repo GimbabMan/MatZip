@@ -32,34 +32,30 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Review));
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pcbRestaurantImage = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txbGrade1 = new System.Windows.Forms.TextBox();
             this.txbGrade2 = new System.Windows.Forms.TextBox();
             this.txbGrade3 = new System.Windows.Forms.TextBox();
             this.txbGrade4 = new System.Windows.Forms.TextBox();
             this.txbGrade5 = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.grdReview = new DevExpress.XtraGrid.GridControl();
+            this.pcbGrade = new System.Windows.Forms.PictureBox();
             this.bdsReview = new System.Windows.Forms.BindingSource(this.components);
-            this.grvReview = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colMember = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colGrade = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colComment = new DevExpress.XtraGrid.Columns.GridColumn();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.txbMenus = new System.Windows.Forms.TextBox();
             this.txbDays = new System.Windows.Forms.TextBox();
             this.lblHours = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnLoadMap = new DevExpress.XtraEditors.SimpleButton();
             this.txbRestaurantName = new System.Windows.Forms.TextBox();
+            this.lblGrade = new System.Windows.Forms.Label();
+            this.dgvReviews = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbRestaurantImage)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdReview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsReview)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvReview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReviews)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -68,37 +64,38 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(571, 469);
+            this.panel2.Size = new System.Drawing.Size(713, 471);
             this.panel2.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
             this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.pictureBox1);
+            this.panel3.Controls.Add(this.dgvReviews);
+            this.panel3.Controls.Add(this.lblGrade);
+            this.panel3.Controls.Add(this.pcbRestaurantImage);
             this.panel3.Controls.Add(this.groupBox1);
-            this.panel3.Controls.Add(this.grdReview);
             this.panel3.Controls.Add(this.simpleButton1);
             this.panel3.Controls.Add(this.txbMenus);
             this.panel3.Controls.Add(this.txbDays);
             this.panel3.Controls.Add(this.lblHours);
-            this.panel3.Controls.Add(this.simpleButton2);
+            this.panel3.Controls.Add(this.btnLoadMap);
             this.panel3.Controls.Add(this.txbRestaurantName);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(571, 469);
+            this.panel3.Size = new System.Drawing.Size(713, 471);
             this.panel3.TabIndex = 1;
             // 
-            // pictureBox1
+            // pcbRestaurantImage
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(550, 122);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
+            this.pcbRestaurantImage.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pcbRestaurantImage.Location = new System.Drawing.Point(0, 0);
+            this.pcbRestaurantImage.Name = "pcbRestaurantImage";
+            this.pcbRestaurantImage.Size = new System.Drawing.Size(692, 122);
+            this.pcbRestaurantImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbRestaurantImage.TabIndex = 10;
+            this.pcbRestaurantImage.TabStop = false;
             // 
             // groupBox1
             // 
@@ -107,8 +104,8 @@
             this.groupBox1.Controls.Add(this.txbGrade3);
             this.groupBox1.Controls.Add(this.txbGrade4);
             this.groupBox1.Controls.Add(this.txbGrade5);
-            this.groupBox1.Controls.Add(this.pictureBox2);
-            this.groupBox1.Location = new System.Drawing.Point(113, 332);
+            this.groupBox1.Controls.Add(this.pcbGrade);
+            this.groupBox1.Location = new System.Drawing.Point(218, 312);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(410, 182);
             this.groupBox1.TabIndex = 9;
@@ -150,73 +147,26 @@
             this.txbGrade5.Size = new System.Drawing.Size(85, 26);
             this.txbGrade5.TabIndex = 1;
             // 
-            // pictureBox2
+            // pcbGrade
             // 
-            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(14, 16);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(288, 155);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
-            // grdReview
-            // 
-            this.grdReview.DataSource = this.bdsReview;
-            this.grdReview.Location = new System.Drawing.Point(113, 583);
-            this.grdReview.MainView = this.grvReview;
-            this.grdReview.Name = "grdReview";
-            this.grdReview.Size = new System.Drawing.Size(400, 200);
-            this.grdReview.TabIndex = 8;
-            this.grdReview.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grvReview});
+            this.pcbGrade.InitialImage = ((System.Drawing.Image)(resources.GetObject("pcbGrade.InitialImage")));
+            this.pcbGrade.Location = new System.Drawing.Point(14, 16);
+            this.pcbGrade.Name = "pcbGrade";
+            this.pcbGrade.Size = new System.Drawing.Size(288, 155);
+            this.pcbGrade.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbGrade.TabIndex = 0;
+            this.pcbGrade.TabStop = false;
             // 
             // bdsReview
             // 
             this.bdsReview.DataSource = typeof(ThirdProject.Data.Review);
-            // 
-            // grvReview
-            // 
-            this.grvReview.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colMember,
-            this.colGrade,
-            this.colComment});
-            this.grvReview.GridControl = this.grdReview;
-            this.grvReview.Name = "grvReview";
-            // 
-            // colMember
-            // 
-            this.colMember.FieldName = "Member";
-            this.colMember.MinWidth = 25;
-            this.colMember.Name = "colMember";
-            this.colMember.Visible = true;
-            this.colMember.VisibleIndex = 0;
-            this.colMember.Width = 94;
-            // 
-            // colGrade
-            // 
-            this.colGrade.FieldName = "Grade";
-            this.colGrade.MinWidth = 25;
-            this.colGrade.Name = "colGrade";
-            this.colGrade.Visible = true;
-            this.colGrade.VisibleIndex = 1;
-            this.colGrade.Width = 94;
-            // 
-            // colComment
-            // 
-            this.colComment.FieldName = "Comment";
-            this.colComment.MinWidth = 25;
-            this.colComment.Name = "colComment";
-            this.colComment.Visible = true;
-            this.colComment.VisibleIndex = 2;
-            this.colComment.Width = 94;
             // 
             // simpleButton1
             // 
             this.simpleButton1.Appearance.BackColor = System.Drawing.Color.Silver;
             this.simpleButton1.Appearance.Options.UseBackColor = true;
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(113, 533);
+            this.simpleButton1.Location = new System.Drawing.Point(31, 533);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(177, 44);
             this.simpleButton1.TabIndex = 7;
@@ -226,10 +176,10 @@
             // 
             this.txbMenus.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txbMenus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbMenus.Location = new System.Drawing.Point(113, 255);
+            this.txbMenus.Location = new System.Drawing.Point(92, 255);
             this.txbMenus.Multiline = true;
             this.txbMenus.Name = "txbMenus";
-            this.txbMenus.Size = new System.Drawing.Size(245, 71);
+            this.txbMenus.Size = new System.Drawing.Size(245, 51);
             this.txbMenus.TabIndex = 6;
             this.txbMenus.Text = "메뉴넣을곳";
             // 
@@ -237,7 +187,7 @@
             // 
             this.txbDays.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txbDays.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbDays.Location = new System.Drawing.Point(258, 219);
+            this.txbDays.Location = new System.Drawing.Point(237, 219);
             this.txbDays.Name = "txbDays";
             this.txbDays.Size = new System.Drawing.Size(100, 19);
             this.txbDays.TabIndex = 5;
@@ -245,44 +195,67 @@
             // 
             // lblHours
             // 
-            this.lblHours.Location = new System.Drawing.Point(113, 220);
+            this.lblHours.Location = new System.Drawing.Point(92, 220);
             this.lblHours.Name = "lblHours";
             this.lblHours.Size = new System.Drawing.Size(116, 18);
             this.lblHours.TabIndex = 4;
             this.lblHours.Text = "매일 11:00~17:00";
             // 
-            // simpleButton2
+            // btnLoadMap
             // 
-            this.simpleButton2.Appearance.BackColor = System.Drawing.Color.Silver;
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Trebuchet MS", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton2.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.simpleButton2.Appearance.Options.UseBackColor = true;
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Appearance.Options.UseForeColor = true;
-            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.simpleButton2.Location = new System.Drawing.Point(213, 175);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(94, 38);
-            this.simpleButton2.TabIndex = 3;
-            this.simpleButton2.Text = "지도";
+            this.btnLoadMap.Appearance.BackColor = System.Drawing.Color.Silver;
+            this.btnLoadMap.Appearance.Font = new System.Drawing.Font("Trebuchet MS", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadMap.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btnLoadMap.Appearance.Options.UseBackColor = true;
+            this.btnLoadMap.Appearance.Options.UseFont = true;
+            this.btnLoadMap.Appearance.Options.UseForeColor = true;
+            this.btnLoadMap.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadMap.ImageOptions.Image")));
+            this.btnLoadMap.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnLoadMap.Location = new System.Drawing.Point(204, 164);
+            this.btnLoadMap.Name = "btnLoadMap";
+            this.btnLoadMap.Size = new System.Drawing.Size(94, 38);
+            this.btnLoadMap.TabIndex = 3;
+            this.btnLoadMap.Text = "지도";
+            this.btnLoadMap.Click += new System.EventHandler(this.btnLoadMap_Click);
             // 
             // txbRestaurantName
             // 
             this.txbRestaurantName.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txbRestaurantName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbRestaurantName.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txbRestaurantName.Location = new System.Drawing.Point(213, 139);
+            this.txbRestaurantName.Location = new System.Drawing.Point(200, 129);
             this.txbRestaurantName.Name = "txbRestaurantName";
             this.txbRestaurantName.Size = new System.Drawing.Size(124, 19);
             this.txbRestaurantName.TabIndex = 1;
             this.txbRestaurantName.Text = "상호명입력할곳";
             // 
+            // lblGrade
+            // 
+            this.lblGrade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGrade.Font = new System.Drawing.Font("Malgun Gothic", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblGrade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblGrade.Location = new System.Drawing.Point(12, 283);
+            this.lblGrade.Name = "lblGrade";
+            this.lblGrade.Size = new System.Drawing.Size(196, 155);
+            this.lblGrade.TabIndex = 11;
+            this.lblGrade.Text = "4.3";
+            this.lblGrade.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dgvReviews
+            // 
+            this.dgvReviews.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReviews.Location = new System.Drawing.Point(31, 594);
+            this.dgvReviews.Name = "dgvReviews";
+            this.dgvReviews.RowHeadersWidth = 51;
+            this.dgvReviews.RowTemplate.Height = 27;
+            this.dgvReviews.Size = new System.Drawing.Size(602, 169);
+            this.dgvReviews.TabIndex = 12;
+            // 
             // Review
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 469);
+            this.ClientSize = new System.Drawing.Size(713, 471);
             this.Controls.Add(this.panel2);
             this.Name = "Review";
             this.Text = "Review";
@@ -290,13 +263,12 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbRestaurantImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdReview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGrade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsReview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvReview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReviews)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -305,24 +277,21 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private DevExpress.XtraEditors.LabelControl lblHours;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton btnLoadMap;
         private System.Windows.Forms.TextBox txbRestaurantName;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private System.Windows.Forms.TextBox txbMenus;
         private System.Windows.Forms.TextBox txbDays;
-        private DevExpress.XtraGrid.GridControl grdReview;
-        private DevExpress.XtraGrid.Views.Grid.GridView grvReview;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pcbGrade;
         private System.Windows.Forms.TextBox txbGrade1;
         private System.Windows.Forms.TextBox txbGrade2;
         private System.Windows.Forms.TextBox txbGrade3;
         private System.Windows.Forms.TextBox txbGrade4;
         private System.Windows.Forms.TextBox txbGrade5;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pcbRestaurantImage;
         private System.Windows.Forms.BindingSource bdsReview;
-        private DevExpress.XtraGrid.Columns.GridColumn colMember;
-        private DevExpress.XtraGrid.Columns.GridColumn colGrade;
-        private DevExpress.XtraGrid.Columns.GridColumn colComment;
+        private System.Windows.Forms.Label lblGrade;
+        private System.Windows.Forms.DataGridView dgvReviews;
     }
 }
