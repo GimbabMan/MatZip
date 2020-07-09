@@ -25,7 +25,7 @@ namespace ThirdProject
         private void vScrollBar1_ValueChanged(object sender, EventArgs e)
         {
 
-            //panel2.Location = new Point(vScrollBar1.Value);
+            
         }
 
         private void Review_Load(object sender, EventArgs e)
@@ -39,13 +39,11 @@ namespace ThirdProject
 
             //this.StartPosition = FormStartPosition.CenterScreen;
 
-            //vScrollBar1.Maximum = 100;
-            //vScrollBar1.Minimum = 0;
-            //vScrollBar1.Value = 0;
+         
 
             // 레스토랑DB에 있는 Name을 매개변수로 넘겨받았다고 가정 후 textbox에 보여주기
             //txbRestaurantName.Text = GetRestaurantName("미스터 피자");
-            
+
         }
 
 
