@@ -40,9 +40,19 @@ namespace ThirdProject
             if (string.IsNullOrEmpty(cbbFoodType.Text) || cbbFoodType.Text == "음식 종류를 선택해주세요")
                 return;
 
+            string imageLication = null;
+            try
+            {
+                imageLication = pcbRestaurantImage.ImageLocation.ToString();
+            }
+            catch
+            {
+                imageLication = null;
+            }
+
             if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                dataTransfer.SetName(txeName.Text, cbbFoodType.Text, pcbRestaurantImage.ImageLocation.ToString());
+                dataTransfer.SetName(txeName.Text, cbbFoodType.Text, imageLication);
             }
             
             Close();

@@ -47,8 +47,8 @@
             this.txbDays = new System.Windows.Forms.TextBox();
             this.lblHours = new DevExpress.XtraEditors.LabelControl();
             this.btnLoadMap = new DevExpress.XtraEditors.SimpleButton();
-            this.txbRestaurantName = new System.Windows.Forms.TextBox();
             this.bdsReview = new System.Windows.Forms.BindingSource(this.components);
+            this.lblRestaurantName = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReviews)).BeginInit();
@@ -71,6 +71,7 @@
             // 
             this.panel3.AutoScroll = true;
             this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.lblRestaurantName);
             this.panel3.Controls.Add(this.dgvReviews);
             this.panel3.Controls.Add(this.lblGrade);
             this.panel3.Controls.Add(this.pcbRestaurantImage);
@@ -80,7 +81,6 @@
             this.panel3.Controls.Add(this.txbDays);
             this.panel3.Controls.Add(this.lblHours);
             this.panel3.Controls.Add(this.btnLoadMap);
-            this.panel3.Controls.Add(this.txbRestaurantName);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
@@ -143,37 +143,42 @@
             // 
             // txbGrade1
             // 
-            this.txbGrade1.Location = new System.Drawing.Point(308, 145);
+            this.txbGrade1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbGrade1.Location = new System.Drawing.Point(308, 147);
             this.txbGrade1.Name = "txbGrade1";
-            this.txbGrade1.Size = new System.Drawing.Size(85, 26);
+            this.txbGrade1.Size = new System.Drawing.Size(85, 19);
             this.txbGrade1.TabIndex = 5;
             // 
             // txbGrade2
             // 
-            this.txbGrade2.Location = new System.Drawing.Point(308, 113);
+            this.txbGrade2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbGrade2.Location = new System.Drawing.Point(308, 115);
             this.txbGrade2.Name = "txbGrade2";
-            this.txbGrade2.Size = new System.Drawing.Size(85, 26);
+            this.txbGrade2.Size = new System.Drawing.Size(85, 19);
             this.txbGrade2.TabIndex = 4;
             // 
             // txbGrade3
             // 
-            this.txbGrade3.Location = new System.Drawing.Point(308, 80);
+            this.txbGrade3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbGrade3.Location = new System.Drawing.Point(308, 82);
             this.txbGrade3.Name = "txbGrade3";
-            this.txbGrade3.Size = new System.Drawing.Size(85, 26);
+            this.txbGrade3.Size = new System.Drawing.Size(85, 19);
             this.txbGrade3.TabIndex = 3;
             // 
             // txbGrade4
             // 
-            this.txbGrade4.Location = new System.Drawing.Point(308, 48);
+            this.txbGrade4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbGrade4.Location = new System.Drawing.Point(308, 50);
             this.txbGrade4.Name = "txbGrade4";
-            this.txbGrade4.Size = new System.Drawing.Size(85, 26);
+            this.txbGrade4.Size = new System.Drawing.Size(85, 19);
             this.txbGrade4.TabIndex = 2;
             // 
             // txbGrade5
             // 
-            this.txbGrade5.Location = new System.Drawing.Point(308, 16);
+            this.txbGrade5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbGrade5.Location = new System.Drawing.Point(309, 21);
             this.txbGrade5.Name = "txbGrade5";
-            this.txbGrade5.Size = new System.Drawing.Size(85, 26);
+            this.txbGrade5.Size = new System.Drawing.Size(85, 19);
             this.txbGrade5.TabIndex = 1;
             // 
             // pcbGrade
@@ -244,22 +249,19 @@
             this.btnLoadMap.Text = "지도";
             this.btnLoadMap.Click += new System.EventHandler(this.btnLoadMap_Click);
             // 
-            // txbRestaurantName
-            // 
-            this.txbRestaurantName.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txbRestaurantName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbRestaurantName.Font = new System.Drawing.Font("Malgun Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbRestaurantName.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txbRestaurantName.Location = new System.Drawing.Point(233, 161);
-            this.txbRestaurantName.Name = "txbRestaurantName";
-            this.txbRestaurantName.Size = new System.Drawing.Size(346, 54);
-            this.txbRestaurantName.TabIndex = 1;
-            this.txbRestaurantName.Text = "상호명 입력";
-            this.txbRestaurantName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // bdsReview
             // 
             this.bdsReview.DataSource = typeof(ThirdProject.Data.Review);
+            // 
+            // lblRestaurantName
+            // 
+            this.lblRestaurantName.Font = new System.Drawing.Font("Malgun Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRestaurantName.Location = new System.Drawing.Point(259, 169);
+            this.lblRestaurantName.Name = "lblRestaurantName";
+            this.lblRestaurantName.Size = new System.Drawing.Size(283, 57);
+            this.lblRestaurantName.TabIndex = 13;
+            this.lblRestaurantName.Text = "상호명";
+            this.lblRestaurantName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Review
             // 
@@ -288,7 +290,6 @@
         private System.Windows.Forms.Panel panel3;
         private DevExpress.XtraEditors.LabelControl lblHours;
         private DevExpress.XtraEditors.SimpleButton btnLoadMap;
-        private System.Windows.Forms.TextBox txbRestaurantName;
         private System.Windows.Forms.TextBox txbMenus;
         private System.Windows.Forms.TextBox txbDays;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -303,5 +304,6 @@
         private System.Windows.Forms.Label lblGrade;
         private System.Windows.Forms.DataGridView dgvReviews;
         private DevExpress.XtraEditors.SimpleButton btnReview;
+        private System.Windows.Forms.Label lblRestaurantName;
     }
 }
