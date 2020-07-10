@@ -46,9 +46,10 @@ namespace ThirdProject
         {
             string comment = txbComment.Text;
             string filePath = FilePath;
-            int? grade = int.Parse(cbbGrade.Text);
 
-            if (string.IsNullOrEmpty(comment) || grade == null)
+            int? grade = int.Parse(cbbGrade.Text[0].ToString());
+
+            if (string.IsNullOrEmpty(comment))
             {
                 MessageBox.Show("코멘트, 평점 입력을 완료해주세요");
                 return;

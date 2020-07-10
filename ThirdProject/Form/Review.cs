@@ -45,8 +45,8 @@ namespace ThirdProject
         {
             pcbRestaurantImage.Image = Resources.chobab;
             pcbGrade.Image = Resources.star;
-            lblRestaurantName.Text = SelectedRestaurant.Name;
-            
+            lblRestaurantName.Text = SelectedRestaurant.Name.ToString();
+           
             // 선택된 가게의 메인 사진을 가져온다.
             // Restaurant-imageLocation
             string imagePath = DataRepository.Restaurant.Get(SelectedRestaurant.RestaurantId).ImageLocation;
