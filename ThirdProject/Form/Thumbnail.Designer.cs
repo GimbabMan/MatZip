@@ -46,17 +46,17 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(319, 426);
+            this.panel1.Size = new System.Drawing.Size(218, 209);
             this.panel1.TabIndex = 0;
             // 
             // lblUserId
             // 
             this.lblUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUserId.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUserId.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblUserId.ForeColor = System.Drawing.Color.Black;
-            this.lblUserId.Location = new System.Drawing.Point(167, 261);
+            this.lblUserId.Location = new System.Drawing.Point(79, 105);
             this.lblUserId.Name = "lblUserId";
-            this.lblUserId.Size = new System.Drawing.Size(148, 73);
+            this.lblUserId.Size = new System.Drawing.Size(127, 47);
             this.lblUserId.TabIndex = 1;
             this.lblUserId.Text = "유저 아이디";
             this.lblUserId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -65,10 +65,10 @@
             // 
             this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblName.Font = new System.Drawing.Font("Malgun Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblName.Location = new System.Drawing.Point(3, 318);
+            this.lblName.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblName.Location = new System.Drawing.Point(3, 151);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(313, 108);
+            this.lblName.Size = new System.Drawing.Size(212, 58);
             this.lblName.TabIndex = 0;
             this.lblName.Text = " 가게 이름(종류)";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -76,11 +76,11 @@
             // lblGrade
             // 
             this.lblGrade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblGrade.Font = new System.Drawing.Font("Malgun Gothic", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblGrade.Font = new System.Drawing.Font("Malgun Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGrade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblGrade.Location = new System.Drawing.Point(8, 250);
+            this.lblGrade.Location = new System.Drawing.Point(12, 102);
             this.lblGrade.Name = "lblGrade";
-            this.lblGrade.Size = new System.Drawing.Size(161, 84);
+            this.lblGrade.Size = new System.Drawing.Size(60, 54);
             this.lblGrade.TabIndex = 0;
             this.lblGrade.Text = "4.3";
             this.lblGrade.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -91,7 +91,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(319, 229);
+            this.pictureBox.Size = new System.Drawing.Size(218, 99);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -104,7 +104,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(319, 426);
+            this.ClientSize = new System.Drawing.Size(218, 209);
             this.Controls.Add(this.panel1);
             this.Name = "Thumbnail";
             this.Text = "Thumbnail";

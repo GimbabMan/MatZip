@@ -46,7 +46,7 @@ namespace ThirdProject
         {
             string comment = txbComment.Text;
             string filePath = FilePath;
-            int? grade = int.Parse(txbGrade.Text);
+            int? grade = int.Parse(cbbGrade.Text);
 
             if (string.IsNullOrEmpty(comment) || grade == null)
             {
@@ -76,5 +76,7 @@ namespace ThirdProject
         {
             txbComment.Text = "";
         }
+
+        
     }
 }

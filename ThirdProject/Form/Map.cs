@@ -360,6 +360,7 @@ namespace ThirdProject
                 }
             }
             Thumbnail thumbnail = new Thumbnail(LoggedInMember, thumbnailRestaurant);
+            
             thumbnail.ShowDialog();
 
         }

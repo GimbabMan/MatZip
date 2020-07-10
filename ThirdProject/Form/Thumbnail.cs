@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraRichEdit.Internal.PrintLayout;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
@@ -28,6 +29,7 @@ namespace ThirdProject
 
         private void Thumbnail_Load(object sender, EventArgs e)
         {
+            Location = new Point(Cursor.Position.X, Cursor.Position.Y);
             //FormBorderStyle = FormBorderStyle.FixedSingle;
             var informations = DataRepository.Information.Get(ThumbnailRestaurant.RestaurantId);
             int codeId = 0;

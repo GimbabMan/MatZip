@@ -154,6 +154,7 @@
             this.txePassword.Properties.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.txePassword.Properties.Appearance.Options.UseBackColor = true;
             this.txePassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.txePassword.Properties.PasswordChar = '*';
             this.txePassword.Size = new System.Drawing.Size(250, 22);
             this.txePassword.TabIndex = 10;
             this.txePassword.Click += new System.EventHandler(this.txePassword_Click);

@@ -95,7 +95,11 @@
             // 
             // btnMenu
             // 
-            this.btnMenu.Location = new System.Drawing.Point(65, 283);
+            this.btnMenu.Appearance.BackColor = System.Drawing.Color.Silver;
+            this.btnMenu.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btnMenu.Appearance.Options.UseBackColor = true;
+            this.btnMenu.Appearance.Options.UseForeColor = true;
+            this.btnMenu.Location = new System.Drawing.Point(65, 289);
             this.btnMenu.Name = "btnMenu";
             this.btnMenu.Size = new System.Drawing.Size(76, 24);
             this.btnMenu.TabIndex = 16;
@@ -104,7 +108,9 @@
             // 
             // btnDaysOff
             // 
-            this.btnDaysOff.Location = new System.Drawing.Point(65, 255);
+            this.btnDaysOff.Appearance.BackColor = System.Drawing.Color.Silver;
+            this.btnDaysOff.Appearance.Options.UseBackColor = true;
+            this.btnDaysOff.Location = new System.Drawing.Point(65, 259);
             this.btnDaysOff.Name = "btnDaysOff";
             this.btnDaysOff.Size = new System.Drawing.Size(76, 24);
             this.btnDaysOff.TabIndex = 15;
@@ -113,7 +119,9 @@
             // 
             // btnDays
             // 
-            this.btnDays.Location = new System.Drawing.Point(65, 228);
+            this.btnDays.Appearance.BackColor = System.Drawing.Color.Silver;
+            this.btnDays.Appearance.Options.UseBackColor = true;
+            this.btnDays.Location = new System.Drawing.Point(65, 229);
             this.btnDays.Name = "btnDays";
             this.btnDays.Size = new System.Drawing.Size(76, 24);
             this.btnDays.TabIndex = 14;
@@ -250,7 +258,7 @@
             // 
             this.txbMenus.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txbMenus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbMenus.Location = new System.Drawing.Point(145, 283);
+            this.txbMenus.Location = new System.Drawing.Point(145, 292);
             this.txbMenus.Multiline = true;
             this.txbMenus.Name = "txbMenus";
             this.txbMenus.Size = new System.Drawing.Size(187, 87);
@@ -261,7 +269,7 @@
             // 
             this.txbDays.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txbDays.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbDays.Location = new System.Drawing.Point(147, 258);
+            this.txbDays.Location = new System.Drawing.Point(147, 262);
             this.txbDays.Name = "txbDays";
             this.txbDays.Size = new System.Drawing.Size(100, 19);
             this.txbDays.TabIndex = 5;
@@ -269,7 +277,7 @@
             // 
             // lblHours
             // 
-            this.lblHours.Location = new System.Drawing.Point(147, 231);
+            this.lblHours.Location = new System.Drawing.Point(147, 232);
             this.lblHours.Name = "lblHours";
             this.lblHours.Size = new System.Drawing.Size(116, 18);
             this.lblHours.TabIndex = 4;

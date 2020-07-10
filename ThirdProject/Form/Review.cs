@@ -29,7 +29,6 @@ namespace ThirdProject
         private string StartTime { get; set; }
         private string FinishTime { get; set; }
         private bool[] DaysOff { get; set; } 
-       
         
         private Review()
         {
@@ -224,17 +223,17 @@ namespace ThirdProject
 
         private void SetGrade()
         {
-            int grade5 = DataRepository.Review.GetGrade(5, SelectedRestaurant.RestaurantId).Count();
-            int grade4 = DataRepository.Review.GetGrade(4, SelectedRestaurant.RestaurantId).Count();
-            int grade3 = DataRepository.Review.GetGrade(3, SelectedRestaurant.RestaurantId).Count();
-            int grade2 = DataRepository.Review.GetGrade(2, SelectedRestaurant.RestaurantId).Count();
-            int grade1 = DataRepository.Review.GetGrade(1, SelectedRestaurant.RestaurantId).Count();
-
-            txbGrade5.Text = grade5.ToString();
-            txbGrade4.Text = grade4.ToString();
-            txbGrade3.Text = grade3.ToString();
-            txbGrade2.Text = grade2.ToString();
-            txbGrade1.Text = grade1.ToString();
+            int[] grades = new int[5];
+            for(int i = 5; i >= 1; i--)
+            {
+                grades[i-1] = DataRepository.Review.GetGrade(i, SelectedRestaurant.RestaurantId).Count();
+            }
+           
+            txbGrade5.Text = grades[4].ToString();
+            txbGrade4.Text = grades[3].ToString();
+            txbGrade3.Text = grades[2].ToString();
+            txbGrade2.Text = grades[1].ToString();
+            txbGrade1.Text = grades[0].ToString();
         }
 
         private void SetGradeAvg(List<Data.Review> selectedRetarantReviews)
