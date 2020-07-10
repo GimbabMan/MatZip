@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
@@ -67,7 +68,11 @@ namespace ThirdProject
         {
             SignUpComplete();
         }
-
+        public bool IsEmailForm(string email)
+        {
+            bool valid = Regex.IsMatch(email, @"[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?");
+            return valid;
+        }
         private void SignUpComplete()
         {
             if(txeId.Text == "아이디" || string.IsNullOrEmpty(txeId.Text))
@@ -83,6 +88,10 @@ namespace ThirdProject
             }
             else if (txeEmail.Text == "이메일" || string.IsNullOrEmpty(txeEmail.Text))
             {
+                return;
+            } else if(!IsEmailForm(txeEmail.Text))
+            {
+                MessageBox.Show("이메일 형식을 지켜주세요(ㅁ@ㅁ.ㅁ)");
                 return;
             }
 
