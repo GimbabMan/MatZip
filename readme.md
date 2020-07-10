@@ -69,7 +69,7 @@
 
 4. 리뷰에 사진을 올릴 때 어려움을 겪었습니다.
 dataGrideView에 사진을 올릴 때 DB에는 이미지의 파일 경로만 저장되어 있기 때문에 어떻게 이미지를 올려야 할지 고민했습니다.
-이를 해결하기 위해 DataGridViewImageColumn 클래스를 이용하였습니다.
+이를 해결하기 위해 DataGridViewImageColumn 클래스를 이용했습니다.
 
 ##### 느낀점
 
