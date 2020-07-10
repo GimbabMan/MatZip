@@ -4,7 +4,8 @@
  MatZip은 Microsoft사에서 제공하는 Bing Maps API를 활용하여 나만의 맛집리스트들을 
 저장하고 다른 사람들과 의견을 공유할 수 있는 프로그램입니다.
 
-
+## 데이터베이스 설계
+![D B](Documents/DB.png)
 
 
 ## 설명
@@ -58,8 +59,8 @@
 1. 처음에 MapPushPin을 추가할 때 단지 Map Control에 item을 추가하면 되는 줄 알았는데 아니었습니다.
 이를 해결한 방법은 Map Control에 VectorItemsLayer를 추가 후 MapItemStorage를 이용해서 MapPushPin을 Map에 추가했습니다.
 
-2. Form에서 다른 Form으로 데이터를 전달할 때 어떻게 캡슐화를 지킬 수 있는지 고민했습니다.
-이를 해결한 방법은 Interface를 구현해 Form에서 다른 Form으로 객체를 전달해줬습니다.
+2. Form에서 다른 Form으로 캡슐화를 지키면서 어떻게 데이터를 교환할지 고민했습니다.
+이를 해결한 방법은 Interface를 구현해서 Form에서 다른 Form으로 객체를 전달해줬습니다.
 
 3. Map Push Pin을 전체 맵에서 어떻게 인식해야 할지 고민을 했습니다.
 처음에는 MapItemClick 이벤트를 이용해 MapItemStorage에 저장된 모든 MapPushPin의 좌표를 탐색해서 찾았습니다.
