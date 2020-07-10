@@ -54,15 +54,27 @@
 마우스 휠을 이용하여 적절히 ZoomIn, ZoomOut을 한 다음 맛집으로 등록된 지점에 마우스를 올려두면
 맛집의 정보를 간략화(썸네일 형식)하여 보여줍니다. 
 
+##### 어려웠던 점
+1. 처음에 MapPushPin을 추가할 때 단지 Map Control에 item을 추가하면 되는 줄 알았는데 아니었습니다.
+이를 해결한 방법은 Map Control에 VectorItemsLayer를 추가 후 MapItemStorage를 이용해서 MapPushPin을 Map에 추가했습니다.
 
+2. Form에서 다른 Form으로 데이터를 전달할 때 어떻게 캡슐화를 지킬 수 있는지 고민했습니다.
+이를 해결한 방법은 Interface를 구현해 Form에서 다른 Form으로 객체를 전달해줬습니다.
 
+3. Map Push Pin을 전체 맵에서 어떻게 인식해야 할지 고민을 했습니다.
+처음에는 MapItemClick 이벤트를 이용해 MapItemStorage에 저장된 모든 MapPushPin의 좌표를 탐색해서 찾았습니다.
+저희의 목표는 MouseMove 이벤트로 Map Push Pin에 마우스 커서만 올려도 새로운 폼을 띄우고 싶었습니다.
+이를 해결한 방법은 MapHitInfo 클래스를 이용해서 마우스 커서가 MapPushPin을 인식할 수 있었습니다.
+
+4. 리뷰에 사진을 올릴 때 어려움을 겪었습니다.
+dataGrideView에 사진을 올릴 때 DB에는 이미지의 파일 경로만 저장되어 있기 때문에 어떻게 이미지를 올려야 할지 고민했습니다.
+이를 해결하기 위해 DataGridViewImageColumn 클래스를 이용하였습니다.
 
 ##### 느낀점
 
 이전까지는 Git과 같은 VersionControl을 이용하지 않고 일일이 프로젝트들을 알집으로 압축 후, 이어붙이는 형식으로
 프로젝트를 진행하였지만, Git을 쓰고 공동 작업이 훨씬 수월해지는 것을 느낄 수 있었습니다.
 
-프로젝트가 커짐에 따라 접근지정자를 설정해주는 과정에서 캡슐화의 중요성 또한 인지하였습니다.
 
  
 
