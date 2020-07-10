@@ -258,7 +258,7 @@
             // 
             this.txbMenus.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txbMenus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbMenus.Location = new System.Drawing.Point(145, 292);
+            this.txbMenus.Location = new System.Drawing.Point(147, 292);
             this.txbMenus.Multiline = true;
             this.txbMenus.Name = "txbMenus";
             this.txbMenus.Size = new System.Drawing.Size(187, 87);
@@ -269,15 +269,16 @@
             // 
             this.txbDays.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txbDays.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbDays.Location = new System.Drawing.Point(147, 262);
+            this.txbDays.Location = new System.Drawing.Point(150, 262);
+            this.txbDays.Multiline = true;
             this.txbDays.Name = "txbDays";
-            this.txbDays.Size = new System.Drawing.Size(100, 19);
+            this.txbDays.Size = new System.Drawing.Size(147, 21);
             this.txbDays.TabIndex = 5;
             this.txbDays.Text = "월,목 휴무";
             // 
             // lblHours
             // 
-            this.lblHours.Location = new System.Drawing.Point(147, 232);
+            this.lblHours.Location = new System.Drawing.Point(148, 232);
             this.lblHours.Name = "lblHours";
             this.lblHours.Size = new System.Drawing.Size(116, 18);
             this.lblHours.TabIndex = 4;

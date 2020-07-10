@@ -263,6 +263,13 @@ namespace ThirdProject
                     deleteInformations.Add(information);
             }
 
+            var menus = DataRepository.Menu.Get(deleteRegistration.RestaurantId);
+
+            foreach(Data.Menu menu in menus)
+            {
+                DataRepository.Menu.Delete(menu);
+            }
+
             var reviews = DataRepository.Review.Get(deleteRestaurant.RestaurantId);
             
             foreach(Data.Review review in reviews)
