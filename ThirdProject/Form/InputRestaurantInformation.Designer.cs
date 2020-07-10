@@ -71,6 +71,7 @@
             this.cbbFoodType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbFoodType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbFoodType.FormattingEnabled = true;
             this.cbbFoodType.Items.AddRange(new object[] {
             "한식",
@@ -81,7 +82,6 @@
             this.cbbFoodType.Name = "cbbFoodType";
             this.cbbFoodType.Size = new System.Drawing.Size(261, 26);
             this.cbbFoodType.TabIndex = 15;
-            this.cbbFoodType.Text = "음식 종류를 선택해주세요";
             // 
             // txeName
             // 

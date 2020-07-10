@@ -12,27 +12,26 @@ using ThirdProject.Data;
 
 namespace ThirdProject
 {
-    public partial class InputMenu : RootForm
+    public partial class InputHours : RootForm
     {
-        private IInputMenuToReview Menu { get; set; }
-       
-        public InputMenu()
+        IInputHoursToReview  InputTimes { get; set; }
+        private InputHours()
         {
             InitializeComponent();
         }
 
-        public InputMenu(IInputMenuToReview menu):this()
+        public InputHours(IInputHoursToReview hours) : this()
         {
-            Menu = menu;
+            InputTimes = hours;
         }
 
 
-        private void btnAdd_Click(object sender, System.EventArgs e)
+        private void btnComplete_Click(object sender, EventArgs e)
         {
-            string name = txbMenu.Text;
-            double? price = double.Parse(txbPrice.Text);
+            string startTime = cbbStartTime.Text.ToString();
+            string finishTime = cbbFinishTime.Text.ToString();
 
-            if (string.IsNullOrEmpty(name) || price == null)
+            if (string.IsNullOrEmpty(startTime) || string.IsNullOrEmpty(finishTime))
             {
                 MessageBox.Show("메뉴, 가격 입력을 완료해주세요");
                 return;
@@ -40,10 +39,9 @@ namespace ThirdProject
 
             if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Menu.SetMenuPrice(name, (double)price);
+                InputTimes.SetHours(startTime, finishTime);
                 Close();
             }
-
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -55,7 +53,5 @@ namespace ThirdProject
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
-       
     }
 }

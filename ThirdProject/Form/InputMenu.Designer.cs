@@ -1,4 +1,4 @@
-﻿namespace ThirdProject.Form
+﻿namespace ThirdProject
 {
     partial class InputMenu
     {

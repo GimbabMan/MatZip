@@ -89,6 +89,12 @@
     <Compile Include="BaseForm\RootForm.Designer.cs">
       <DependentUpon>RootForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\InputHours.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\InputHours.Designer.cs">
+      <DependentUpon>InputHours.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\InputMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,12 @@
     <Compile Include="Form\InputReview.Designer.cs">
       <DependentUpon>InputReview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\InputDaysOff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\InputDaysOff.Designer.cs">
+      <DependentUpon>InputDaysOff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Form\SignUp.cs">
@@ -147,6 +159,12 @@
     </Compile>
     <EmbeddedResource Include="BaseForm\RootForm.resx">
       <DependentUpon>RootForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\InputDaysOff.resx">
+      <DependentUpon>InputDaysOff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\InputHours.resx">
+      <DependentUpon>InputHours.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\InputMenu.resx">
       <DependentUpon>InputMenu.cs</DependentUpon>

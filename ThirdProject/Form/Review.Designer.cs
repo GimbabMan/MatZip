@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Review));
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnMenu = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDaysOff = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDays = new DevExpress.XtraEditors.SimpleButton();
             this.lblRestaurantName = new System.Windows.Forms.Label();
             this.dgvReviews = new System.Windows.Forms.DataGridView();
             this.lblGrade = new System.Windows.Forms.Label();
@@ -49,9 +52,6 @@
             this.lblHours = new DevExpress.XtraEditors.LabelControl();
             this.btnLoadMap = new DevExpress.XtraEditors.SimpleButton();
             this.bdsReview = new System.Windows.Forms.BindingSource(this.components);
-            this.btnDays = new DevExpress.XtraEditors.SimpleButton();
-            this.btnDaysOff = new DevExpress.XtraEditors.SimpleButton();
-            this.btnMenu = new DevExpress.XtraEditors.SimpleButton();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReviews)).BeginInit();
@@ -92,6 +92,33 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(856, 471);
             this.panel3.TabIndex = 1;
+            // 
+            // btnMenu
+            // 
+            this.btnMenu.Location = new System.Drawing.Point(65, 283);
+            this.btnMenu.Name = "btnMenu";
+            this.btnMenu.Size = new System.Drawing.Size(76, 24);
+            this.btnMenu.TabIndex = 16;
+            this.btnMenu.Text = "메뉴추가";
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
+            // 
+            // btnDaysOff
+            // 
+            this.btnDaysOff.Location = new System.Drawing.Point(65, 255);
+            this.btnDaysOff.Name = "btnDaysOff";
+            this.btnDaysOff.Size = new System.Drawing.Size(76, 24);
+            this.btnDaysOff.TabIndex = 15;
+            this.btnDaysOff.Text = "휴무추가";
+            this.btnDaysOff.Click += new System.EventHandler(this.btnDaysOff_Click);
+            // 
+            // btnDays
+            // 
+            this.btnDays.Location = new System.Drawing.Point(65, 228);
+            this.btnDays.Name = "btnDays";
+            this.btnDays.Size = new System.Drawing.Size(76, 24);
+            this.btnDays.TabIndex = 14;
+            this.btnDays.Text = "영업일추가";
+            this.btnDays.Click += new System.EventHandler(this.btnHours_Click);
             // 
             // lblRestaurantName
             // 
@@ -242,7 +269,7 @@
             // 
             // lblHours
             // 
-            this.lblHours.Location = new System.Drawing.Point(147, 234);
+            this.lblHours.Location = new System.Drawing.Point(147, 231);
             this.lblHours.Name = "lblHours";
             this.lblHours.Size = new System.Drawing.Size(116, 18);
             this.lblHours.TabIndex = 4;
@@ -269,37 +296,13 @@
             // 
             this.bdsReview.DataSource = typeof(ThirdProject.Data.Review);
             // 
-            // btnDays
-            // 
-            this.btnDays.Location = new System.Drawing.Point(65, 228);
-            this.btnDays.Name = "btnDays";
-            this.btnDays.Size = new System.Drawing.Size(76, 24);
-            this.btnDays.TabIndex = 14;
-            this.btnDays.Text = "영업일추가";
-            // 
-            // btnDaysOff
-            // 
-            this.btnDaysOff.Location = new System.Drawing.Point(65, 255);
-            this.btnDaysOff.Name = "btnDaysOff";
-            this.btnDaysOff.Size = new System.Drawing.Size(76, 24);
-            this.btnDaysOff.TabIndex = 15;
-            this.btnDaysOff.Text = "휴무추가";
-            // 
-            // btnMenu
-            // 
-            this.btnMenu.Location = new System.Drawing.Point(65, 283);
-            this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(76, 24);
-            this.btnMenu.TabIndex = 16;
-            this.btnMenu.Text = "메뉴추가";
-            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
-            // 
             // Review
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(856, 471);
             this.Controls.Add(this.panel2);
+            this.Name = "Review";
             this.Text = "Review";
             this.Load += new System.EventHandler(this.Review_Load);
             this.panel2.ResumeLayout(false);

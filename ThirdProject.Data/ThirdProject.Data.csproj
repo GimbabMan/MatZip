@@ -63,6 +63,8 @@
     <Compile Include="Data\CodeCategoryData.cs" />
     <Compile Include="Data\CodeData.cs" />
     <Compile Include="Data\EntityData.cs" />
+    <Compile Include="Data\IInputDaysOffToReview.cs" />
+    <Compile Include="Data\IInputHoursToReview.cs" />
     <Compile Include="Data\IInputMenuToReview.cs" />
     <Compile Include="Data\IInputRestaurantInformationToMap.cs" />
     <Compile Include="Data\IInputReviewToReview.cs" />
