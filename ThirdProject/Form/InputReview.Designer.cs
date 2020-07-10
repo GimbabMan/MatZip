@@ -1,6 +1,6 @@
 ﻿namespace ThirdProject
 {
-    partial class InputReview
+    partial class inputReview
     {
         /// <summary>
         /// Required designer variable.

@@ -32,6 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Review));
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnMenu = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDaysOff = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDays = new DevExpress.XtraEditors.SimpleButton();
+            this.lblRestaurantName = new System.Windows.Forms.Label();
             this.dgvReviews = new System.Windows.Forms.DataGridView();
             this.lblGrade = new System.Windows.Forms.Label();
             this.pcbRestaurantImage = new System.Windows.Forms.PictureBox();
@@ -48,7 +52,6 @@
             this.lblHours = new DevExpress.XtraEditors.LabelControl();
             this.btnLoadMap = new DevExpress.XtraEditors.SimpleButton();
             this.bdsReview = new System.Windows.Forms.BindingSource(this.components);
-            this.lblRestaurantName = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReviews)).BeginInit();
@@ -71,6 +74,9 @@
             // 
             this.panel3.AutoScroll = true;
             this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.btnMenu);
+            this.panel3.Controls.Add(this.btnDaysOff);
+            this.panel3.Controls.Add(this.btnDays);
             this.panel3.Controls.Add(this.lblRestaurantName);
             this.panel3.Controls.Add(this.dgvReviews);
             this.panel3.Controls.Add(this.lblGrade);
@@ -86,6 +92,43 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(856, 471);
             this.panel3.TabIndex = 1;
+            // 
+            // btnMenu
+            // 
+            this.btnMenu.Location = new System.Drawing.Point(65, 283);
+            this.btnMenu.Name = "btnMenu";
+            this.btnMenu.Size = new System.Drawing.Size(76, 24);
+            this.btnMenu.TabIndex = 16;
+            this.btnMenu.Text = "메뉴추가";
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
+            // 
+            // btnDaysOff
+            // 
+            this.btnDaysOff.Location = new System.Drawing.Point(65, 255);
+            this.btnDaysOff.Name = "btnDaysOff";
+            this.btnDaysOff.Size = new System.Drawing.Size(76, 24);
+            this.btnDaysOff.TabIndex = 15;
+            this.btnDaysOff.Text = "휴무추가";
+            this.btnDaysOff.Click += new System.EventHandler(this.btnDaysOff_Click);
+            // 
+            // btnDays
+            // 
+            this.btnDays.Location = new System.Drawing.Point(65, 228);
+            this.btnDays.Name = "btnDays";
+            this.btnDays.Size = new System.Drawing.Size(76, 24);
+            this.btnDays.TabIndex = 14;
+            this.btnDays.Text = "영업일추가";
+            this.btnDays.Click += new System.EventHandler(this.btnHours_Click);
+            // 
+            // lblRestaurantName
+            // 
+            this.lblRestaurantName.Font = new System.Drawing.Font("Malgun Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRestaurantName.Location = new System.Drawing.Point(259, 169);
+            this.lblRestaurantName.Name = "lblRestaurantName";
+            this.lblRestaurantName.Size = new System.Drawing.Size(283, 57);
+            this.lblRestaurantName.TabIndex = 13;
+            this.lblRestaurantName.Text = "상호명";
+            this.lblRestaurantName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dgvReviews
             // 
@@ -207,10 +250,10 @@
             // 
             this.txbMenus.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txbMenus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbMenus.Location = new System.Drawing.Point(147, 283);
+            this.txbMenus.Location = new System.Drawing.Point(145, 283);
             this.txbMenus.Multiline = true;
             this.txbMenus.Name = "txbMenus";
-            this.txbMenus.Size = new System.Drawing.Size(245, 35);
+            this.txbMenus.Size = new System.Drawing.Size(187, 87);
             this.txbMenus.TabIndex = 6;
             this.txbMenus.Text = "메뉴넣을곳";
             // 
@@ -226,7 +269,7 @@
             // 
             // lblHours
             // 
-            this.lblHours.Location = new System.Drawing.Point(147, 234);
+            this.lblHours.Location = new System.Drawing.Point(147, 231);
             this.lblHours.Name = "lblHours";
             this.lblHours.Size = new System.Drawing.Size(116, 18);
             this.lblHours.TabIndex = 4;
@@ -252,16 +295,6 @@
             // bdsReview
             // 
             this.bdsReview.DataSource = typeof(ThirdProject.Data.Review);
-            // 
-            // lblRestaurantName
-            // 
-            this.lblRestaurantName.Font = new System.Drawing.Font("Malgun Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRestaurantName.Location = new System.Drawing.Point(259, 169);
-            this.lblRestaurantName.Name = "lblRestaurantName";
-            this.lblRestaurantName.Size = new System.Drawing.Size(283, 57);
-            this.lblRestaurantName.TabIndex = 13;
-            this.lblRestaurantName.Text = "상호명";
-            this.lblRestaurantName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Review
             // 
@@ -305,5 +338,8 @@
         private System.Windows.Forms.DataGridView dgvReviews;
         private DevExpress.XtraEditors.SimpleButton btnReview;
         private System.Windows.Forms.Label lblRestaurantName;
+        private DevExpress.XtraEditors.SimpleButton btnMenu;
+        private DevExpress.XtraEditors.SimpleButton btnDaysOff;
+        private DevExpress.XtraEditors.SimpleButton btnDays;
     }
 }

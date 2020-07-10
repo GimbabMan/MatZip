@@ -1,32 +1,42 @@
-﻿using DevExpress.XtraEditors.Filtering;
+﻿using DevExpress.CodeParser;
+using DevExpress.Diagram.Core.Shapes;
+using DevExpress.XtraEditors.Filtering;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
+using ThirdProject.Form;
 using ThirdProject.Properties;
 
 namespace ThirdProject
 {
-    public partial class Review : RootForm, IInputReviewToReview
+    public partial class Review : RootForm, IInputReviewToReview, IInputMenuToReview, IInputHoursToReview, IInputDaysOffToReview
     {
-        private Member LoggedInMember { get; set; }
+        private Data.Member LoggedInMember { get; set; }
         private Restaurant SelectedRestaurant { get; set; }
 
         private string Comment { get; set; }
         private string FilePath { get; set; }
+        private string MenuName { get; set; }
+        private double Price { get; set; }
         private int Grade { get; set; }
         private int RowCount { get; set; }
+        private string StartTime { get; set; }
+        private string FinishTime { get; set; }
+        private bool[] DaysOff { get; set; } 
+       
         
         private Review()
         {
             InitializeComponent();
         }
 
-        public Review(Member loggedInMember, Restaurant selectedRestaurant) : this()
+        public Review(Data.Member loggedInMember, Restaurant selectedRestaurant) : this()
         {
             LoggedInMember = loggedInMember;
             SelectedRestaurant = selectedRestaurant;
@@ -129,7 +139,7 @@ namespace ThirdProject
             foreach (Data.Review review in selectedRetarantReviews)
             {
                 // 멤버 Id
-                Member reviewedMember = DataRepository.Member.GetOneMember(review.MemberId);
+                Data.Member reviewedMember = DataRepository.Member.GetOneMember(review.MemberId);
                 string memberId = reviewedMember.Id;
 
                 // 평가 점수
@@ -163,6 +173,52 @@ namespace ThirdProject
             dgvReviews.Columns[1].Width = 20;
             dgvReviews.Columns[2].Width = 200;
             dgvReviews.Columns[3].Width = 200;
+
+
+            var seletedMenus = DataRepository.Menu.Get(SelectedRestaurant.RestaurantId).ToList();
+
+            txbMenus.Text = "";
+            //메뉴불러오기
+            if(seletedMenus.Count > 0)
+            {
+                foreach(Data.Menu menu in seletedMenus)
+                {
+                    txbMenus.Text += menu.Name + ' ' +  menu.Price + "\r\n";
+                }
+            }
+
+            //시작 시간, 마감 시간 불러오기
+            if(string.IsNullOrEmpty(SelectedRestaurant.StartTime) || string.IsNullOrEmpty(SelectedRestaurant.FinishTime))
+            {
+                lblHours.Text = "업무 시간 등록하지 않음";
+            } else
+            {
+                lblHours.Text = $"{SelectedRestaurant.StartTime} ~ {SelectedRestaurant.FinishTime}";
+            }
+
+            //휴무일 불러오기
+
+            var informations = DataRepository.Information.Get(SelectedRestaurant.RestaurantId);
+            List<Code> codes = new List<Code>();
+            foreach (Information information in informations)
+            {
+                if (information.CodeId >= 10 && information.CodeId <= 16)
+                    codes.Add(DataRepository.Code.Get(information.CodeId));
+            }
+
+            if (codes.Count > 0)
+            {
+
+                txbDays.Text = "휴무일 : ";
+                foreach (Code code in codes)
+                {
+                    txbDays.Text += $"{code.Text} ";
+                }
+            }
+            else
+            {
+                txbDays.Text = "휴무일 등록하지 않음";
+            }
 
         }
 
@@ -218,9 +274,26 @@ namespace ThirdProject
             Grade = grade;
         }
 
+        public void SetMenuPrice(string menuName, double price)
+        {
+            MenuName = menuName;
+            Price = price;
+        }
+
+        public void SetDaysOff(bool[] daysOff)
+        {
+            DaysOff = daysOff;
+        }
+
+        public void SetHours(string startTime, string finishTime)
+        {
+            StartTime = startTime;
+            FinishTime = finishTime;
+        }
+
         private void btnReview_Click(object sender, EventArgs e)
         {
-            InputReview inputReview = new InputReview(this, LoggedInMember);
+            inputReview inputReview = new inputReview(this, LoggedInMember);
             inputReview.ShowDialog();
 
             if (string.IsNullOrEmpty(Comment))
@@ -279,27 +352,94 @@ namespace ThirdProject
             DataRepository.Review.Insert(insertReview);
         }
 
-        
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            InputMenu inputMenu = new InputMenu(this);
+            inputMenu.ShowDialog();
+
+            if (MenuName == null)
+                return;
+
+            Data.Menu insertMenu = new Data.Menu();
+            insertMenu.RestaurantId = SelectedRestaurant.RestaurantId;
+            insertMenu.Name = MenuName;
+            insertMenu.Price = (decimal)Price;
+            DataRepository.Menu.Insert(insertMenu);
+
+            MenuName = null;
+
+            // 메뉴 최신화
+            var seletedMenus = DataRepository.Menu.Get(SelectedRestaurant.RestaurantId).ToList();
+            txbMenus.Text = "";
+            //메뉴 불러오기
+            if (seletedMenus.Count > 0)
+            {
+                foreach (Data.Menu menu in seletedMenus)
+                {
+                    txbMenus.Text += menu.Name + ' ' + menu.Price + "\r\n";
+                }
+            }
+
+        }
+
+        private void btnHours_Click(object sender, EventArgs e)
+        {
+            InputHours inputHours = new InputHours(this as IInputHoursToReview);
+            inputHours.ShowDialog();
+
+            if (StartTime == null || FinishTime == null)
+                return;
+
+            SelectedRestaurant.StartTime = StartTime;
+            SelectedRestaurant.FinishTime = FinishTime;
+            DataRepository.Restaurant.Update(SelectedRestaurant);
+
+            lblHours.Text = $"{StartTime} ~ {FinishTime}";
+
+            StartTime = null;
+            FinishTime = null;
+
+        }
+
+        private void btnDaysOff_Click(object sender, EventArgs e)
+        {
+            InPutDaysOff inPutDaysOff = new InPutDaysOff(this);
+            inPutDaysOff.ShowDialog();
+
+            Dictionary<int, int> insertDays = new Dictionary<int, int>();
+            for(int i = 0; i < DaysOff.Length; i++)
+            {
+                insertDays[i] = i + 10;
+            }
+            
+            for(int i = 0; i < DaysOff.Length; i++)
+            {
+                if(DaysOff[i] ==  true)
+                {
+                    Information information = new Information();
+                    information.RestaurantId = SelectedRestaurant.RestaurantId;
+                    information.CodeId = insertDays[i];
+                    DataRepository.Information.Insert(information);
+                }
+            }
+
+           
+            var informations = DataRepository.Information.Get(SelectedRestaurant.RestaurantId);
+            List<Code> codes = new List<Code>();
+            foreach(Information information in informations)
+            {
+                if(information.CodeId >= 10 && information.CodeId <= 16)
+                    codes.Add(DataRepository.Code.Get(information.CodeId));
+            }
+
+            txbDays.Text = "휴무일 : ";
+            foreach (Code code in codes)
+            {
+                txbDays.Text += $"{code.Text} ";
+            }
+
+        }
     }
 }
 
-
-/*
-               * 
-               //DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
-              //imageColumn.Name = "ImageColumn";
-
-              string filePath = null;
-              if (review.ImageLocation == null)
-                  filePath = System.Reflection.Assembly.GetExecutingAssembly()
-                 .Location + @"\..\..\Resources\defaultImage.PNG";
-              else
-                  filePath = review.ImageLocation;
-
-              Image image = Image.FromFile(filePath);
-
-              imageColumn.Image = image;
-              imageColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
-              dgvReviews.Columns.Add(imageColumn);
-
-               */
+             

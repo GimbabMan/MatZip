@@ -4,17 +4,18 @@ using ThirdProject.Data;
 
 namespace ThirdProject
 {
-    public partial class InputReview : RootForm
+    public partial class inputReview : RootForm
     {
         private IInputReviewToReview Review { get; set; }
+  
         private Member LoggedInMember { get; set; }
         private string FilePath { get; set; }
-        public InputReview()
+        public inputReview()
         {
             InitializeComponent();
         }
 
-        public InputReview(IInputReviewToReview review, Member loggedInMember) : this()
+        public inputReview(IInputReviewToReview review, Member loggedInMember) : this()
         {
             Review = review;
             LoggedInMember = loggedInMember;
