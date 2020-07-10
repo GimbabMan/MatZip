@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.txbGrade = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnComplete = new DevExpress.XtraEditors.SimpleButton();
             this.txbComment = new System.Windows.Forms.TextBox();
             this.lblUserId = new System.Windows.Forms.Label();
             this.pcbReviewPicture = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbReviewPicture)).BeginInit();
             this.SuspendLayout();
@@ -54,6 +54,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(500, 516);
             this.panel1.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(280, 363);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(204, 24);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "(1점~5점 입력해주세요)";
             // 
             // txbGrade
             // 
@@ -127,16 +137,6 @@
             this.pcbReviewPicture.TabStop = false;
             this.pcbReviewPicture.Click += new System.EventHandler(this.pcbReviewPicture_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(280, 363);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(204, 24);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "(1점~5점 입력해주세요)";
-            // 
             // InputReview
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -147,7 +147,7 @@
             this.ClientSize = new System.Drawing.Size(500, 516);
             this.Controls.Add(this.panel1);
             this.Name = "InputReview";
-            this.Text = "Thumbnail";
+            this.Text = "inputReview";
             this.Load += new System.EventHandler(this.InputReview_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
