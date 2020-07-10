@@ -52,7 +52,7 @@
 "삭제하시겠습니까?"라는 MessagaBox가 뜨고 삭제하려면 'Yes' or 'No'중에서 Yes를 누릅니다.
 
 ##### 맛집 정보 간략히 보기
-![썸네일](Documents/썸네일.png)
+![Thumnail](Documents/thumnail.png)
 
 마우스 휠을 이용하여 적절히 ZoomIn, ZoomOut을 한 다음 맛집으로 등록된 지점에 마우스를 올려두면
 맛집의 정보를 간략화(썸네일 형식)하여 보여줍니다. 
