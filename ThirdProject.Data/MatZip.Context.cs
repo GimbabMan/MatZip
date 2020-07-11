@@ -28,10 +28,10 @@ namespace ThirdProject.Data
         public virtual DbSet<Code> Codes { get; set; }
         public virtual DbSet<CodeCategory> CodeCategories { get; set; }
         public virtual DbSet<Information> Information { get; set; }
-        public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Restaurant> Restaurants { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
     }
 }

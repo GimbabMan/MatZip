@@ -69,10 +69,17 @@ namespace ThirdProject
 
             if (loggedInMember != null)
             {
+                if(loggedInMember.IsLogIn == true)
+                {
+                    MessageBox.Show("이미 로그인 상태입니다.");
+                    return;
+                }
+                loggedInMember.IsLogIn = true;
+                DataRepository.Member.Update(loggedInMember);
                 MessageBox.Show("로그인에 성공했습니다.");
                 Map map = new Map(loggedInMember);
                 map.ShowDialog();
-                Close();
+                
             }
             else
             {
@@ -83,7 +90,7 @@ namespace ThirdProject
         private void lblSignUp_Click(object sender, EventArgs e)
         {
             SignUp signUp = new SignUp();
-            signUp.Show();
+            signUp.ShowDialog();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

@@ -371,7 +371,13 @@ namespace ThirdProject
             thumbnail.ShowDialog();
 
         }
-       
+
+        private void Map_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LoggedInMember.IsLogIn = false;
+            DataRepository.Member.Update(LoggedInMember);
+            MessageBox.Show("로그아웃 되셨습니다.");
+        }
     }
 }
 
