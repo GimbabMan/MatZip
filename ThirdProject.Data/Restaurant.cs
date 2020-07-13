@@ -29,7 +29,7 @@ namespace ThirdProject.Data
         public decimal Longitude { get; set; }
         public string StartTime { get; set; }
         public string FinishTime { get; set; }
-        public string ImageLocation { get; set; }
+        public byte[] Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Information> Information { get; set; }

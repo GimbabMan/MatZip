@@ -1,27 +1,24 @@
 ﻿using DevExpress.Map;
 using DevExpress.XtraMap;
-using DevExpress.XtraMap.Native;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
-using ThirdProject.Properties;
 
 namespace ThirdProject
 {
-    public partial class Map : RootForm, IInputRestaurantInformationToMap
+    public partial class Map : RootForm
     {
         private VectorItemsLayer vectorItemLayer = new VectorItemsLayer();
         private MapItemStorage storage = new MapItemStorage();
         private MapPushpin mapPushpin = null;
         private Member LoggedInMember { get; set; }
         public Color Red { get; private set; }
-
-        private string restaurantName = null;
-        private string restaurantFoodType = null;
-        private string restaurantFilePath = null;
+        private string RestaurantName { get; set; } 
+        private string RestaurantFoodType { get; set; }
+        private byte[] RestaurantImage { get; set; }
 
         public Map()
         {
@@ -115,11 +112,11 @@ namespace ThirdProject
                 InsertMapPushPin(sender, e);
         }
 
-        void IInputRestaurantInformationToMap.SetName(string name, string foodType, string filePath)
+        public void GetRestaurantInformation(string name, string foodType, byte[] image)
         {
-            restaurantFilePath = filePath;
-            restaurantName = name;
-            restaurantFoodType = foodType;
+            RestaurantImage = image;
+            RestaurantName = name;
+            RestaurantFoodType = foodType;
         }
 
         private void InsertMapPushPin(object sender, MouseEventArgs e)
@@ -131,17 +128,17 @@ namespace ThirdProject
             inputRestaurantInformation.ShowDialog();
 
           
-            if (string.IsNullOrEmpty(restaurantName))
+            if (string.IsNullOrEmpty(RestaurantName))
             {
                 //MessageBox.Show("가게명을 입력받지 못했습니다.");
                 return;
             }
 
             Restaurant restaurant = new Restaurant();
-            restaurant.Name = restaurantName;
+            restaurant.Name = RestaurantName;
             restaurant.Latitude = (decimal)p.GetY();
             restaurant.Longitude = (decimal)p.GetX();
-            restaurant.ImageLocation = restaurantFilePath;
+            restaurant.Image = RestaurantImage;
             DataRepository.Restaurant.Insert(restaurant);
 
             Registration registration = new Registration();
@@ -151,13 +148,13 @@ namespace ThirdProject
 
             Information information = new Data.Information();
             information.RestaurantId = restaurant.RestaurantId;
-            if (restaurantFoodType == "한식")
+            if (RestaurantFoodType == "한식")
                 information.CodeId = 1;
-            else if (restaurantFoodType == "중식")
+            else if (RestaurantFoodType == "중식")
                 information.CodeId = 2;
-            else if (restaurantFoodType == "일식")
+            else if (RestaurantFoodType == "일식")
                 information.CodeId = 3;
-            else if (restaurantFoodType == "양식")
+            else if (RestaurantFoodType == "양식")
                 information.CodeId = 4;
 
             DataRepository.Information.Insert(information);

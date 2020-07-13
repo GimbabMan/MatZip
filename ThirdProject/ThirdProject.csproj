@@ -89,103 +89,103 @@
     <Compile Include="BaseForm\RootForm.Designer.cs">
       <DependentUpon>RootForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\InputHours.cs">
+    <Compile Include="Forms\InputHours.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\InputHours.Designer.cs">
+    <Compile Include="Forms\InputHours.Designer.cs">
       <DependentUpon>InputHours.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\InputMenu.cs">
+    <Compile Include="Forms\InputMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\InputMenu.Designer.cs">
+    <Compile Include="Forms\InputMenu.Designer.cs">
       <DependentUpon>InputMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\LogIn.cs">
+    <Compile Include="Forms\LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\LogIn.Designer.cs">
+    <Compile Include="Forms\LogIn.Designer.cs">
       <DependentUpon>LogIn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Map.cs">
+    <Compile Include="Forms\Map.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Map.Designer.cs">
+    <Compile Include="Forms\Map.Designer.cs">
       <DependentUpon>Map.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Review.cs">
+    <Compile Include="Forms\Review.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Review.Designer.cs">
+    <Compile Include="Forms\Review.Designer.cs">
       <DependentUpon>Review.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\TestForm.cs">
+    <Compile Include="Forms\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\TestForm.Designer.cs">
+    <Compile Include="Forms\TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\InputReview.cs">
+    <Compile Include="Forms\InputReview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\InputReview.Designer.cs">
+    <Compile Include="Forms\InputReview.Designer.cs">
       <DependentUpon>InputReview.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\InputDaysOff.cs">
+    <Compile Include="Forms\InputDaysOff.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\InputDaysOff.Designer.cs">
+    <Compile Include="Forms\InputDaysOff.Designer.cs">
       <DependentUpon>InputDaysOff.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Form\SignUp.cs">
+    <Compile Include="Forms\SignUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\SignUp.Designer.cs">
+    <Compile Include="Forms\SignUp.Designer.cs">
       <DependentUpon>SignUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Thumbnail.cs">
+    <Compile Include="Forms\Thumbnail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Thumbnail.Designer.cs">
+    <Compile Include="Forms\Thumbnail.Designer.cs">
       <DependentUpon>Thumbnail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\InputRestaurantInformation.cs">
+    <Compile Include="Forms\InputRestaurantInformation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\InputRestaurantInformation.Designer.cs">
+    <Compile Include="Forms\InputRestaurantInformation.Designer.cs">
       <DependentUpon>InputRestaurantInformation.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="BaseForm\RootForm.resx">
       <DependentUpon>RootForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\InputDaysOff.resx">
+    <EmbeddedResource Include="Forms\InputDaysOff.resx">
       <DependentUpon>InputDaysOff.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\InputHours.resx">
+    <EmbeddedResource Include="Forms\InputHours.resx">
       <DependentUpon>InputHours.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\InputMenu.resx">
+    <EmbeddedResource Include="Forms\InputMenu.resx">
       <DependentUpon>InputMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\LogIn.resx">
+    <EmbeddedResource Include="Forms\LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Map.resx">
+    <EmbeddedResource Include="Forms\Map.resx">
       <DependentUpon>Map.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\InputRestaurantInformation.resx">
+    <EmbeddedResource Include="Forms\InputRestaurantInformation.resx">
       <DependentUpon>InputRestaurantInformation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Review.resx">
+    <EmbeddedResource Include="Forms\Review.resx">
       <DependentUpon>Review.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\TestForm.resx">
+    <EmbeddedResource Include="Forms\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\InputReview.resx">
+    <EmbeddedResource Include="Forms\InputReview.resx">
       <DependentUpon>InputReview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -199,10 +199,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Form\SignUp.resx">
+    <EmbeddedResource Include="Forms\SignUp.resx">
       <DependentUpon>SignUp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Thumbnail.resx">
+    <EmbeddedResource Include="Forms\Thumbnail.resx">
       <DependentUpon>Thumbnail.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.Config" />
@@ -256,9 +256,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\chobab.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\defaultImage.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\black.PNG" />

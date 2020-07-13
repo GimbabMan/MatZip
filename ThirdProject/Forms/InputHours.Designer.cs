@@ -127,9 +127,9 @@
             "22:00",
             "23:00",
             "24:00"});
-            this.cbbStartTime.Location = new System.Drawing.Point(117, 92);
+            this.cbbStartTime.Location = new System.Drawing.Point(118, 92);
             this.cbbStartTime.Name = "cbbStartTime";
-            this.cbbStartTime.Size = new System.Drawing.Size(149, 26);
+            this.cbbStartTime.Size = new System.Drawing.Size(148, 26);
             this.cbbStartTime.TabIndex = 5;
             // 
             // btnComplete

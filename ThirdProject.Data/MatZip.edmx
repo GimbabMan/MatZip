@@ -68,7 +68,7 @@
           <Property Name="Longitude" Type="decimal" Precision="18" Scale="15" Nullable="false" />
           <Property Name="StartTime" Type="nvarchar" MaxLength="50" />
           <Property Name="FinishTime" Type="nvarchar" MaxLength="50" />
-          <Property Name="ImageLocation" Type="nchar" MaxLength="100" />
+          <Property Name="Image" Type="image" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -79,7 +79,7 @@
           <Property Name="RestaurantId" Type="int" Nullable="false" />
           <Property Name="Grade" Type="int" Nullable="false" />
           <Property Name="Comment" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="ImageLocation" Type="nchar" MaxLength="100" />
+          <Property Name="Image" Type="image" />
         </EntityType>
         <Association Name="FK_Code_CodeCategory">
           <End Role="CodeCategory" Type="Self.CodeCategory" Multiplicity="1" />
@@ -250,7 +250,7 @@
           <Property Name="RestaurantId" Type="Int32" Nullable="false" />
           <Property Name="dummy" Type="Boolean" />
           <NavigationProperty Name="Code" Relationship="Self.FK_Information_Code" FromRole="Information" ToRole="Code" />
-          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Information_Restaurant" FromRole="Information" ToRole="Restaurant" />
+          <NavigationProperty Name="Restaurant" Relationship="MatZipModel.FK_Information_Restaurant" FromRole="Information" ToRole="Restaurant" />
         </EntityType>
         <EntityType Name="Menu">
           <Key>
@@ -260,7 +260,7 @@
           <Property Name="RestaurantId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Menu_Restaurant" FromRole="Menu" ToRole="Restaurant" />
+          <NavigationProperty Name="Restaurant" Relationship="MatZipModel.FK_Menu_Restaurant" FromRole="Menu" ToRole="Restaurant" />
         </EntityType>
         <EntityType Name="Registration">
           <Key>
@@ -270,37 +270,8 @@
           <Property Name="RestaurantId" Type="Int32" Nullable="false" />
           <Property Name="MemberId" Type="Int32" Nullable="false" />
           <Property Name="dummy" Type="Boolean" />
-          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Registeration_Restaurant" FromRole="Registration" ToRole="Restaurant" />
           <NavigationProperty Name="Member" Relationship="MatZipModel.FK_RegisteredRestaurantList_Member" FromRole="Registration" ToRole="Member" />
-        </EntityType>
-        <EntityType Name="Restaurant">
-          <Key>
-            <PropertyRef Name="RestaurantId" />
-          </Key>
-          <Property Name="RestaurantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Latitude" Type="Decimal" Precision="18" Scale="15" Nullable="false" />
-          <Property Name="Longitude" Type="Decimal" Precision="18" Scale="15" Nullable="false" />
-          <Property Name="StartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FinishTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ImageLocation" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Information" Relationship="Self.FK_Information_Restaurant" FromRole="Restaurant" ToRole="Information" />
-          <NavigationProperty Name="Menus" Relationship="Self.FK_Menu_Restaurant" FromRole="Restaurant" ToRole="Menu" />
-          <NavigationProperty Name="Registrations" Relationship="Self.FK_Registeration_Restaurant" FromRole="Restaurant" ToRole="Registration" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Restaurant" FromRole="Restaurant" ToRole="Review" />
-        </EntityType>
-        <EntityType Name="Review">
-          <Key>
-            <PropertyRef Name="ReviewId" />
-          </Key>
-          <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberId" Type="Int32" Nullable="false" />
-          <Property Name="RestaurantId" Type="Int32" Nullable="false" />
-          <Property Name="Grade" Type="Int32" Nullable="false" />
-          <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ImageLocation" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Review_Restaurant" FromRole="Review" ToRole="Restaurant" />
-          <NavigationProperty Name="Member" Relationship="MatZipModel.FK_Evaluation_Member" FromRole="Review" ToRole="Member" />
+          <NavigationProperty Name="Restaurant" Relationship="MatZipModel.FK_Registeration_Restaurant" FromRole="Registration" ToRole="Restaurant" />
         </EntityType>
         <Association Name="FK_Code_CodeCategory">
           <End Role="CodeCategory" Type="Self.CodeCategory" Multiplicity="1" />
@@ -326,62 +297,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Information_Restaurant">
-          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
-          <End Role="Information" Type="Self.Information" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Restaurant">
-              <PropertyRef Name="RestaurantId" />
-            </Principal>
-            <Dependent Role="Information">
-              <PropertyRef Name="RestaurantId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Menu_Restaurant">
-          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
-          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Restaurant">
-              <PropertyRef Name="RestaurantId" />
-            </Principal>
-            <Dependent Role="Menu">
-              <PropertyRef Name="RestaurantId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Registeration_Restaurant">
-          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
-          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Restaurant">
-              <PropertyRef Name="RestaurantId" />
-            </Principal>
-            <Dependent Role="Registration">
-              <PropertyRef Name="RestaurantId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Review_Restaurant">
-          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Restaurant">
-              <PropertyRef Name="RestaurantId" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="RestaurantId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="MatZipEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Codes" EntityType="Self.Code" />
           <EntitySet Name="CodeCategories" EntityType="Self.CodeCategory" />
           <EntitySet Name="Information" EntityType="Self.Information" />
           <EntitySet Name="Menus" EntityType="Self.Menu" />
           <EntitySet Name="Registrations" EntityType="Self.Registration" />
-          <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
-          <EntitySet Name="Reviews" EntityType="Self.Review" />
           <AssociationSet Name="FK_Code_CodeCategory" Association="Self.FK_Code_CodeCategory">
             <End Role="CodeCategory" EntitySet="CodeCategories" />
             <End Role="Code" EntitySet="Codes" />
@@ -390,32 +311,34 @@
             <End Role="Code" EntitySet="Codes" />
             <End Role="Information" EntitySet="Information" />
           </AssociationSet>
-          <AssociationSet Name="FK_Information_Restaurant" Association="Self.FK_Information_Restaurant">
-            <End Role="Restaurant" EntitySet="Restaurants" />
-            <End Role="Information" EntitySet="Information" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Menu_Restaurant" Association="Self.FK_Menu_Restaurant">
-            <End Role="Restaurant" EntitySet="Restaurants" />
-            <End Role="Menu" EntitySet="Menus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Registeration_Restaurant" Association="Self.FK_Registeration_Restaurant">
-            <End Role="Restaurant" EntitySet="Restaurants" />
-            <End Role="Registration" EntitySet="Registrations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_Restaurant" Association="Self.FK_Review_Restaurant">
-            <End Role="Restaurant" EntitySet="Restaurants" />
-            <End Role="Review" EntitySet="Reviews" />
-          </AssociationSet>
           <EntitySet Name="Members" EntityType="MatZipModel.Member" />
-          <AssociationSet Name="FK_Evaluation_Member" Association="MatZipModel.FK_Evaluation_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="Review" EntitySet="Reviews" />
-          </AssociationSet>
           <AssociationSet Name="FK_RegisteredRestaurantList_Member" Association="MatZipModel.FK_RegisteredRestaurantList_Member">
             <End Role="Member" EntitySet="Members" />
             <End Role="Registration" EntitySet="Registrations" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Restaurants" EntityType="MatZipModel.Restaurant" />
+          <EntitySet Name="Reviews" EntityType="MatZipModel.Review" />
+          <AssociationSet Name="FK_Information_Restaurant" Association="MatZipModel.FK_Information_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurants" />
+            <End Role="Information" EntitySet="Information" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluation_Member" Association="MatZipModel.FK_Evaluation_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Restaurant" Association="MatZipModel.FK_Menu_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurants" />
+            <End Role="Menu" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registeration_Restaurant" Association="MatZipModel.FK_Registeration_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurants" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Restaurant" Association="MatZipModel.FK_Review_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurants" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Member">
           <Key>
             <PropertyRef Name="MemberId" />
@@ -426,21 +349,9 @@
           <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsLogIn" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Reviews" Relationship="MatZipModel.FK_Evaluation_Member" FromRole="Member" ToRole="Review" />
           <NavigationProperty Name="Registrations" Relationship="MatZipModel.FK_RegisteredRestaurantList_Member" FromRole="Member" ToRole="Registration" />
+          <NavigationProperty Name="Reviews" Relationship="MatZipModel.FK_Evaluation_Member" FromRole="Member" ToRole="Review" />
         </EntityType>
-        <Association Name="FK_Evaluation_Member">
-          <End Type="MatZipModel.Member" Role="Member" Multiplicity="1" />
-          <End Type="MatZipModel.Review" Role="Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Member">
-              <PropertyRef Name="MemberId" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="MemberId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RegisteredRestaurantList_Member">
           <End Type="MatZipModel.Member" Role="Member" Multiplicity="1" />
           <End Type="MatZipModel.Registration" Role="Registration" Multiplicity="*" />
@@ -453,7 +364,96 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="RestaurantId" />
+          </Key>
+          <Property Name="RestaurantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="Decimal" Nullable="false" Precision="18" Scale="15" />
+          <Property Name="Longitude" Type="Decimal" Nullable="false" Precision="18" Scale="15" />
+          <Property Name="StartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FinishTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Information" Relationship="MatZipModel.FK_Information_Restaurant" FromRole="Restaurant" ToRole="Information" />
+          <NavigationProperty Name="Menus" Relationship="MatZipModel.FK_Menu_Restaurant" FromRole="Restaurant" ToRole="Menu" />
+          <NavigationProperty Name="Registrations" Relationship="MatZipModel.FK_Registeration_Restaurant" FromRole="Restaurant" ToRole="Registration" />
+          <NavigationProperty Name="Reviews" Relationship="MatZipModel.FK_Review_Restaurant" FromRole="Restaurant" ToRole="Review" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="RestaurantId" Type="Int32" Nullable="false" />
+          <Property Name="Grade" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Member" Relationship="MatZipModel.FK_Evaluation_Member" FromRole="Review" ToRole="Member" />
+          <NavigationProperty Name="Restaurant" Relationship="MatZipModel.FK_Review_Restaurant" FromRole="Review" ToRole="Restaurant" />
+        </EntityType>
+        <Association Name="FK_Information_Restaurant">
+          <End Type="MatZipModel.Restaurant" Role="Restaurant" Multiplicity="1" />
+          <End Type="MatZipModel.Information" Role="Information" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="RestaurantId" />
+            </Principal>
+            <Dependent Role="Information">
+              <PropertyRef Name="RestaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluation_Member">
+          <End Type="MatZipModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="MatZipModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Restaurant">
+          <End Type="MatZipModel.Restaurant" Role="Restaurant" Multiplicity="1" />
+          <End Type="MatZipModel.Menu" Role="Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="RestaurantId" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="RestaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registeration_Restaurant">
+          <End Type="MatZipModel.Restaurant" Role="Restaurant" Multiplicity="1" />
+          <End Type="MatZipModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="RestaurantId" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="RestaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Restaurant">
+          <End Type="MatZipModel.Restaurant" Role="Restaurant" Multiplicity="1" />
+          <End Type="MatZipModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="RestaurantId" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="RestaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -504,31 +504,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Restaurants">
-            <EntityTypeMapping TypeName="MatZipModel.Restaurant">
-              <MappingFragment StoreEntitySet="Restaurant">
-                <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
-                <ScalarProperty Name="ImageLocation" ColumnName="ImageLocation" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reviews">
-            <EntityTypeMapping TypeName="MatZipModel.Review">
-              <MappingFragment StoreEntitySet="Review">
-                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-                <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
-                <ScalarProperty Name="Grade" ColumnName="Grade" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="ImageLocation" ColumnName="ImageLocation" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="MatZipModel.Member">
               <MappingFragment StoreEntitySet="Member">
@@ -538,6 +513,31 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurants">
+            <EntityTypeMapping TypeName="MatZipModel.Restaurant">
+              <MappingFragment StoreEntitySet="Restaurant">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="MatZipModel.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

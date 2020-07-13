@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
@@ -14,15 +7,15 @@ namespace ThirdProject
 {
     public partial class InPutDaysOff : RootForm
     {
-        IInputDaysOffToReview DaysOff { get; set; }
+        Review review;
         public InPutDaysOff()
         {
             InitializeComponent();
         }
 
-        public InPutDaysOff(IInputDaysOffToReview daysOff): this()
+        public InPutDaysOff(Review _review): this()
         {
-            DaysOff = daysOff;
+            review = _review;
         }
 
         private void btnComplete_Click(object sender, EventArgs e)
@@ -46,7 +39,7 @@ namespace ThirdProject
 
             if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                DaysOff.SetDaysOff(listDaysOff);
+                review.GetDaysOffInformation(listDaysOff);
                 Close();
             }
         }

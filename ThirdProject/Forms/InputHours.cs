@@ -1,38 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
 
 namespace ThirdProject
 {
-    public partial class InputMenu : RootForm
+    public partial class InputHours : RootForm
     {
-        private IInputMenuToReview InsertMenu { get; set; }
-       
-        public InputMenu()
+        Review review;
+        private InputHours()
         {
             InitializeComponent();
         }
 
-        public InputMenu(IInputMenuToReview menu):this()
+        public InputHours(Review _review) : this()
         {
-            InsertMenu = menu;
+            review = _review;
         }
 
 
-        private void btnAdd_Click(object sender, System.EventArgs e)
+        private void btnComplete_Click(object sender, EventArgs e)
         {
-            string name = txbMenu.Text;
-            double? price = double.Parse(txbPrice.Text);
+            string startTime = cbbStartTime.Text.ToString();
+            string finishTime = cbbFinishTime.Text.ToString();
 
-            if (string.IsNullOrEmpty(name) || price == null)
+            if (string.IsNullOrEmpty(startTime) || string.IsNullOrEmpty(finishTime))
             {
                 MessageBox.Show("메뉴, 가격 입력을 완료해주세요");
                 return;
@@ -40,10 +32,9 @@ namespace ThirdProject
 
             if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                InsertMenu.SetMenuPrice(name, (double)price);
+                review.GetHoursInformation(startTime, finishTime);
                 Close();
             }
-
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -55,7 +46,5 @@ namespace ThirdProject
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
-       
     }
 }

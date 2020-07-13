@@ -10,18 +10,18 @@
         <EntityTypeShape EntityType="MatZipModel.Information" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MatZipModel.Menu" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MatZipModel.Registration" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MatZipModel.Restaurant" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MatZipModel.Review" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="MatZipModel.FK_Code_CodeCategory" ManuallyRouted="false" />
         <AssociationConnector Association="MatZipModel.FK_Information_Code" ManuallyRouted="false" />
-        <AssociationConnector Association="MatZipModel.FK_Information_Restaurant" ManuallyRouted="false" />
-        <AssociationConnector Association="MatZipModel.FK_Menu_Restaurant" ManuallyRouted="false" />
-        <AssociationConnector Association="MatZipModel.FK_Registeration_Restaurant" ManuallyRouted="false" />
-        <AssociationConnector Association="MatZipModel.FK_Review_Restaurant" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MatZipModel.Member" Width="1.5" PointX="5.375" PointY="1" />
-        <AssociationConnector Association="MatZipModel.FK_Evaluation_Member" />
         <AssociationConnector Association="MatZipModel.FK_RegisteredRestaurantList_Member" />
-      </Diagram>
+        <EntityTypeShape EntityType="MatZipModel.Restaurant" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="MatZipModel.Review" Width="1.5" PointX="7.625" PointY="3.375" />
+        <AssociationConnector Association="MatZipModel.FK_Information_Restaurant" />
+        <AssociationConnector Association="MatZipModel.FK_Evaluation_Member" />
+        <AssociationConnector Association="MatZipModel.FK_Menu_Restaurant" />
+        <AssociationConnector Association="MatZipModel.FK_Registeration_Restaurant" />
+        <AssociationConnector Association="MatZipModel.FK_Review_Restaurant" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

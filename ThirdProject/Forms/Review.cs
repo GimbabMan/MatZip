@@ -1,27 +1,22 @@
-﻿using DevExpress.CodeParser;
-using DevExpress.Diagram.Core.Shapes;
-using DevExpress.XtraEditors.Filtering;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Printing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
-using ThirdProject.Form;
 using ThirdProject.Properties;
 
 namespace ThirdProject
 {
-    public partial class Review : RootForm, IInputReviewToReview, IInputMenuToReview, IInputHoursToReview, IInputDaysOffToReview
+    public partial class Review : RootForm
     {
         private Data.Member LoggedInMember { get; set; }
         private Restaurant SelectedRestaurant { get; set; }
-
         private string Comment { get; set; }
-        private string FilePath { get; set; }
+        private byte[] ReviewImage { get; set; }
         private string MenuName { get; set; }
         private double Price { get; set; }
         private int Grade { get; set; }
@@ -49,13 +44,13 @@ namespace ThirdProject
            
             // 선택된 가게의 메인 사진을 가져온다.
             // Restaurant-imageLocation
-            string imagePath = DataRepository.Restaurant.Get(SelectedRestaurant.RestaurantId).ImageLocation;
+            byte[] image = DataRepository.Restaurant.Get(SelectedRestaurant.RestaurantId).Image;
 
-            if (imagePath == null)
+            if (image == null)
                 pcbRestaurantImage.Image = Resources.black;
             else
             {
-                pcbRestaurantImage.ImageLocation = imagePath;
+                pcbRestaurantImage.Image = ConvertBinaryToImage(image);
                 pcbRestaurantImage.SizeMode = PictureBoxSizeMode.StretchImage;
             }
 
@@ -157,10 +152,10 @@ namespace ThirdProject
                 // 사진 추가
 
                 Bitmap bitmap = null;
-                if (review.ImageLocation == null)
+                if (review.Image == null)
                     bitmap = new Bitmap(Resources.black); 
                 else
-                    bitmap = new Bitmap(review.ImageLocation); 
+                    bitmap = new Bitmap(ConvertBinaryToImage(review.Image)); 
                 
                 ((DataGridViewImageCell)dgvReviews.Rows[RowCount].Cells[3]).Value = bitmap;
                 ((DataGridViewImageCell)dgvReviews.Rows[RowCount].Cells[3]).ImageLayout = DataGridViewImageCellLayout.Stretch;
@@ -172,7 +167,6 @@ namespace ThirdProject
             dgvReviews.Columns[1].Width = 20;
             dgvReviews.Columns[2].Width = 200;
             dgvReviews.Columns[3].Width = 200;
-
 
             var seletedMenus = DataRepository.Menu.Get(SelectedRestaurant.RestaurantId).ToList();
 
@@ -217,6 +211,15 @@ namespace ThirdProject
             else
             {
                 txbDays.Text = "휴무일 등록하지 않음";
+            }
+
+        }
+
+        private Image ConvertBinaryToImage(byte[] image)
+        {
+            using (MemoryStream memoryStream = new MemoryStream(image))
+            {
+                return Image.FromStream(memoryStream);
             }
 
         }
@@ -266,25 +269,25 @@ namespace ThirdProject
             Close();
         }
 
-        public void SetData(string comment, string filePath, int grade)
+        public void GetReviewInformation(string comment, byte[] image, int grade)
         {
             Comment = comment;
-            FilePath = filePath;
+            ReviewImage = image;
             Grade = grade;
         }
 
-        public void SetMenuPrice(string menuName, double price)
+        public void GetMenuInformation(string menuName, double price)
         {
             MenuName = menuName;
             Price = price;
         }
 
-        public void SetDaysOff(bool[] daysOff)
+        public void GetDaysOffInformation(bool[] daysOff)
         {
             DaysOff = daysOff;
         }
 
-        public void SetHours(string startTime, string finishTime)
+        public void GetHoursInformation(string startTime, string finishTime)
         {
             StartTime = startTime;
             FinishTime = finishTime;
@@ -320,10 +323,10 @@ namespace ThirdProject
             // 사진 추가
 
             Bitmap bitmap = null;
-            if (FilePath == null)
+            if (ReviewImage == null)
                 bitmap = new Bitmap(Resources.black);
             else
-                bitmap = new Bitmap(FilePath);
+                bitmap = new Bitmap(ConvertBinaryToImage(ReviewImage));
 
             ((DataGridViewImageCell)dgvReviews.Rows[RowCount].Cells[3]).Value = bitmap;
             ((DataGridViewImageCell)dgvReviews.Rows[RowCount].Cells[3]).ImageLayout = DataGridViewImageCellLayout.Stretch;
@@ -347,7 +350,7 @@ namespace ThirdProject
             insertReview.RestaurantId = SelectedRestaurant.RestaurantId;
             insertReview.Grade = Grade;
             insertReview.Comment = Comment;
-            insertReview.ImageLocation = !string.IsNullOrEmpty(FilePath) ? FilePath : null;
+            insertReview.Image = ReviewImage != null ? ReviewImage : ConvertImageToBinary(Resources.black);
             DataRepository.Review.Insert(insertReview);
         }
 
@@ -381,9 +384,28 @@ namespace ThirdProject
 
         }
 
+        private byte[] ConvertImageToBinary(Image image)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                if (ImageFormat.Jpeg.Equals(image.RawFormat))
+                {
+                    image.Save(memoryStream, ImageFormat.Jpeg);
+                }
+                else if (ImageFormat.Png.Equals(image.RawFormat))
+                {
+                    image.Save(memoryStream, ImageFormat.Png);
+                }
+                else if (ImageFormat.Gif.Equals(image.RawFormat))
+                {
+                    image.Save(memoryStream, ImageFormat.Gif);
+                }
+                return memoryStream.ToArray();
+            }
+        }
         private void btnHours_Click(object sender, EventArgs e)
         {
-            InputHours inputHours = new InputHours(this as IInputHoursToReview);
+            InputHours inputHours = new InputHours(this);
             inputHours.ShowDialog();
 
             if (StartTime == null || FinishTime == null)

@@ -18,7 +18,7 @@ namespace ThirdProject.Data
         public int MemberId { get; set; }
         public Nullable<bool> dummy { get; set; }
     
-        public virtual Restaurant Restaurant { get; set; }
         public virtual Member Member { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

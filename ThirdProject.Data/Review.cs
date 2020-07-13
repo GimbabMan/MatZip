@@ -19,9 +19,9 @@ namespace ThirdProject.Data
         public int RestaurantId { get; set; }
         public int Grade { get; set; }
         public string Comment { get; set; }
-        public string ImageLocation { get; set; }
+        public byte[] Image { get; set; }
     
-        public virtual Restaurant Restaurant { get; set; }
         public virtual Member Member { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

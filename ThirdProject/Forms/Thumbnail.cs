@@ -1,12 +1,12 @@
-﻿using DevExpress.XtraRichEdit.Internal.PrintLayout;
-using System;
+﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
 using ThirdProject.Data;
 using ThirdProject.Properties;
-
 
 namespace ThirdProject
 {
@@ -50,9 +50,8 @@ namespace ThirdProject
             lblUserId.Text = $"{registeredThumbnailMember.Id}";
             lblName.Text = $"{ThumbnailRestaurant.Name}({code.Text})";
 
-            if (string.IsNullOrEmpty(ThumbnailRestaurant.ImageLocation))
+            if (ThumbnailRestaurant.Image == null)
             {
-
                 if (code.Text == "한식")
                     pictureBox.Image = Resources.한식;
                 else if (code.Text == "중식")
@@ -63,7 +62,7 @@ namespace ThirdProject
                     pictureBox.Image = Resources.양식;
             }
             else
-                pictureBox.ImageLocation = ThumbnailRestaurant.ImageLocation;
+                pictureBox.Image = ConvertBinaryToImage(ThumbnailRestaurant.Image);
 
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
@@ -78,6 +77,34 @@ namespace ThirdProject
             else
             {
                 lblGrade.Text = "0.0 점";
+            }
+        }
+
+        private byte[] ConvertImageToBinary(Image image)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                if(ImageFormat.Jpeg.Equals(image.RawFormat))
+                {
+                    image.Save(memoryStream, ImageFormat.Jpeg);
+                }
+                else if(ImageFormat.Png.Equals(image.RawFormat))
+                {
+                    image.Save(memoryStream, ImageFormat.Png);
+                } 
+                else if(ImageFormat.Gif.Equals(image.RawFormat))
+                {
+                    image.Save(memoryStream, ImageFormat.Gif);
+                }
+                return memoryStream.ToArray();
+            }
+        }
+
+        private Image ConvertBinaryToImage(byte[] image)
+        {
+            using (MemoryStream memoryStream = new MemoryStream(image))
+            {
+                return Image.FromStream(memoryStream);
             }
         }
 
