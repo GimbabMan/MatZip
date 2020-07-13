@@ -458,7 +458,6 @@ namespace ThirdProject
             {
                 txbDays.Text += $"{code.Text} ";
             }
-
         }
     }
 }
