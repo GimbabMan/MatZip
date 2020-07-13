@@ -74,22 +74,22 @@ MatZip은 Microsoft사에서 제공하는 Bing Maps API를 활용하여 나만의 맛집리스트들을
 * 생성할 아이디, 비밀번호, 이름, 이메일 순으로 입력 후 회원가입 버튼을 클릭합니다.
 
 ##### 어려웠던 점
-1. 처음에 MapPushPin을 추가할 때 단지 Map Control에 item을 추가하면 되는 줄 알았는데 아니었습니다.
+1. 처음에 MapPushPin을 추가할 때 단지 Map Control에 Item을 추가하면 되는 줄 알았는데 아니었습니다.
 이를 해결한 방법은 Map Control에 VectorItemsLayer를 추가 후 MapItemStorage를 이용해서 MapPushPin을 Map에 추가했습니다.
 
 2. MapPushPin을 전체 맵에서 어떻게 인식해야 할지 고민을 했습니다.
 처음에는 MapItemClick 이벤트를 이용해 MapItemStorage에 저장된 모든 MapPushPin의 좌표를 탐색해서 찾았습니다.
-저희의 목표는 MouseMove 이벤트로 Map Push Pin에 마우스 커서만 올려도 새로운 폼을 띄우고 싶었습니다.
-이를 해결한 방법은 MapHitInfo 클래스를 이용해서 마우스 커서가 MapPushPin을 인식할 수 있었습니다.
+하지만 저희의 목표는 MouseMove 이벤트로 MapPushPin에 마우스 커서만 올려도 새로운 폼을 띄우고 싶었습니다.
+이를 해결하기 위해 MapHitInfo 클래스를 이용해서 마우스 커서가 MapPushPin을 인식할 수 있었습니다.
 
 3. 리뷰에 사진을 올릴 때 어려움을 겪었습니다.
-dataGridView에 사진을 올릴 때 DB에 이미지 파일의 경로만 저장되어 있기 때문에 다른 사용자가 저장된 이미지를 불러올 때 어려움이 있었습니다.
-이를 해결하기 위해 DB에 직접 사진을 저장했습니다.
+dataGridView에 DB에 저장된 사진을 올릴 때 이미지 파일의 경로만 저장되어 있기 때문에 다른 사용자가 저장된 이미지를 불러오는데 어려움이 있었습니다.
+이를 해결하기 위해 이미지 파일을 byte 배열로 변환해서 DB에 저장했습니다.
 
 ##### 느낀점
 
-* 이전까지는 Git과 같은 VersionControl을 이용하지 않고 일일이 프로젝트들을 알집으로 압축 후, 이어붙이는 형식으로
-프로젝트를 진행하였지만, Git을 쓰고 공동 작업이 훨씬 수월해지는 것을 느낄 수 있었습니다.
+* 이전까지는 Git과 같은 Version Control을 이용하지 않고 일일이 프로젝트를 알집으로 압축 후, 이어붙이는 형식으로
+프로젝트를 진행했지만, Git을 쓰고 공동 작업이 훨씬 수월해지는 것을 느낄 수 있었습니다.
 
 
  
