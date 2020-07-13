@@ -4,6 +4,18 @@
 MatZip은 Microsoft사에서 제공하는 Bing Maps API를 활용하여 나만의 맛집리스트들을 
 저장하고 다른 사람들과 의견을 공유할 수 있는 프로그램입니다.
 
+# 사용기술
+### 언어
+* C# 3.0+
+### 프레임워크
+* .NET Framework 4.8
+* Entity Framework 6.4.4
+* Winform
+### 데이터베이스
+* MSSQL Server 2019
+### Third Party Control
+* DevExpress Winform
+
 # 데이터베이스 설계
 ![D B](Documents/DB.png)
 
@@ -22,6 +34,8 @@ MatZip은 Microsoft사에서 제공하는 Bing Maps API를 활용하여 나만의 맛집리스트들을
 * 마우스 휠을 이용하여 적절히 ZoomIn, ZoomOut을 한 다음 맛집으로 등록할 곳에 마우스 커서를
 올리고 Double Click을 합니다. 
 * "추가하시겠습니까?"라는 MessagaBox가 뜨고 추가하려면 'Yes' or 'No'중에서 Yes를 누릅니다.
+
+
 
 ### 2) 가게명과 음식의 종류 기재 (필수 입력)
 ![가게정보입력](Documents/가게정보입력.png)
