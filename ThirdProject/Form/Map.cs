@@ -169,8 +169,8 @@ namespace ThirdProject
 
             //insertPushPin.Image = bmpMarker;
             storage.Items.Add(insertPushPin);
+           
             mapControl.Refresh();
-
         }
 
         private void mapControl_MapItemClick(object sender, MapItemClickEventArgs e)

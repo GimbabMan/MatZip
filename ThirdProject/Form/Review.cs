@@ -182,7 +182,7 @@ namespace ThirdProject
             {
                 foreach(Data.Menu menu in seletedMenus)
                 {
-                    txbMenus.Text += menu.Name + ' ' +  menu.Price + "\r\n";
+                    txbMenus.Text += $"{menu.Name}\t{menu.Price:C0}\r\n";
                 }
             }
 
@@ -228,7 +228,7 @@ namespace ThirdProject
             {
                 grades[i-1] = DataRepository.Review.GetGrade(i, SelectedRestaurant.RestaurantId).Count();
             }
-           
+
             txbGrade5.Text = grades[4].ToString();
             txbGrade4.Text = grades[3].ToString();
             txbGrade3.Text = grades[2].ToString();
@@ -375,7 +375,7 @@ namespace ThirdProject
             {
                 foreach (Data.Menu menu in seletedMenus)
                 {
-                    txbMenus.Text += menu.Name + ' ' + menu.Price + "\r\n";
+                    txbMenus.Text += $"{menu.Name}\t{menu.Price:C0}\r\n";
                 }
             }
 
