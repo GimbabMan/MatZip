@@ -66,8 +66,8 @@
 
 3. MapPushPin을 전체 맵에서 어떻게 인식해야 할지 고민했습니다.
 처음에는 MapItemClick 이벤트를 이용해 MapItemStorage에 저장된 모든 MapPushPin의 좌표를 탐색해서 찾았습니다.
-저희의 목표는 MouseMove 이벤트로 Map Push Pin에 마우스 커서만 올려도 새로운 폼을 띄우고 싶었습니다.
-이를 해결한 방법은 MapHitInfo 클래스를 이용해서 마우스 커서가 MapPushPin을 인식할 수 있었습니다.
+하지만 저희의 목표는 MouseMove 이벤트로 MapPushPin에 마우스 커서만 올려도 새로운 폼을 띄우는 것이었습니다.
+이를 해결하기 위해 MapHitInfo 클래스를 이용했습니다.
 
 4. 리뷰에 사진을 올릴 때 어려움을 겪었습니다.
 dataGrideView에 사진을 올릴 때 DB에는 이미지의 파일 경로만 저장되어 있기 때문에 어떻게 이미지를 올려야 할지 고민했습니다.
