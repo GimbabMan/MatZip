@@ -14,7 +14,7 @@ MatZip은 Microsoft사에서 제공하는 Bing Maps API를 활용하여 나만의 맛집리스트들을
 ### 데이터베이스
 * MSSQL Server 2019
 ### Third Party Control
-* DevExpress Winform
+* DevExpress Winform  
 
 # 데이터베이스 설계
 ![D B](Documents/DB.png)
