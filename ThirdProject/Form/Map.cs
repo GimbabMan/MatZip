@@ -63,9 +63,7 @@ namespace ThirdProject
                         
                         GeoPoint p = new GeoPoint(laptitude, longitude);
                         
-                        Bitmap bmpMarker = (Bitmap)Image.FromFile("C:\\Users\\plant12\\Desktop\\Image\\test.PNG");
                         MapPushpin insertPushPin = new MapPushpin() { Location = p, Text = "나", TextColor = Color.Red };
-                        //insertPushPin.Image = bmpMarker;
                         
                         storage.Items.Add(insertPushPin);
                         mapControl.Refresh();
@@ -164,7 +162,6 @@ namespace ThirdProject
 
             DataRepository.Information.Insert(information);
 
-            Bitmap bmpMarker = (Bitmap)Image.FromFile("C:\\Users\\plant12\\Desktop\\Image\\test.PNG");
             MapPushpin insertPushPin = new MapPushpin() { Location = p, Text = "나", TextColor = Color.Red };
 
             //insertPushPin.Image = bmpMarker;
@@ -376,7 +373,7 @@ namespace ThirdProject
         {
             LoggedInMember.IsLogIn = false;
             DataRepository.Member.Update(LoggedInMember);
-            MessageBox.Show("로그아웃 되셨습니다.");
+            MessageBox.Show("로그아웃 되었습니다.");
         }
     }
 }
