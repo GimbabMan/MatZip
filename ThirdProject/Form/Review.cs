@@ -120,7 +120,7 @@ namespace ThirdProject
 
             // 리뷰 보여주기
             // 멤버 이름 / 평점 / 코멘트
-
+            dgvReviews.ReadOnly = true;
             dgvReviews.RowTemplate.Height = 100;
             dgvReviews.AllowUserToAddRows = false;
 
