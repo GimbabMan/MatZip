@@ -78,17 +78,14 @@ MatZip은 Microsoft사에서 제공하는 Bing Maps API를 활용하여 나만의 맛집리스트들을
 1. 처음에 MapPushPin을 추가할 때 단지 Map Control에 item을 추가하면 되는 줄 알았는데 아니었습니다.
 이를 해결한 방법은 Map Control에 VectorItemsLayer를 추가 후 MapItemStorage를 이용해서 MapPushPin을 Map에 추가했습니다.
 
-2. Form에서 다른 Form으로 캡슐화를 지키면서 어떻게 데이터를 교환할지 고민했습니다.
-이를 해결한 방법은 Interface를 구현해서 Form에서 다른 Form으로 객체를 전달해줬습니다.
-
-3. MapPushPin을 전체 맵에서 어떻게 인식해야 할지 고민을 했습니다.
+2. MapPushPin을 전체 맵에서 어떻게 인식해야 할지 고민을 했습니다.
 처음에는 MapItemClick 이벤트를 이용해 MapItemStorage에 저장된 모든 MapPushPin의 좌표를 탐색해서 찾았습니다.
 저희의 목표는 MouseMove 이벤트로 Map Push Pin에 마우스 커서만 올려도 새로운 폼을 띄우고 싶었습니다.
 이를 해결한 방법은 MapHitInfo 클래스를 이용해서 마우스 커서가 MapPushPin을 인식할 수 있었습니다.
 
-4. 리뷰에 사진을 올릴 때 어려움을 겪었습니다.
-dataGrideView에 사진을 올릴 때 DB에는 이미지의 파일 경로만 저장되어 있기 때문에 어떻게 이미지를 올려야 할지 고민했습니다.
-이를 해결하기 위해 DataGridViewImageColumn 클래스를 이용했습니다.
+3. 리뷰에 사진을 올릴 때 어려움을 겪었습니다.
+dataGridView에 사진을 올릴 때 DB에는 이미지의 파일 경로만 저장되어 있기 때문에 다른 사용자가 저장된 이미지를 불러올 때 어려움이 있었습니다.
+이를 해결하기 위해 DB에 직접 사진을 저장했습니다.
 
 ##### 느낀점
 
