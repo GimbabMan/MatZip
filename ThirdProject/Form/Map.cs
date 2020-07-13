@@ -375,5 +375,6 @@ namespace ThirdProject
             DataRepository.Member.Update(LoggedInMember);
             MessageBox.Show("로그아웃 되었습니다.");
         }
+
     }
 }
