@@ -15,7 +15,6 @@ namespace ThirdProject
         private MapItemStorage storage = new MapItemStorage();
         private MapPushpin mapPushpin = null;
         private Member LoggedInMember { get; set; }
-        public Color Red { get; private set; }
         private string RestaurantName { get; set; } 
         private string RestaurantFoodType { get; set; }
         private byte[] RestaurantImage { get; set; }
@@ -112,13 +111,6 @@ namespace ThirdProject
                 InsertMapPushPin(sender, e);
         }
 
-        public void GetRestaurantInformation(string name, string foodType, byte[] image)
-        {
-            RestaurantImage = image;
-            RestaurantName = name;
-            RestaurantFoodType = foodType;
-        }
-
         private void InsertMapPushPin(object sender, MouseEventArgs e)
         {
             CoordPoint p = mapControl.ScreenPointToCoordPoint(new MapPoint(e.X, e.Y));
@@ -165,22 +157,6 @@ namespace ThirdProject
             storage.Items.Add(insertPushPin);
            
             mapControl.Refresh();
-        }
-
-        private void mapControl_MapItemClick(object sender, MapItemClickEventArgs e)
-        {
-            if(IsMapPushPinClicked(sender, e))
-            {
-                mapPushpin = (MapPushpin)e.Item;
-            }
-        }
-
-        private bool IsMapPushPinClicked(object sender, MapItemClickEventArgs e)
-        {
-            if (e.MouseArgs.Button == MouseButtons.Left && e.Item is MapPushpin)
-                return true;
-            else
-                return false;
         }
 
         private void mapControl_KeyDown(object sender, KeyEventArgs e)
@@ -284,10 +260,7 @@ namespace ThirdProject
             
         }
 
-        private void mapControl_MouseClick(object sender, MouseEventArgs e)
-        {
-            mapPushpin = null;
-        }
+       
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -364,6 +337,12 @@ namespace ThirdProject
             
             thumbnail.ShowDialog();
 
+        }
+        public void GetRestaurantInformation(string name, string foodType, byte[] image)
+        {
+            RestaurantImage = image;
+            RestaurantName = name;
+            RestaurantFoodType = foodType;
         }
 
         private void Map_FormClosed(object sender, FormClosedEventArgs e)

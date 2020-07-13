@@ -20,11 +20,7 @@ namespace ThirdProject
         {
             map = _map;
         }
-
-        private void RestaurantInsertForm_Load(object sender, EventArgs e)
-        {
-
-        }
+       
         private void pcbRestaurantImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
@@ -95,11 +91,6 @@ namespace ThirdProject
 
             txeName.Text = "";
 
-        }
-
-        private void txeName_MouseLeave(object sender, EventArgs e)
-        {
-          
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

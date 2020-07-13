@@ -95,7 +95,6 @@
             this.txeName.TabIndex = 14;
             this.txeName.Click += new System.EventHandler(this.txeName_Click);
             this.txeName.MouseEnter += new System.EventHandler(this.txeName_MouseEnter);
-            this.txeName.MouseLeave += new System.EventHandler(this.txeName_MouseLeave);
             // 
             // btnComplete
             // 
@@ -124,7 +123,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "InputRestaurantInformation";
             this.Text = "RestaurantInsertForm";
-            this.Load += new System.EventHandler(this.RestaurantInsertForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbRestaurantImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txeName.Properties)).EndInit();

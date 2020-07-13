@@ -63,9 +63,7 @@
             this.mapControl.Size = new System.Drawing.Size(1151, 532);
             this.mapControl.TabIndex = 4;
             this.mapControl.ZoomLevel = 17D;
-            this.mapControl.MapItemClick += new DevExpress.XtraMap.MapItemClickEventHandler(this.mapControl_MapItemClick);
             this.mapControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mapControl_KeyDown);
-            this.mapControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapControl_MouseClick);
             this.mapControl.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.mapControl_MouseDoubleClick);
             this.mapControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapControl_MouseMove);
             // 
