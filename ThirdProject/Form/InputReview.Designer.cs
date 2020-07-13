@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbbGrade = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnComplete = new DevExpress.XtraEditors.SimpleButton();
             this.txbComment = new System.Windows.Forms.TextBox();
             this.lblUserId = new System.Windows.Forms.Label();
             this.pcbReviewPicture = new System.Windows.Forms.PictureBox();
-            this.cbbGrade = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbReviewPicture)).BeginInit();
             this.SuspendLayout();
@@ -55,15 +55,30 @@
             this.panel1.Size = new System.Drawing.Size(500, 516);
             this.panel1.TabIndex = 0;
             // 
+            // cbbGrade
+            // 
+            this.cbbGrade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbGrade.FormattingEnabled = true;
+            this.cbbGrade.Items.AddRange(new object[] {
+            "1점",
+            "2점",
+            "3점",
+            "4점",
+            "5점"});
+            this.cbbGrade.Location = new System.Drawing.Point(112, 353);
+            this.cbbGrade.Name = "cbbGrade";
+            this.cbbGrade.Size = new System.Drawing.Size(153, 26);
+            this.cbbGrade.TabIndex = 18;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(271, 353);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(210, 23);
+            this.label2.Size = new System.Drawing.Size(222, 23);
             this.label2.TabIndex = 17;
-            this.label2.Text = "(1점~5점 입력해주세요)";
+            this.label2.Text = "(1점 ~ 5점 입력해주세요)";
             // 
             // label1
             // 
@@ -129,21 +144,6 @@
             this.pcbReviewPicture.TabIndex = 0;
             this.pcbReviewPicture.TabStop = false;
             this.pcbReviewPicture.Click += new System.EventHandler(this.pcbReviewPicture_Click);
-            // 
-            // cbbGrade
-            // 
-            this.cbbGrade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbGrade.FormattingEnabled = true;
-            this.cbbGrade.Items.AddRange(new object[] {
-            "1점",
-            "2점",
-            "3점",
-            "4점",
-            "5점"});
-            this.cbbGrade.Location = new System.Drawing.Point(112, 353);
-            this.cbbGrade.Name = "cbbGrade";
-            this.cbbGrade.Size = new System.Drawing.Size(153, 26);
-            this.cbbGrade.TabIndex = 18;
             // 
             // inputReview
             // 

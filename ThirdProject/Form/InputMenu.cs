@@ -14,7 +14,7 @@ namespace ThirdProject
 {
     public partial class InputMenu : RootForm
     {
-        private IInputMenuToReview Menu { get; set; }
+        private IInputMenuToReview InsertMenu { get; set; }
        
         public InputMenu()
         {
@@ -23,7 +23,7 @@ namespace ThirdProject
 
         public InputMenu(IInputMenuToReview menu):this()
         {
-            Menu = menu;
+            InsertMenu = menu;
         }
 
 
@@ -40,7 +40,7 @@ namespace ThirdProject
 
             if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Menu.SetMenuPrice(name, (double)price);
+                InsertMenu.SetMenuPrice(name, (double)price);
                 Close();
             }
 

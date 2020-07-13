@@ -21,7 +21,7 @@ namespace ThirdProject.Data
         public string Comment { get; set; }
         public string ImageLocation { get; set; }
     
-        public virtual Member Member { get; set; }
         public virtual Restaurant Restaurant { get; set; }
+        public virtual Member Member { get; set; }
     }
 }

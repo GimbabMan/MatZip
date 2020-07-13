@@ -26,6 +26,7 @@ namespace ThirdProject.Data
         public string Email { get; set; }
         public string Id { get; set; }
         public string Password { get; set; }
+        public bool IsLogIn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
