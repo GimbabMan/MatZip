@@ -14,10 +14,10 @@ namespace ThirdProject
         private VectorItemsLayer vectorItemLayer = new VectorItemsLayer();
         private MapItemStorage storage = new MapItemStorage();
         private MapPushpin mapPushpin = null;
-        private Member LoggedInMember { get; set; }
-        private string RestaurantName { get; set; } 
-        private string RestaurantFoodType { get; set; }
-        private byte[] RestaurantImage { get; set; }
+        private Member loggedInMember;
+        private string restaurantName;
+        private string restaurantFoodType;
+        private byte[] restaurantImage;
 
         public Map()
         {
@@ -26,7 +26,7 @@ namespace ThirdProject
 
         public Map(Member member) : this()
         {
-            LoggedInMember = member;
+            loggedInMember = member;
         }
 
         private void Map_Load(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace ThirdProject
 
             foreach (Registration register in registers)
             {
-                if (LoggedInMember.MemberId == register.MemberId)
+                if (loggedInMember.MemberId == register.MemberId)
                     myRestaurantIds.Add(register.RestaurantId);
                 else
                     othersRestaurantIds.Add(register.RestaurantId);
@@ -120,33 +120,33 @@ namespace ThirdProject
             inputRestaurantInformation.ShowDialog();
 
           
-            if (string.IsNullOrEmpty(RestaurantName))
+            if (string.IsNullOrEmpty(restaurantName))
             {
                 //MessageBox.Show("가게명을 입력받지 못했습니다.");
                 return;
             }
 
             Restaurant restaurant = new Restaurant();
-            restaurant.Name = RestaurantName;
+            restaurant.Name = restaurantName;
             restaurant.Latitude = (decimal)p.GetY();
             restaurant.Longitude = (decimal)p.GetX();
-            restaurant.Image = RestaurantImage;
+            restaurant.Image = restaurantImage;
             DataRepository.Restaurant.Insert(restaurant);
 
             Registration registration = new Registration();
-            registration.MemberId = LoggedInMember.MemberId;
+            registration.MemberId = loggedInMember.MemberId;
             registration.RestaurantId = restaurant.RestaurantId;
             DataRepository.Registration.Insert(registration);
 
             Information information = new Data.Information();
             information.RestaurantId = restaurant.RestaurantId;
-            if (RestaurantFoodType == "한식")
+            if (restaurantFoodType == "한식")
                 information.CodeId = 1;
-            else if (RestaurantFoodType == "중식")
+            else if (restaurantFoodType == "중식")
                 information.CodeId = 2;
-            else if (RestaurantFoodType == "일식")
+            else if (restaurantFoodType == "일식")
                 information.CodeId = 3;
-            else if (RestaurantFoodType == "양식")
+            else if (restaurantFoodType == "양식")
                 information.CodeId = 4;
 
             DataRepository.Information.Insert(information);
@@ -199,7 +199,7 @@ namespace ThirdProject
             {
                 foreach(Registration registration in registrations)
                 {
-                    if(registration.RestaurantId == deleteRestaurantId && registration.MemberId == LoggedInMember.MemberId)
+                    if(registration.RestaurantId == deleteRestaurantId && registration.MemberId == loggedInMember.MemberId)
                     {
                         deleteRegistration = registration;
                         isFindDeleteRegistration = true;
@@ -315,7 +315,7 @@ namespace ThirdProject
             Registration selectedRegistration = null;
             foreach (Registration registration in selectedRegistrations)
             {
-                if (registration.MemberId == LoggedInMember.MemberId)
+                if (registration.MemberId == loggedInMember.MemberId)
                 {
                     selectedRegistration = registration;
                     break;
@@ -333,22 +333,22 @@ namespace ThirdProject
                     thumbnailRestaurant = restaurant;
                 }
             }
-            Thumbnail thumbnail = new Thumbnail(LoggedInMember, thumbnailRestaurant);
+            Thumbnail thumbnail = new Thumbnail(loggedInMember, thumbnailRestaurant);
             
             thumbnail.ShowDialog();
 
         }
         public void GetRestaurantInformation(string name, string foodType, byte[] image)
         {
-            RestaurantImage = image;
-            RestaurantName = name;
-            RestaurantFoodType = foodType;
+            restaurantImage = image;
+            restaurantName = name;
+            restaurantFoodType = foodType;
         }
 
         private void Map_FormClosed(object sender, FormClosedEventArgs e)
         {
-            LoggedInMember.IsLogIn = false;
-            DataRepository.Member.Update(LoggedInMember);
+            loggedInMember.IsLogIn = false;
+            DataRepository.Member.Update(loggedInMember);
             MessageBox.Show("로그아웃 되었습니다.");
         }
 
