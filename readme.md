@@ -17,7 +17,7 @@ MatZip은 Microsoft사에서 제공하는 Bing Maps API를 활용하여 나만의 맛집 리스트를
 * DevExpress Winform  
 
 # 데이터베이스 설계
-![D B](Documents/DB.png)
+![디비 설계](Documents/디비_설계.png)
 
 * 구성요소 중 코드성 테이블로 만들 수 있는 것을 Code 테이블과 CodeCategory 테이블을
 만들어 DB의 복잡도를 줄였습니다. 
