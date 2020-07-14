@@ -260,8 +260,6 @@ namespace ThirdProject
             
         }
 
-       
-
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Escape)
@@ -271,7 +269,6 @@ namespace ThirdProject
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
         
         private void mapControl_MouseMove(object sender, MouseEventArgs e)
         {
@@ -338,6 +335,7 @@ namespace ThirdProject
             thumbnail.ShowDialog();
 
         }
+
         public void GetRestaurantInformation(string name, string foodType, byte[] image)
         {
             restaurantImage = image;

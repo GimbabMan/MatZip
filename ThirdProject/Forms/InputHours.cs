@@ -18,7 +18,6 @@ namespace ThirdProject
             review = _review;
         }
 
-
         private void btnComplete_Click(object sender, EventArgs e)
         {
             string startTime = cbbStartTime.Text.ToString();
@@ -46,5 +45,6 @@ namespace ThirdProject
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
     }
 }

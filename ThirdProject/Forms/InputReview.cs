@@ -112,6 +112,5 @@ namespace ThirdProject
             txbComment.Text = "";
         }
 
-        
     }
 }

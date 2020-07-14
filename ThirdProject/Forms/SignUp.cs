@@ -61,11 +61,13 @@ namespace ThirdProject
         {
             SignUpComplete();
         }
+
         public bool IsEmailForm(string email)
         {
             bool valid = Regex.IsMatch(email, @"[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?");
             return valid;
         }
+
         private void SignUpComplete()
         {
             if(txeId.Text == "아이디" || string.IsNullOrEmpty(txeId.Text))
@@ -130,7 +132,6 @@ namespace ThirdProject
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
       
     }
 }

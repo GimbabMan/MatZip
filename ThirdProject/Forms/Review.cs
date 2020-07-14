@@ -403,6 +403,7 @@ namespace ThirdProject
                 return memoryStream.ToArray();
             }
         }
+
         private void btnHours_Click(object sender, EventArgs e)
         {
             InputHours inputHours = new InputHours(this);
@@ -459,6 +460,7 @@ namespace ThirdProject
                 txbDays.Text += $"{code.Text} ";
             }
         }
+
     }
 }
 

@@ -7,7 +7,6 @@ namespace ThirdProject
     public partial class InputMenu : RootForm
     {
         private Review review;
-       
         public InputMenu()
         {
             InitializeComponent();

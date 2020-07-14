@@ -124,7 +124,6 @@ namespace ThirdProject
             review.ShowDialog();
             Close();
         }
-
       
     }
 }
