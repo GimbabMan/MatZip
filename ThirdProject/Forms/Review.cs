@@ -13,16 +13,16 @@ namespace ThirdProject
 {
     public partial class Review : RootForm
     {
-        private Data.Member loggedInMember;
+        private Member loggedInMember;
         private Restaurant selectedRestaurant;
-        private string comment;
+        private string reviewComment;
         private byte[] reviewImage;
         private string menuName;
-        private double price;
-        private int grade;
+        private double reviewPrice;
+        private int reviewGrade;
         private int rowCount = 0;
-        private string startTime;
-        private string finishTime;
+        private string restaurantStartTime;
+        private string restaurantFinishTime;
         private bool[] daysOff; 
         
         private Review()
@@ -30,7 +30,7 @@ namespace ThirdProject
             InitializeComponent();
         }
 
-        public Review(Data.Member loggedInMember, Restaurant selectedRestaurant) : this()
+        public Review(Member loggedInMember, Restaurant selectedRestaurant) : this()
         {
             this.loggedInMember = loggedInMember;
             this.selectedRestaurant = selectedRestaurant;
@@ -271,15 +271,15 @@ namespace ThirdProject
 
         public void GetReviewInformation(string comment, byte[] image, int grade)
         {
-            this.comment = comment;
+            reviewComment = comment;
             reviewImage = image;
-            this.grade = grade;
+            reviewGrade = grade;
         }
 
         public void GetMenuInformation(string menuName, double price)
         {
             this.menuName = menuName;
-            this.price = price;
+            reviewPrice = price;
         }
 
         public void GetDaysOffInformation(bool[] daysOff)
@@ -289,8 +289,8 @@ namespace ThirdProject
 
         public void GetHoursInformation(string startTime, string finishTime)
         {
-            this.startTime = startTime;
-            this.finishTime = finishTime;
+            restaurantStartTime = startTime;
+            restaurantFinishTime = finishTime;
         }
 
         private void btnReview_Click(object sender, EventArgs e)
@@ -298,7 +298,7 @@ namespace ThirdProject
             inputReview inputReview = new inputReview(this, loggedInMember);
             inputReview.ShowDialog();
 
-            if (string.IsNullOrEmpty(this.comment))
+            if (string.IsNullOrEmpty(reviewComment))
                 return;
 
             InsertReview();
@@ -307,10 +307,10 @@ namespace ThirdProject
             string memberId = loggedInMember.Id;
 
             // 평가 점수
-            int? grade = this.grade;
+            int? grade = reviewGrade;
 
             // 코멘트
-            string comment = this.comment;
+            string comment = reviewComment;
             if (string.IsNullOrEmpty(comment))
             {
                 comment = "";
@@ -348,8 +348,8 @@ namespace ThirdProject
             Data.Review insertReview = new Data.Review();
             insertReview.MemberId = loggedInMember.MemberId;
             insertReview.RestaurantId = selectedRestaurant.RestaurantId;
-            insertReview.Grade = grade;
-            insertReview.Comment = comment;
+            insertReview.Grade = reviewGrade;
+            insertReview.Comment = reviewComment;
             insertReview.Image = reviewImage != null ? reviewImage : ConvertImageToBinary(Resources.black);
             DataRepository.Review.Insert(insertReview);
         }
@@ -365,7 +365,7 @@ namespace ThirdProject
             Data.Menu insertMenu = new Data.Menu();
             insertMenu.RestaurantId = selectedRestaurant.RestaurantId;
             insertMenu.Name = menuName;
-            insertMenu.Price = (decimal)price;
+            insertMenu.Price = (decimal)reviewPrice;
             DataRepository.Menu.Insert(insertMenu);
 
             menuName = null;
@@ -408,17 +408,17 @@ namespace ThirdProject
             InputHours inputHours = new InputHours(this);
             inputHours.ShowDialog();
 
-            if (startTime == null || finishTime == null)
+            if (restaurantStartTime == null || restaurantFinishTime == null)
                 return;
 
-            selectedRestaurant.StartTime = startTime;
-            selectedRestaurant.FinishTime = finishTime;
+            selectedRestaurant.StartTime = restaurantStartTime;
+            selectedRestaurant.FinishTime = restaurantFinishTime;
             DataRepository.Restaurant.Update(selectedRestaurant);
 
-            lblHours.Text = $"{startTime} ~ {finishTime}";
+            lblHours.Text = $"{restaurantStartTime} ~ {restaurantFinishTime}";
 
-            startTime = null;
-            finishTime = null;
+            restaurantStartTime = null;
+            restaurantFinishTime = null;
 
         }
 
