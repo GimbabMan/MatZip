@@ -12,7 +12,7 @@ namespace ThirdProject
     {
         private Review review;
         private Member loggedInMember;
-        private string PicturePath { get; set; }
+        private string picturePath;
         public inputReview()
         {
             InitializeComponent();
@@ -30,11 +30,11 @@ namespace ThirdProject
             open.InitialDirectory = "C:";
             open.Filter = "All Files(*.*)|*.*|Image file(*.jpg)|*.jpg|(*.png)|*png";
             open.FilterIndex = 1;
-            PicturePath = null;
+            picturePath = null;
             if (open.ShowDialog() == DialogResult.OK)
             {
-                PicturePath = open.FileName.ToString();
-                pcbReviewPicture.ImageLocation = PicturePath;
+                picturePath = open.FileName.ToString();
+                pcbReviewPicture.ImageLocation = picturePath;
                 pcbReviewPicture.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
@@ -65,7 +65,7 @@ namespace ThirdProject
                 return;
             }
 
-            if (PicturePath != null)
+            if (picturePath != null)
                 image = ConvertImageToBinary(pcbReviewPicture.Image);
 
 
