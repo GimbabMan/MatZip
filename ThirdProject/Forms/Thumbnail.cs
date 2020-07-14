@@ -13,25 +13,25 @@ namespace ThirdProject
     public partial class Thumbnail : RootForm
     {
 
-        private Data.Member LoggedInMember { get; set; }
-        private Data.Restaurant ThumbnailRestaurant { get; set; }
+        private Member loggedInMember;
+        private Restaurant thumbnailRestaurant;
         private Thumbnail()
         {
             InitializeComponent();
 
         }
 
-        public Thumbnail(Data.Member loggedinMember, Data.Restaurant thumbnailRestaurant) : this()
+        public Thumbnail(Member _loggedinMember, Restaurant _thumbnailRestaurant) : this()
         {
-            LoggedInMember = loggedinMember;
-            ThumbnailRestaurant = thumbnailRestaurant;
+            loggedInMember = _loggedinMember;
+            thumbnailRestaurant = _thumbnailRestaurant;
         }
 
         private void Thumbnail_Load(object sender, EventArgs e)
         {
             Location = new Point(Cursor.Position.X, Cursor.Position.Y);
             //FormBorderStyle = FormBorderStyle.FixedSingle;
-            var informations = DataRepository.Information.Get(ThumbnailRestaurant.RestaurantId);
+            var informations = DataRepository.Information.Get(thumbnailRestaurant.RestaurantId);
             int codeId = 0;
             foreach (Information information in informations)
             {
@@ -43,14 +43,14 @@ namespace ThirdProject
             }
 
             Code code = DataRepository.Code.Get(codeId);
-            int memberId = DataRepository.Registration.GetMemberId(ThumbnailRestaurant.RestaurantId);
+            int memberId = DataRepository.Registration.GetMemberId(thumbnailRestaurant.RestaurantId);
             Member registeredThumbnailMember = DataRepository.Member.GetOneMember(memberId);
 
             Text = code.Text;
             lblUserId.Text = $"{registeredThumbnailMember.Id}";
-            lblName.Text = $"{ThumbnailRestaurant.Name}({code.Text})";
+            lblName.Text = $"{thumbnailRestaurant.Name}({code.Text})";
 
-            if (ThumbnailRestaurant.Image == null)
+            if (thumbnailRestaurant.Image == null)
             {
                 if (code.Text == "한식")
                     pictureBox.Image = Resources.한식;
@@ -62,12 +62,12 @@ namespace ThirdProject
                     pictureBox.Image = Resources.양식;
             }
             else
-                pictureBox.Image = ConvertBinaryToImage(ThumbnailRestaurant.Image);
+                pictureBox.Image = ConvertBinaryToImage(thumbnailRestaurant.Image);
 
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
             //lblGrade.Text;
-            var reviews = DataRepository.Review.Get(ThumbnailRestaurant.RestaurantId);
+            var reviews = DataRepository.Review.Get(thumbnailRestaurant.RestaurantId);
             if (reviews.Count() > 0)
             {
                 double reviewsSum = reviews.Sum(x => x.Grade);
@@ -120,7 +120,7 @@ namespace ThirdProject
 
         private void pictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Review review = new Review(LoggedInMember, ThumbnailRestaurant);
+            Review review = new Review(loggedInMember, thumbnailRestaurant);
             review.ShowDialog();
             Close();
         }

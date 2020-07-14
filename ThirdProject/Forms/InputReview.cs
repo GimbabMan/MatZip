@@ -11,17 +11,17 @@ namespace ThirdProject
     public partial class inputReview : RootForm
     {
         private Review review;
-        private Member LoggedInMember { get; set; }
+        private Member loggedInMember;
         private string PicturePath { get; set; }
         public inputReview()
         {
             InitializeComponent();
         }
 
-        public inputReview(Review _review, Member loggedInMember) : this()
+        public inputReview(Review _review, Member _loggedInMember) : this()
         {
             review = _review;
-            LoggedInMember = loggedInMember;
+            loggedInMember = _loggedInMember;
         }
 
         private void pcbReviewPicture_Click(object sender, System.EventArgs e)
@@ -41,7 +41,7 @@ namespace ThirdProject
 
         private void InputReview_Load(object sender, System.EventArgs e)
         {
-            lblUserId.Text = $"{LoggedInMember.Id}";
+            lblUserId.Text = $"{loggedInMember.Id}";
         }
 
         private void btnComplete_Click(object sender, System.EventArgs e)
