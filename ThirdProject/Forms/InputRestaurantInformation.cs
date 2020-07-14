@@ -4,13 +4,13 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using ThirdProject.BaseForm;
-using ThirdProject.Data;
+
 namespace ThirdProject
 {
     public partial class InputRestaurantInformation : RootForm
     {
-        private Map map = null;
-        private string PicturePath { get; set; }
+        private Map map;
+        private string picturePath;
         public InputRestaurantInformation()
         {
             InitializeComponent();
@@ -27,11 +27,11 @@ namespace ThirdProject
             open.InitialDirectory = "C:";
             open.Filter = "All Files(*.*)|*.*|Image file(*.jpg)|*.jpg|(*.png)|*png";
             open.FilterIndex = 1;
-            PicturePath = null;
+            picturePath = null;
             if (open.ShowDialog() == DialogResult.OK)
             {
-                PicturePath = open.FileName.ToString();
-                pcbRestaurantImage.ImageLocation = PicturePath;
+                picturePath = open.FileName.ToString();
+                pcbRestaurantImage.ImageLocation = picturePath;
                 pcbRestaurantImage.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
@@ -47,7 +47,7 @@ namespace ThirdProject
             byte[] image = null;
             try
             {
-                if (PicturePath != null)
+                if (picturePath != null)
                     image = ConvertImageToBinary(pcbRestaurantImage.Image);
             }
             catch
@@ -60,7 +60,7 @@ namespace ThirdProject
                 map.GetRestaurantInformation(txeName.Text, cbbFoodType.Text, image);
             }
 
-            PicturePath = null;
+            picturePath = null;
             Close();
         }
 
@@ -100,6 +100,7 @@ namespace ThirdProject
                 Close();
                 return true;
             }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -107,7 +108,6 @@ namespace ThirdProject
         {
             txeName.Text = "";
         }
-
         
     }
 }
