@@ -1,6 +1,5 @@
 # 개요 
 ![로고1](Documents/로고1.png)
- 
 MatZip은 Microsoft사에서 제공하는 Bing Maps API를 활용하여 나만의 맛집 리스트를 
 저장하고 다른 사람과 의견을 공유할 수 있는 프로그램입니다.
 
@@ -18,7 +17,6 @@ MatZip은 Microsoft사에서 제공하는 Bing Maps API를 활용하여 나만의 맛집 리스트를
 
 # 데이터베이스 설계
 ![디비 설계](Documents/디비_설계.png)
-
 * 구성요소 중 코드성 테이블로 만들 수 있는 것을 Code 테이블과 CodeCategory 테이블을
 만들어 DB의 복잡도를 줄였습니다. 
 * 외래키만 가지고 있는 Mapping Table과 같은 경우에는 ADO.NET을 생성할 때 포함되지 않아 dummy 속성을 추가했습니다.
@@ -88,7 +86,7 @@ MatZip은 Microsoft사에서 제공하는 Bing Maps API를 활용하여 나만의 맛집 리스트를
 2. MapPushPin을 전체 맵에서 어떻게 인식해야 할지 고민을 했습니다.
 처음에는 MapItemClick 이벤트를 이용해 MapItemStorage에 저장된 모든 MapPushPin의 좌표를 탐색해서 찾았습니다.
 하지만 저희의 목표는 MouseMove 이벤트로 MapPushPin에 마우스 커서만 올려도 새로운 폼을 띄우고 싶었습니다.
-이를 해결하기 위해 MapHitInfo 클래스를 이용해서 마우스 커서가 MapPushPin을 인식할 수 있었습니다.
+이를 위해 MapHitInfo 클래스를 이용해서 마우스 커서가 MapPushPin을 인식할 수 있도록 구현했습니다.
 
 3. 리뷰에 사진을 올릴 때 어려움을 겪었습니다.
 dataGridView에 DB에 저장된 사진을 올릴 때 이미지 파일의 경로만 저장되어 있기 때문에 다른 사용자가 저장된 이미지를 불러오는데 어려움이 있었습니다.
