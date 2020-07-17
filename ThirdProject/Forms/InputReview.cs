@@ -10,18 +10,18 @@ namespace ThirdProject
 {
     public partial class inputReview : RootForm
     {
-        private Review review;
-        private Member loggedInMember;
+        private Review _review;
+        private Member _loggedInMember;
         private string picturePath;
         public inputReview()
         {
             InitializeComponent();
         }
 
-        public inputReview(Review _review, Member _loggedInMember) : this()
+        public inputReview(Review review, Member loggedInMember) : this()
         {
-            review = _review;
-            loggedInMember = _loggedInMember;
+            _review = review;
+            _loggedInMember = loggedInMember;
         }
 
         private void pcbReviewPicture_Click(object sender, System.EventArgs e)
@@ -41,7 +41,7 @@ namespace ThirdProject
 
         private void InputReview_Load(object sender, System.EventArgs e)
         {
-            lblUserId.Text = $"{loggedInMember.Id}";
+            lblUserId.Text = $"{_loggedInMember.Id}";
         }
 
         private void btnComplete_Click(object sender, System.EventArgs e)
@@ -71,7 +71,7 @@ namespace ThirdProject
 
             if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                review.GetReviewInformation(comment, image, (int)grade);
+                _review.GetReviewInformation(comment, image, (int)grade);
                 Close();
             }
 

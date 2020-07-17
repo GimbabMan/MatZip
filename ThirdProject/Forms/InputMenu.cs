@@ -6,15 +6,15 @@ namespace ThirdProject
 {
     public partial class InputMenu : RootForm
     {
-        private Review review;
+        private Review _review;
         public InputMenu()
         {
             InitializeComponent();
         }
 
-        public InputMenu(Review _review):this()
+        public InputMenu(Review review):this()
         {
-            review = _review;
+            _review = review;
         }
 
         private void btnAdd_Click(object sender, System.EventArgs e)
@@ -30,7 +30,7 @@ namespace ThirdProject
 
             if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                review.GetMenuInformation(name, (double)price);
+                _review.GetMenuInformation(name, (double)price);
                 Close();
             }
 

@@ -7,15 +7,15 @@ namespace ThirdProject
 {
     public partial class InPutDaysOff : RootForm
     {
-        Review review;
+        Review _review;
         public InPutDaysOff()
         {
             InitializeComponent();
         }
 
-        public InPutDaysOff(Review _review): this()
+        public InPutDaysOff(Review review): this()
         {
-            review = _review;
+            _review = review;
         }
 
         private void btnComplete_Click(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace ThirdProject
 
             if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                review.GetDaysOffInformation(listDaysOff);
+                _review.GetDaysOffInformation(listDaysOff);
                 Close();
             }
         }

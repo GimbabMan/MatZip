@@ -7,15 +7,15 @@ namespace ThirdProject
 {
     public partial class InputHours : RootForm
     {
-        Review review;
+        Review _review2;
         private InputHours()
         {
             InitializeComponent();
         }
 
-        public InputHours(Review _review) : this()
+        public InputHours(Review review) : this()
         {
-            review = _review;
+            _review2 = review;
         }
 
         private void btnComplete_Click(object sender, EventArgs e)
@@ -31,7 +31,7 @@ namespace ThirdProject
 
             if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                review.GetHoursInformation(startTime, finishTime);
+                _review2.GetHoursInformation(startTime, finishTime);
                 Close();
             }
         }

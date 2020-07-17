@@ -9,16 +9,16 @@ namespace ThirdProject
 {
     public partial class InputRestaurantInformation : RootForm
     {
-        private Map map;
+        private Map _map;
         private string picturePath;
         public InputRestaurantInformation()
         {
             InitializeComponent();
         }
 
-        public InputRestaurantInformation(Map _map) : this()
+        public InputRestaurantInformation(Map map) : this()
         {
-            map = _map;
+            _map = map;
         }
        
         private void pcbRestaurantImage_Click(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace ThirdProject
 
             if (MessageBox.Show("입력을 완료하셨나요?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                map.GetRestaurantInformation(txeName.Text, cbbFoodType.Text, image);
+                _map.GetRestaurantInformation(txeName.Text, cbbFoodType.Text, image);
             }
 
             picturePath = null;
